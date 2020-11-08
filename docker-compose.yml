@@ -1,0 +1,22 @@
+version: "3"
+   
+services:
+  db:
+    image: postgres
+    # 環境変数
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  web:
+    # 現在地のDockerfileをもとに作ってね！
+    build: . # カレントディレクトリ（相対パス）
+    # コンテナを立ち上げたら勝手に起動
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      #  - HOST:GUEST
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
