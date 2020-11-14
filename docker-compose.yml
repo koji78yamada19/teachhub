@@ -2,21 +2,27 @@ version: "3"
    
 services:
   db:
+    # DockerリポジトリからPullするDockerイメージを直接指定
     image: postgres
-    # 環境変数
+    # 環境変数を設定
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-  web:
-    # 現在地のDockerfileをもとに作ってね！
+  web: # サービスの名前
+    # Dockerfileの内容が読み込まれて、Dockerfileの記載の内容でコンテナが作成され
+    # Dockerfile内のFROM命令でイメージ指定できるため、間接的にイメージを指定
     build: . # カレントディレクトリ（相対パス）
+    # コンテナ内で実行するコマンドの指定をする
     # コンテナを立ち上げたら勝手に起動
     command: python manage.py runserver 0.0.0.0:8000
+    # マウント
     volumes:
       #  - HOST:GUEST
       - .:/code
+    # ホストOSへの8000番ポートアクセスをコンテナの8000ポートに転送
     ports:
       - "8000:8000"
+    # 「depends_on」は起動順序を制御します。DjangoはMySQLに接続するので、Djangoよりも先にPostgreSQLを起動するよう順番を制御します。
     depends_on:
       - db
