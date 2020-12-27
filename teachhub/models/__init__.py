@@ -1,0 +1,1 @@
+from teachhub.models.document import Document
