@@ -2,3 +2,7 @@
 __pycache__/
 
 migrations/
+
+.vscode/
+
+media/
