@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_title %}
+{{ document.name }}
+{% endblock head_title %}
+
+{% block extra_head %}
+{% endblock extra_head %}
+
+{% block content %}
+<div class="hero-body">
+    <div class="container has-text-centered">
+        <div class="columns is-vcentered">
+            <div class="column is-6 is-offset-1">
+                <h1 class="title is-2">
+                    {{ document.name }}
+                </h1>
+                <h2 class="subtitle is-4 mt-5">
+                    {{ document.content }} 
+                </h2>
+                <h2 class="subtitle is-4">
+                    <a href="{{ document.file.url }}">ダウンロード</a>
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
