@@ -1,7 +1,7 @@
 from django.urls import path
 from teachhub import views
 
-# app_name = 'stores'  # URL逆引用
+app_name = 'teachhub'  # URL逆引用
 
 urlpatterns = [
     path('documents/', views.document_list, name='document_list'),

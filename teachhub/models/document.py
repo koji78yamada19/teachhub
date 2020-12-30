@@ -1,6 +1,7 @@
 import os
 import uuid
 from django.db import models
+from django.urls import reverse
 
 
 class Document(models.Model):
@@ -36,6 +37,6 @@ class Document(models.Model):
     def __str__(self):
         return self.name
 
-    # def get_absolute_url(self):
-    #     # return 'items/1/'
-    #     return reverse('stores:item_detail', kwargs={'pk': self.pk})
+    def get_absolute_url(self):
+        # return 'documents/1/'
+        return reverse('teachhub:document_detail', kwargs={'pk': self.pk})
