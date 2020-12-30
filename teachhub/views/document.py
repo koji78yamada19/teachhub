@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-# from django.urls import reverse # function の中で書くとき（評価タイミングの違い）
+from django.urls import reverse # function の中で書くとき（評価タイミングの違い）
 # from django.views import generic
 
 from teachhub.models import Document
@@ -21,6 +21,19 @@ def document_detail(request, pk):
             request,
             'teachhub/document_detail.html',
             dict(document=document) # -> {'document':'document'}
+        )
+
+
+#############
+# Read 一覧 #
+#############
+def document_list(request):
+    if request.method == 'GET':
+        document_list = Document.objects.all()
+        return render(
+            request,
+            'teachhub/document_list.html',
+            dict(document_list=document_list)
         )
 
 
