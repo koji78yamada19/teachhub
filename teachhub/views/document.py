@@ -3,7 +3,7 @@ from django.urls import reverse # function の中で書くとき（評価タイ�
 # from django.views import generic
 
 from teachhub.models import Document
-# from teachhub.forms import DocumentForm
+from teachhub.forms import DocumentForm
 
 
 #############
@@ -36,6 +36,29 @@ def document_list(request):
             dict(document_list=document_list)
         )
 
+
+###############
+# Create 作成 #
+###############
+def document_create(request):
+    if request.method == 'GET':
+        form = DocumentForm()
+        return render(
+            request,
+            'teachhub/document_form.html',
+            dict(form=form)
+        )
+    elif request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(form.instance.get_absolute_url())
+        else:
+            return render(
+                request,
+                'teachhub/document_form.html',
+                dict(form=form)
+            )
 
 
 
