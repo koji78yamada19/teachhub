@@ -87,4 +87,20 @@ def document_update(request, pk):
             )
 
 
+###############
+# Delete 削除 #
+###############
+def document_delete(request, pk):
+    document = get_object_or_404(Document, pk=pk) 
+    if request.method == 'GET':
+        return render (
+            request,
+            'teachhub/document_confirm_delete.html',
+            dict(document=document)
+        )
+    elif request.method == 'POST':
+        document.delete()
+        # return rediredt('/documents/')
+        return redirect(reverse('teachhub:document_list'))
+
 

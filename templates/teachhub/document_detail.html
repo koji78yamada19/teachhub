@@ -22,6 +22,11 @@
                 <h2 class="subtitle is-4">
                     <a href="{{ document.file.url }}">ダウンロード</a>
                 </h2>
+                <h2 class="subtitle is-4">
+                    <button class="button is-danger">
+                        <a href={% url 'teachhub:document_delete' document.id %}>ゴミ箱</a>
+                    </button>
+                </h2>
             </div>
         </div>
     </div>

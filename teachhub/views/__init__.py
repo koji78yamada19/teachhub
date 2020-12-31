@@ -3,4 +3,5 @@ from teachhub.views.document import (
     document_list,
     document_create,
     document_update,
+    document_delete,
 )

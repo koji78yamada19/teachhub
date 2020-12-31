@@ -8,5 +8,6 @@ urlpatterns = [
     path('documents/create/', views.document_create, name='document_create'),
     path('documents/<pk>/', views.document_detail, name='document_detail'),
     path('documents/<pk>/update/', views.document_update, name='document_update'),
+    path('documents/<pk>/delete/', views.document_delete, name='document_delete'),
 
 ]
