@@ -12,21 +12,30 @@
 <div class="hero-body">
     <div class="container has-text-centered">
         <div class="columns is-vcentered">
-            <div class="column is-6 is-offset-1">
-                <h1 class="title is-2">
-                    {{ document.name }}
+            <div class="column is-8 is-offset-2">
+                <h1 class="title is-3">
+                    資料名：{{ document.name }}
                 </h1>
                 <h2 class="subtitle is-4 mt-5">
-                    {{ document.content }} 
+                    資料説明：{{ document.content }} 
                 </h2>
-                <h2 class="subtitle is-4">
-                    <a href="{{ document.file.url }}">ダウンロード</a>
-                </h2>
-                <h2 class="subtitle is-4">
-                    <button class="button is-danger">
-                        <a href={% url 'teachhub:document_delete' document.id %}>ゴミ箱</a>
-                    </button>
-                </h2>
+                <div class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-space-between is-flex-mobile">
+                    <h2 class="subtitle is-4">
+                        <button class="button is-light">
+                            <a href="{{ document.file.url }}">ダウンロード</a>
+                        </button>
+                    </h2>   
+                    <h2 class="subtitle is-4">
+                        <button class="button is-light">
+                            <a href={% url 'teachhub:document_update' document.id %}>編集</a>
+                        </button>
+                    </h2>
+                    <h2 class="subtitle is-4">
+                        <button class="button is-light">
+                            <a href={% url 'teachhub:document_delete' document.id %}>ゴミ箱</a>
+                        </button>
+                    </h2>
+                </div>
             </div>
         </div>
     </div>
