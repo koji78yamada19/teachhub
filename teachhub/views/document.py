@@ -61,4 +61,30 @@ def document_create(request):
             )
 
 
+###############
+# Update 編集 #
+###############
+def document_update(request, pk):
+    # ↓ データベースから与えられたid番号を取得(if文の外に書く)
+    document = get_object_or_404(Document, pk=pk) # /documents/4/update
+    if request.method == 'GET':
+        form = DocumentForm(instance=document)
+        return render(
+            request,
+            'teachhub/document_form.html',
+            dict(form=form)
+        )
+    elif request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES, instance=document)
+        if form.is_valid():
+            form.save()
+            return redirect(form.instance.get_absolute_url())
+        else:
+            return render(
+                request,
+                'teachhub/document_form.html',
+                dict(form=form)
+            )
+
+
 

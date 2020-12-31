@@ -7,5 +7,6 @@ urlpatterns = [
     path('documents/', views.document_list, name='document_list'),
     path('documents/create/', views.document_create, name='document_create'),
     path('documents/<pk>/', views.document_detail, name='document_detail'),
+    path('documents/<pk>/update/', views.document_update, name='document_update'),
 
 ]
