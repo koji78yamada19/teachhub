@@ -3,7 +3,6 @@ import uuid
 from django.db import models
 from django.urls import reverse
 
-
 class Document(models.Model):
 
     class Meta:
