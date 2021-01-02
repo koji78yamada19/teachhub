@@ -3,6 +3,7 @@ import uuid
 from django.db import models
 from django.urls import reverse
 from teachhub.models.category import Category
+from teachhub.models.chapter import Chapter
 
 
 class Document(models.Model):
@@ -28,6 +29,8 @@ class Document(models.Model):
                             on_delete=models.PROTECT, related_name='documents', default=1)
     # 参照 document.category.name
     # 逆参照 category.document.all()     related_name 逆参照 -> カテゴリーから資料を参照
+    chapter = models.ForeignKey(Chapter, verbose_name='章',
+                            on_delete=models.PROTECT, related_name='documents', default=1)
 
     name = models.CharField(
         verbose_name='資料名', max_length=128, null=False, blank=False)
