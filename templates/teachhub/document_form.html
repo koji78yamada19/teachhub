@@ -33,6 +33,18 @@
 </div>
 
 <div class="field">
+  <label class="label">カテゴリー</label>
+  <div class="control">
+    {{ form.category }}
+  </div>
+  {% if form.category.errors %}
+    {% for error in form.category.errors %}
+      <p class="help is-danger">{{ error }}</p>
+    {% endfor %}
+  {% endif %}
+</div>
+
+<div class="field">
   <label class="label">資料説明</label>
   <div class="control">
     {{ form.content }}
