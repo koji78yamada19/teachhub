@@ -2,6 +2,8 @@ import os
 import uuid
 from django.db import models
 from django.urls import reverse
+from teachhub.models.category import Category
+
 
 class Document(models.Model):
 
@@ -21,10 +23,16 @@ class Document(models.Model):
         # upload path -> media/documents/uuid.docx
         return os.path.join('documents', name)
 
-    name = models.CharField(
-        verbose_name='教材名', max_length=128, null=False, blank=False)
+    # フィールドは category_id として生成される 
+    category = models.ForeignKey(Category, verbose_name='カテゴリー',
+                            on_delete=models.PROTECT, related_name='documents', default=1)
+    # 参照 document.category.name
+    # 逆参照 category.document.all()     related_name 逆参照 -> カテゴリーから資料を参照
 
-    content = models.TextField(verbose_name='内容', null=False, blank=False)
+    name = models.CharField(
+        verbose_name='資料名', max_length=128, null=False, blank=False)
+
+    content = models.TextField(verbose_name='資料説明', null=False, blank=False)
 
     file = models.FileField(
         verbose_name='ファイル', upload_to=upload_path, null=False, blank=False)
