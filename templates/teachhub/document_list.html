@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block head_title %}
-教材一覧
+資料一覧
 {% endblock head_title%}
 
 {% block extra_head %}
@@ -12,7 +12,7 @@
 
 {% block content %}
 
-        <h1 class="title">教材一覧</h1>
+        <h1 class="title">資料一覧</h1>
         <div class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-space-between is-flex-mobile">
           {% for document in document_list %}
             {% include 'teachhub/_documents.html' %}
