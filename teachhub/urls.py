@@ -10,4 +10,6 @@ urlpatterns = [
     path('documents/<pk>/update/', views.document_update, name='document_update'),
     path('documents/<pk>/delete/', views.document_delete, name='document_delete'),
 
+    path('chapters/', views.chapter_list, name='chapter_list'),
+
 ]

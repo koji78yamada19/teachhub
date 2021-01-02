@@ -5,3 +5,7 @@ from teachhub.views.document import (
     document_update,
     document_delete,
 )
+
+from teachhub.views.chapter import (
+    chapter_list,
+)
