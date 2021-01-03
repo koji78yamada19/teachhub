@@ -1,0 +1,70 @@
+.contents-dir-textbook{
+    margin-bottom: 10px;
+}
+
+.icons-space{
+    display: flex;
+    margin-left: calc(100% - 420px);
+}
+
+/* .paper-dir{
+    margin-top: 10px;
+} */
+.icons{
+    display: flex;
+    height: 35px;
+    padding: 0 10px 0 10px;
+    margin-top: 10px;
+    font-size: 12px;
+    border-radius: 20px;
+}
+.icons:hover{
+    background: #efefef;
+}
+.icons.white-stare:hover{
+    background: white;
+}
+.icons > img{
+    width: 24px;
+    height: 24px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+}
+.icons div{
+    line-height: 35px;
+}
+
+.paper{
+    width: 92%;
+    margin-left: 60px;
+
+    position: relative;
+    /* z-index: 1; */
+    /* pointer-events: none; */
+}
+
+div.paper >.hoge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 280px);
+    height: 100%;
+    /* pointer-events: auto; */
+}
+.paper-icons-space > a{
+    cursor: pointer;
+}
+.paper-hover{
+    background: #efefef;
+
+}
+.paper-title{
+    width: calc(100% - 300px);
+    text-align: left;
+    overflow: hidden;
+}
+.paper-icons-space{
+    display: flex;
+    width: 280px;
+}

@@ -1,0 +1,280 @@
+@charset "UTF-8";
+html {
+	overflow-y: scroll; /* IEへの対応 http://www.htmq.com/style/overflow-y.shtml */
+	/*Internet Explorerが独自に追加したプロパティ*/
+	/*画面に収まりきれなかったときにスクロールして表示することを許可するか否か*/
+}
+body, h1, h2, h3, h4, h5, p, ul, ol, li, dl, dt, dd {
+	margin: 0px;
+	padding: 0px;
+}
+body {
+    background: #fff;
+    color: #707070;
+	text-align: center;
+	font-size: 16px;
+	line-height: 1.4;
+	min-width: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+li {
+	list-style: none;
+}
+a {
+	outline: none;
+	color: inherit;
+	text-decoration: none;
+}
+img {
+	border: 0px;
+	vertical-align: bottom;
+}
+body {
+	font-family: "Noto Sans Japanese", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, "メイリオ", "Meiryo", "HGPｺﾞｼｯｸM", "Osaka", "ＭＳ Ｐゴシック", sans-serif, Century Gothic, Arial;
+}
+/* +アイコン */
+.add-icon{
+    display: inline-block;
+    position: relative;
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+}
+.add-icon > .horizon::before {
+    position: absolute;
+    top: 19px;
+    left: 5px;
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-top: 1px solid rgb(82, 82, 82);
+}
+.add-icon > .vertical::before{
+    position: absolute;
+    top: 10px;
+    left: -5px;
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-top: 1px solid rgb(82, 82, 82);
+    transform: rotate(90deg);
+}
+
+
+/* header部分 */
+.header{
+    width: 100%;
+    height: 60px;
+    background-color: #24292E;
+    color: #fff;
+}
+.header-logo{
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 60px;
+    margin-left: 50px;
+    float: left;
+}
+.header-user{
+    width: 130px;
+    height: 60px;
+    margin-right: 30px;
+    display: flex;
+    float: right;
+}
+.header-user > img{
+    height: 36px;
+    width: 36px;
+    border-radius: 30px;
+    margin-top:auto;
+    margin-bottom: auto;
+}
+.header-user > div{
+    width: 150px;
+    font-size: 16px;
+    color: #c8c7c7;
+    font-weight: 100;
+    margin-top:auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+}
+
+/* ---------------------------------------------------------------- */
+/* 左のメニューバーの部分 */
+.main{
+    display: flex;
+}
+.menu-tags{
+    border-right: 1px solid #707070;
+    width: 270px;
+    height:1000px;
+}
+.sha-cre-mem-dirs{
+    height: 40px;
+    width: 270px;
+    border-bottom: 1px solid #ddd;
+    margin-top: 10px;
+    display: flex;
+}
+.sha-cre-mem-dirs > img{
+    width: 24px;
+    height: 24px;
+    border-radius: 30px;
+    border: 1px solid #707070;
+    margin-left: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.sha-cre-mem-dirs > div{
+    margin-left: 20px;
+    line-height: 40px;
+}
+.sha-cre-mem-dirs > a{
+    margin-left: 60px;
+}
+
+.sha-cre-mem-dir{
+    height: 40px;
+    width: 270px;
+    border-bottom: 1px solid #ddd;
+    /* margin-top: 10px; */
+    display: flex;
+}
+.sha-cre-mem-dir > img{
+    width: 24px;
+    height: 24px;
+    border-radius: 30px;
+    border: 1px solid #707070;
+    margin-left: 33px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.sha-cre-mem-dir > div{
+    margin-left: 20px;
+    line-height: 40px;
+}
+
+
+
+
+
+/* 資料を置くメインコンテンツ部分 */
+.contents{
+    width: calc(100% - 270px);
+}
+.contents-header{
+    width: 95%;
+    height: 44px;
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
+.contents-header > .lesson-title{
+    font-size: 20px;
+    line-height: 44px;
+    float: left;
+}
+.contents-header > .member{
+    float: right;
+    margin-right: 20px;
+    display: flex;
+}
+.member-logo{
+    line-height: 36px;
+
+}
+.member-icons{
+    width: 60px;
+    height: 36px;
+    position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.member-icons > img{
+    width: 36px;
+    height: 36px;
+    border-radius: 36px;
+}
+.member-img1{
+    position: absolute;
+    left: 5px;
+    z-index: 1;
+}
+.member-img2{
+    position: absolute;
+    left: 15px;
+    z-index: 2;
+}
+.member-img3{
+    position: absolute;
+    left: 25px;
+    z-index: 3;
+}
+
+
+
+/* 教科書を追加の部分 */
+.add-textbook{
+    height: 50px;
+    width: cal(100%-270px);
+}
+.add-textbook a{
+    display: inline-block;
+    height: 40px;
+    width: 130px;
+    background:#969393;
+    border-radius: 5px;
+    color: white;
+    line-height: 40px;
+    letter-spacing: 0.1em;
+    float: right;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+.add-textbook a:hover{
+    background: white;
+    border: 1px solid #707070;
+    box-sizing:border-box;
+    color: #707070;
+}
+
+
+
+/* 選択された教科名と教科書名の部分 */
+.contents-dir{
+    display: inline-block;
+    width: 95%;
+    height: 50px;
+    margin-left: 30px;
+    display: flex;
+    border-top: 1px solid #909090;
+}
+a.contents-dir{
+    cursor: pointer;
+}
+a.contents-dir:hover{
+    background: #efefef;
+    cursor: pointer;
+}
+.contents-dir > img{
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.contents-dir > div{
+    line-height: 58px;
+}
+
+.bottom-border{
+    margin-left: 30px;
+    width: 95%;
+    height: 1px;
+    background: #707070;
+}

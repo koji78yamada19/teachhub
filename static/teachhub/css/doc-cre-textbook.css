@@ -1,0 +1,44 @@
+
+.contents-dir-unit> div{
+    width: 93.5%;
+    color: #707070;
+    text-align: left;
+    margin-left: 45px;
+    padding-bottom: 10px;
+}
+.contents-dir-unit-title{
+    margin-left: 5px;
+    margin-bottom: 3px;
+    font-size: 12px;
+}
+.contents-dir-textbook{
+    margin-left: 45px;
+    width: 93.5%;
+}
+.contents-dir-textbook:hover{
+    background: white;
+}
+.document-links{
+    width: 250px;
+    height: 40px;
+    margin-left: calc(100% - 400px);
+}
+.document-links > a{
+    width: 100px;
+    height: 40px;
+    margin-left: 20px;
+    border-radius: 5px;
+    background: #969393;
+    color: white;
+    display: inline-block;
+    line-height: 40px;
+    text-align: center;
+    letter-spacing: 0.125em;
+    transition: 0.2s;
+}
+.document-links > a:hover{
+    background: white;
+    color: #707070;
+    border: 1px solid #707070;
+    box-sizing:border-box;
+}
