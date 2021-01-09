@@ -1,0 +1,25 @@
+.text-prev-title{
+    margin-left: 65px;
+    /* display: flex; */
+    line-height: 45px;
+    position: relative;
+}
+.text-prev-title-text{
+    font-weight: bold;
+    font-size: 20px;
+    text-align: left;
+}
+.prev-ope{
+    display: flex;
+    position: absolute;
+    right: 10px;
+}
+.prev-ope > .icons{
+    margin-top: 5px;
+}
+
+.prev-area{
+    margin: 50px 15px 20px 64px; 
+    border-radius: 5px;
+    border: 1px solid #aaa;
+}
