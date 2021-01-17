@@ -5,6 +5,8 @@ app_name = 'teachhub'  # URL逆引用
 
 urlpatterns = [
     path('documents/', views.document_list, name='document_list'),
+    path('notes/', views.document_note, name='document_note'),
+    path('tests/', views.document_test, name='document_test'),
     path('documents/create/', views.document_create, name='document_create'),
     path('documents/<pk>/', views.document_detail, name='document_detail'),
     path('documents/<pk>/update/', views.document_update, name='document_update'),

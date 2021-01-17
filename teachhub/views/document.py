@@ -36,6 +36,23 @@ def document_list(request):
             dict(document_list=document_list)
         )
 
+def document_note(request):
+    if request.method == 'GET':
+        document_note = Document.objects.filter(category='板書案')
+        return render(
+            request,
+            'teachhub/document_note.html',
+            dict(document_note=document_note)
+        )
+
+def document_test(request):
+    if request.method == 'GET':
+        document_test = Document.objects.filter(category='小テスト')
+        return render(
+            request,
+            'teachhub/document_test.html',
+            dict(document_test=document_test)
+        )
 
 ###############
 # Create 作成 #
