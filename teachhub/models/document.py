@@ -40,7 +40,11 @@ class Document(models.Model):
     category = models.CharField(
         verbose_name='カテゴリー', max_length=128, null=False, blank=False)
 
+    updated_by = models.TextField(verbose_name='更新者', null=False, blank=False, default=1)
+
     updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
+
+    created_by = models.TextField(verbose_name='作成者', null=False, blank=False, default=1)
 
     created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
 
