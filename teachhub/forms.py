@@ -7,5 +7,5 @@ class DocumentForm(forms.ModelForm):
         # 使用するモデル
         model = Document
         # 使用するフィールド
-        fields = ('name', 'category', 'content', 'file')
+        fields = ('name', 'chapter', 'category', 'content', 'file')
         
