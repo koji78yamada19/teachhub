@@ -3,8 +3,8 @@
     <div class="media">
       <div class="media-content">
         <p class="title is-6">{{ chapter }}</p>
-        <a href="{% url 'teachhub:document_note' %}">板書案</a> 
-        <a href="{% url 'teachhub:document_test' %}">小テスト</a> 
+        <a href="{% url 'teachhub:document_note' chapter.id %} ">板書案</a> 
+        <a href="{% url 'teachhub:document_test' chapter.id %}">小テスト</a>
       </div>
     </div>
   </div>

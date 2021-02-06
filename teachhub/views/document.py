@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse # function の中で書くとき（評価タイミングの違い）
 # from django.views import generic
 
-from teachhub.models import Document
+from teachhub.models import Document, Chapter
 from teachhub.forms import DocumentForm
 
 
@@ -36,18 +36,20 @@ def document_list(request):
             dict(document_list=document_list)
         )
 
-def document_note(request):
+def document_note(request, chapter_id):
+    category = "notes"
     if request.method == 'GET':
-        document_note = Document.objects.filter(category='板書案')
+        document_note = Document.objects.filter(category='板書案', chapter_id=chapter_id)
         return render(
             request,
-            'teachhub/document_note.html',
+            'teachhub/document_note.html', 
             dict(document_note=document_note)
         )
 
-def document_test(request):
+def document_test(request, chapter_id):
+    category = "tests"
     if request.method == 'GET':
-        document_test = Document.objects.filter(category='小テスト')
+        document_test = Document.objects.filter(category='小テスト', chapter_id=chapter_id)
         return render(
             request,
             'teachhub/document_test.html',
