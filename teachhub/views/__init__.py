@@ -12,3 +12,7 @@ from teachhub.views.document import (
 from teachhub.views.chapter import (
     chapter_list,
 )
+
+from teachhub.views.textbook import (
+    textbook_list,
+)
