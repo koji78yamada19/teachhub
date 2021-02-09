@@ -27,6 +27,7 @@ def document_detail(request, pk):
 #############
 # Read 一覧 #
 #############
+# 資料一覧ビュー
 def document_list(request):
     if request.method == 'GET':
         document_list = Document.objects.all()
@@ -36,16 +37,18 @@ def document_list(request):
             dict(document_list=document_list)
         )
 
+# category(板書案）とchapter_idでフィルタリングした資料一覧ビュー
 def document_note(request, chapter_id):
     category = "notes"
     if request.method == 'GET':
-        document_note = Document.objects.filter(category='板書案', chapter_id=chapter_id)
+        document_note = Document.objects.filter(category='板書案', chapter_id=chapter_id).order_by('id')
         return render(
             request,
             'teachhub/document_note.html', 
             dict(document_note=document_note)
         )
 
+# category(小テスト）とchapter_idでフィルタリングした資料一覧ビュー
 def document_test(request, chapter_id):
     category = "tests"
     if request.method == 'GET':
