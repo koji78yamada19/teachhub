@@ -14,7 +14,8 @@ class DocumentAdmin(admin.ModelAdmin):
 @admin.register(Chapter)
 class ChapterAdmin(admin.ModelAdmin):
     # 教材一覧で表示するフィールド
-    list_display = ('name', 'textbook')
+    list_display = ('textbook','name')
+    ordering = ['id',]
     # 教材一覧で「詳細」へ進むリンク
     list_display_links = ('name', )
     # 教材一覧で検索対象のフィールド
@@ -24,7 +25,7 @@ class ChapterAdmin(admin.ModelAdmin):
 class TextbookAdmin(admin.ModelAdmin):
 
     list_display = ('name', )
-
+    ordering = ['id',]
     list_display_links = ('name', )
 
     search_fields = ('name', )
