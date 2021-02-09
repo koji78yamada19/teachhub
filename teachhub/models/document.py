@@ -26,7 +26,7 @@ class Document(models.Model):
 
     # フィールドは chapter_id として生成される 
     # 参照 document.chapter.name
-    # 逆参照 chapter.document.all()     related_name 逆参照 -> カテゴリーから資料を参照
+    # 逆参照 chapter.document.all()     related_name 逆参照 -> 章から資料を参照
     chapter = models.ForeignKey(Chapter, verbose_name='章',
                             on_delete=models.PROTECT, related_name='documents', default=1)
     
