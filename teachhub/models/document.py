@@ -2,6 +2,7 @@ import os
 import uuid
 from django.db import models
 from django.urls import reverse
+from teachhub.models.section import Section
 from teachhub.models.chapter import Chapter
 from teachhub.models.textbook import Textbook
 
@@ -27,6 +28,9 @@ class Document(models.Model):
     # フィールドは chapter_id として生成される 
     # 参照 document.chapter.name
     # 逆参照 chapter.document.all()     related_name 逆参照 -> 章から資料を参照
+    section = models.ForeignKey(Section, verbose_name='節',
+                            on_delete=models.PROTECT, related_name='documents', default=1)
+
     chapter = models.ForeignKey(Chapter, verbose_name='章',
                             on_delete=models.PROTECT, related_name='documents', default=1)
     
