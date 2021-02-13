@@ -33,12 +33,36 @@
 </div>
 
 <div class="field">
+  <label class="label">教科書</label>
+  <div class="control">
+    {{ form.textbook }}
+  </div>
+  {% if form.textbook.errors %}
+    {% for error in form.textbook.errors %}
+      <p class="help is-danger">{{ error }}</p>
+    {% endfor %}
+  {% endif %}
+</div>
+
+<div class="field">
   <label class="label">章</label>
   <div class="control">
     {{ form.chapter }}
   </div>
   {% if form.chapter.errors %}
     {% for error in form.chapter.errors %}
+      <p class="help is-danger">{{ error }}</p>
+    {% endfor %}
+  {% endif %}
+</div>
+
+<div class="field">
+  <label class="label">節</label>
+  <div class="control">
+    {{ form.section }}
+  </div>
+  {% if form.section.errors %}
+    {% for error in form.section.errors %}
       <p class="help is-danger">{{ error }}</p>
     {% endfor %}
   {% endif %}
