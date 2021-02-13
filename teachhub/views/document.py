@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse # function の中で書くとき（評価タイミングの違い）
 # from django.views import generic
 
-from teachhub.models import Document, Chapter
+from teachhub.models import Document, Section, Textbook
 from teachhub.forms import DocumentForm
 
 
@@ -37,26 +37,34 @@ def document_list(request):
             dict(document_list=document_list)
         )
 
-# category(板書案）とchapter_idでフィルタリングした資料一覧ビュー
-def document_note(request, chapter_id):
+# category(板書案）とsection_idでフィルタリングした資料一覧ビュー
+def document_note(request, section_id):
     category = "notes"
     if request.method == 'GET':
-        document_note = Document.objects.filter(category='板書案', chapter_id=chapter_id).order_by('id')
+        document_note = Document.objects.filter(category='板書案', section_id=section_id).order_by('id')
+        section = Section.objects.get(id=section_id)
+        section_name=section.name
+        context = {"document_note":document_note, "section_name":section_name}
         return render(
             request,
             'teachhub/document_note.html', 
-            dict(document_note=document_note)
+            # dict(document_note=document_note)
+            context
         )
 
-# category(小テスト）とchapter_idでフィルタリングした資料一覧ビュー
-def document_test(request, chapter_id):
+# category(小テスト）とsection_idでフィルタリングした資料一覧ビュー
+def document_test(request, section_id):
     category = "tests"
     if request.method == 'GET':
-        document_test = Document.objects.filter(category='小テスト', chapter_id=chapter_id)
+        document_test = Document.objects.filter(category='小テスト', section_id=section_id)
+        section = Section.objects.get(id=section_id)
+        section_name=section.name
+        context = {"document_test":document_test, "section_name":section_name}
         return render(
             request,
             'teachhub/document_test.html',
-            dict(document_test=document_test)
+            # dict(document_test=document_test)
+            context
         )
 
 ###############
