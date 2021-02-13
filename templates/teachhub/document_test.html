@@ -12,9 +12,9 @@
 
 {% block content %}
 
-        <h1 class="title">資料一覧</h1>
-        <h2 class="title is-4">小テスト</h2>
-        <div class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-space-between is-flex-mobile">
+        <h2 class="subtitle is-4">≪科目名≫</h2>
+        <h2 class="subtitle is-4">≪教科書名≫</h2>
+        <h2 class="subtitle is-4">{{ section_name }}　小テスト</h2>
           {% for document in document_test %}
             {% include 'teachhub/_documents.html' %}
           {% endfor %}

@@ -12,22 +12,24 @@
 
 {% block content %}
 
-        <h1 class="title">{{ text_name }}</h1>
-        <div class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-space-between is-flex-mobile">
-          {% for chapter in chapter_list %}
-            <div class="card column is-3-desktop mx-2 mb-4 is-12-mobile mx-0-mobile mb-0-mobile">
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-6">{{ chapter }}</p>
-                    <a href="{% url 'teachhub:document_note' chapter.id %} ">板書案</a> 
-                    <a href="{% url 'teachhub:document_test' chapter.id %}">小テスト</a>
-                  </div>
-                </div>
-              </div>
-            </div>  
+      <h2 class="subtitle is-4">≪科目名≫</h2>
+      <h2 class="subtitle is-4">{{ text_name }}</h2>
+      {% for chapter in chapter_list %} 
+        <br><p class="subtitle is-6">{{ chapter }}</p>
+        {% comment %} 各章の節を表示させる↓ {% endcomment %}
+          {% for section in chapter.sections.all %} 
+            <p class="subtitle is-6">{{ section.name }}
+              {% comment %} 各節のカテゴリーごとに画面遷移する {% endcomment %}
+              <button class="button is-light">
+                  <a href="{% url 'teachhub:document_note' section.id %} ">板書案</a>
+              </button>
+              <button class="button is-light">
+                  <a href="{% url 'teachhub:document_test' section.id %}">小テスト</a>
+              </button>    
+            </p>
           {% endfor %}
-        </div>
+
+      {% endfor %}
 
 {% endblock content %} 
  

@@ -12,20 +12,10 @@
 
 {% block content %}
 
-        <h1 class="title">≪科目≫ 教科書一覧</h1>
-        <div class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-space-between is-flex-mobile">
-          {% for textbook in textbook_list %}
-            <div class="card column is-3-desktop mx-2 mb-4 is-12-mobile mx-0-mobile mb-0-mobile">
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-6"><a href="{% url 'teachhub:chapter_list' textbook.id %} ">{{ textbook }}</a></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
+  <h2 class="subtitle is-4">≪科目名≫</h2><br>
+  {% for textbook in textbook_list %}
+    <h2 class="subtitle is-4"><a href="{% url 'teachhub:chapter_list' textbook.id %} ">{{ textbook }}</a></h2>
+  {% endfor %}
 
 {% endblock content %} 
  

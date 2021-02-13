@@ -9,41 +9,49 @@
 {% endblock extra_head %}
 
 {% block content %}
-<div class="hero-body">
-    <div class="container has-text-centered">
-        <div class="columns is-vcentered">
-            <div class="column is-8 is-offset-2">                
-                <h2 class="subtitle is-4">
-                    章：{{ document.chapter }} 
-                </h2>
-                <h2 class="subtitle is-4">
-                    カテゴリー：{{ document.category }} 
-                </h2>
-                <h1 class="title is-3 mt-5">
-                    資料名：{{ document.name }}
-                </h1>
-                <h2 class="subtitle is-4 mt-5">
-                    資料説明：{{ document.content }} 
-                </h2>
-                <div class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-space-between is-flex-mobile">
-                    <h2 class="subtitle is-4">
-                        <button class="button is-light">
-                            <a href="{{ document.file.url }}">ダウンロード</a>
-                        </button>
-                    </h2>   
-                    <h2 class="subtitle is-4">
-                        <button class="button is-light">
-                            <a href={% url 'teachhub:document_update' document.id %}>編集</a>
-                        </button>
-                    </h2>
-                    <h2 class="subtitle is-4">
-                        <button class="button is-light">
-                            <a href={% url 'teachhub:document_delete' document.id %}>ゴミ箱</a>
-                        </button>
-                    </h2>
+    <h2 class="subtitle is-4">
+        ≪科目名≫ 
+    </h2>              
+    <h2 class="subtitle is-4">
+        {{ document.textbook }} 
+    </h2>
+    <h2 class="subtitle is-4">
+        {{ document.section }}　{{ document.category }}
+    </h2>
+    <div class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-space-between is-flex-mobile">
+        <h2 class="subtitle is-4">
+            {{ document.name }}
+        </h2>
+        <h2 class="subtitle is-4">
+            <button class="button is-light">
+                <a href="{{ document.file.url }}">保存</a>
+            </button>
+        </h2>   
+        <h2 class="subtitle is-4">
+            <button class="button is-light">
+                <a href={% url 'teachhub:document_update' document.id %}>編集</a>
+            </button>
+        </h2>
+        <h2 class="subtitle is-4">
+            <button class="button is-light">
+                ≪変更履歴≫
+            </button>
+        </h2>
+        <h2 class="subtitle is-4">
+            <button class="button is-light">
+                <a href={% url 'teachhub:document_delete' document.id %}>ゴミ箱</a>
+            </button>
+        </h2>
+    </div>
+    
+    <div class="card column is-12-desktop mx-2 mb-4 is-12-mobile mx-0-mobile mb-0-mobile">
+        <div class="card-content">
+            <div class="media">
+                <div class="media-content">
+                    <p>ここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入る</p>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </div>  
+
 {% endblock content %}

@@ -1,14 +1,21 @@
-<div class="card column is-3-desktop mx-2 mb-4 is-12-mobile mx-0-mobile mb-0-mobile">
-  <div class="card-content">
-    <div class="media">
-      <div class="media-content">
-        <p class="title is-4">{{ document.name }}</p>
-      </div>
-    </div>
-    <div class="content">
-      {% comment %} url 'アプリ名:pathネーム' itemのid  {% endcomment %}
-      {% comment %} <a href="{% url 'stores:item_detail' item.id%}">詳細を見る</a> {% endcomment %}
-      <a href="{{ document.get_absolute_url }}">詳細を見る</a>
-    </div>
-  </div>
+<div class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-space-between is-flex-mobile">
+{% comment %} aタグで資料名を表示 {% endcomment %}
+  <h2 class="subtitle is-4">
+    <a href="{{ document.get_absolute_url }}">{{ document.name }}</a>
+  </h2>
+  <h2 class="subtitle is-4">
+    <button class="button is-light">
+      ≪共有≫
+    </button>
+  </h2>
+  <h2 class="subtitle is-4">
+    <button class="button is-light">
+      <a href="{{ document.file.url }}">保存</a>
+    </button>
+  </h2>
+  <h2 class="subtitle is-4">
+    <button class="button is-light">
+      ≪お気に入り≫
+    </button>
+  </h2>   
 </div>
