@@ -12,11 +12,11 @@
 } */
 .icons{
     display: flex;
-    height: 35px;
+    height: 40px;
     padding: 0 10px 0 10px;
     margin-top: 10px;
     font-size: 12px;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 .icons:hover{
     background: #efefef;
@@ -44,11 +44,11 @@
     /* pointer-events: none; */
 }
 
-div.paper >.hoge {
+div.paper >a.hoge {
     position: absolute;
     top: 0;
     left: 0;
-    width: calc(100% - 280px);
+    width: calc(100% - 110px);
     height: 100%;
     /* pointer-events: auto; */
 }
@@ -60,11 +60,11 @@ div.paper >.hoge {
 
 }
 .paper-title{
-    width: calc(100% - 300px);
+    width: calc(100% - 160px);
     text-align: left;
     overflow: hidden;
 }
 .paper-icons-space{
     display: flex;
-    width: 280px;
+    width: 80px;
 }
