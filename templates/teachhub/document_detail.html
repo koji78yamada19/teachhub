@@ -12,6 +12,7 @@
 {% endblock extra_head %}
 
 {% block content %}
+<<<<<<< HEAD
     <!-- {% comment %} 科目名 {% endcomment %}
     <div>≪科目名≫ </div>       
     {% comment %} 教科書名 {% endcomment %}
@@ -26,6 +27,41 @@
         <div><a href="{% url 'teachhub:document_update' document.id %}">編集</a></div>
         <div>≪変更履歴≫</div>
         <div><a href="{% url 'teachhub:document_delete' document.id %}">ゴミ箱</a></div>
+=======
+    <h2 class="subtitle is-4">
+        ≪科目名≫ 
+    </h2>              
+    <h2 class="subtitle is-4">
+        {{ document.textbook }} 
+    </h2>
+    <h2 class="subtitle is-4">
+        {{ document.section }}　{{ document.category }}
+    </h2>
+    <div class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-space-between is-flex-mobile">
+        <h2 class="subtitle is-4">
+            {{ document.name }}
+        </h2>
+        <h2 class="subtitle is-4">
+            <button class="button is-light">
+                <a href="{{ document.file.url }}">保存</a>
+            </button>
+        </h2>  
+        <h2 class="subtitle is-4">
+            <button class="button is-light">
+                <a href={% url 'teachhub:document_update' document.id %}>編集</a>
+            </button>
+        </h2>
+        <h2 class="subtitle is-4">
+            <button class="button is-light">
+                ≪変更履歴≫
+            </button>
+        </h2>
+        <h2 class="subtitle is-4">
+            <button class="button is-light">
+                <a href={% url 'teachhub:document_delete' document.id %}>ゴミ箱</a>
+            </button>
+        </h2>
+>>>>>>> 63e29ea83e525eba305bedd5947d398c16ba9ce7
     </div>
     
     {% comment %} テキスト表示 {% endcomment %}

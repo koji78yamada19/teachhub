@@ -23,11 +23,13 @@
     height: 40px;
     margin-left: calc(100% - 400px);
 }
-.document-links > a{
+.document-links > button{
+    box-shadow: none;
     width: 100px;
     height: 40px;
     margin-left: 20px;
     border-radius: 5px;
+    border: none;
     background: #969393;
     color: white;
     display: inline-block;
@@ -36,7 +38,10 @@
     letter-spacing: 0.125em;
     transition: 0.2s;
 }
-.document-links > a:hover{
+.document-links > button > a{
+    display: block;
+}
+.document-links > button:hover{
     background: white;
     color: #707070;
     border: 1px solid #707070;
