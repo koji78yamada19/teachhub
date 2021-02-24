@@ -12,7 +12,7 @@
 
 {% block content %}
 
-  <div>≪科目名≫</div>
+  <!-- <div>≪科目名≫</div>
   <div>≪教科書名≫</div>
   <div>{{ section_name }}　小テスト</div>
   <div>
@@ -25,7 +25,69 @@
         <div>≪お気に入り≫</div>   
       </div>
     {% endfor %}
-  </div>
+  </div> -->
 
+  <div class="contents">
+    <div class="contents-header">
+        <div class="lesson-title">チーム名</div>
+        <div class="member">
+            <div class="member-logo">メンバー</div>
+            <div class="member-icons">
+                <img class="member-img1" src="{% static 'static/teachhub/img/' %}" alt="">
+                <img class="member-img2" src="{% static 'static/teachhub/img/' %}" alt="">
+                <img class="member-img3" src="{% static 'static/teachhub/img/' %}" alt="">
+            </div>
+            <a class="menb-add-icon add-icon" href=""> <!-- + (追加）のアイコン -->
+                <div class="horizon"></div>
+                <div class="vertical"></div>
+            </a>
+        </div>
+    </div>
+    <div class="contents-dir">
+        <img src="{% static 'static/teachhub/img/open-folder.svg' %}" alt="開いたフォルダの画像">
+        <div>教科書名など</div>
+    </div>
+    <div class="contents-dir-textbook contents-dir">
+        <img src="{% static 'static/teachhub/img/open-folder.svg' %}" alt="フォルダの画像">
+        <div>単元名など</div>
+        <div class="icons-space">
+            <a href="" class="upload-space icons">
+                <img src="{% static 'static/teachhub/img/img/upload.svg' %}" alt="アップロードフォルダの画像">
+                <div>アップロード</div>
+            </a>
+            <a href="" class="mkdir-space icons">
+                <img src="{% static 'static/teachhub/img/folder-add.svg' %}" alt="フォルダを作成の画像">
+                <div>フォルダを作成</div>
+            </a>
+        </div>
+    </div>
+    <ul>
+      {% for document in document_test %}
+      {{% comment %} document_detail.htmlへ画面遷移 {% endcomment %}
+        <li>
+            <div class="paper-dir">
+                <div class="contents-dir paper">
+                    <a class="hoge" href="{{ document.get_absolute_url }}">{{ document.name }}</a>
+                    <img src="{% static 'static/teachhub/img/paper.svg' %}" alt="開いたフォルダの画像">
+                    <div class="paper-title">{{ section_name }} テスト</div>
+                    <div class="paper-icons-space">
+                        <!-- <a class="icons" href="">
+                            <img src="../static/teachhub/img/share.svg" alt="共有のアイコン">
+                            <div>共有</div>
+                        </a> -->
+                        <a class="icons" href="{{ document.file.url }}">
+                            <img src="{% static 'static/teachhub/img/download.svg' %}" alt="ダウンロードアイコン">
+                            <div>保存</div>
+                        </a>
+                        <!-- <a class="icons white-stare" href="">
+                            <img src="../static/teachhub/img/white-stare.svg" alt="お気に入りボタンの画像">
+                        </a> -->
+                    </div>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>            
+</div>
 {% endblock content %} 
  
