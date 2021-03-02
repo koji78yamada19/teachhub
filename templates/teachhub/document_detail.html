@@ -1,57 +1,92 @@
 {% extends 'base.html' %}
 {% load static %}
+{% comment %} twelve-page.htmlに対応 {% endcomment %}
 
 {% block head_title %}
+{% comment %} 資料名 {% endcomment %}
 {{ document.name }}
 {% endblock head_title %}
 
 {% block extra_head %}
+{% comment %} 追加があれば {% endcomment %}
 {% endblock extra_head %}
 
 {% block content %}
-    <h2 class="subtitle is-4">
-        ≪科目名≫ 
-    </h2>              
-    <h2 class="subtitle is-4">
-        {{ document.textbook }} 
-    </h2>
-    <h2 class="subtitle is-4">
-        {{ document.section }}　{{ document.category }}
-    </h2>
-    <div class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-space-between is-flex-mobile">
-        <h2 class="subtitle is-4">
-            {{ document.name }}
-        </h2>
-        <h2 class="subtitle is-4">
-            <button class="button is-light">
-                <a href="{{ document.file.url }}">保存</a>
-            </button>
-        </h2>   
-        <h2 class="subtitle is-4">
-            <button class="button is-light">
-                <a href={% url 'teachhub:document_update' document.id %}>編集</a>
-            </button>
-        </h2>
-        <h2 class="subtitle is-4">
-            <button class="button is-light">
-                ≪変更履歴≫
-            </button>
-        </h2>
-        <h2 class="subtitle is-4">
-            <button class="button is-light">
-                <a href={% url 'teachhub:document_delete' document.id %}>ゴミ箱</a>
-            </button>
-        </h2>
+    <!-- {% comment %} 科目名 {% endcomment %}
+    <div>≪科目名≫ </div>       
+    {% comment %} 教科書名 {% endcomment %}
+    <div>{{ document.textbook }} </div>
+    {% comment %} 章・節名 {% endcomment %}
+    <div>{{ document.section }} {{ document.category }}</div>
+   
+    <div>
+        {% comment %} 資料名 {% endcomment %}
+        <div>{{ document.name }}</div>
+        <div><a href="{{ document.file.url }}">保存</a></div>   
+        <div><a href="{% url 'teachhub:document_update' document.id %}">編集</a></div>
+        <div>≪変更履歴≫</div>
+        <div><a href="{% url 'teachhub:document_delete' document.id %}">ゴミ箱</a></div>
     </div>
     
-    <div class="card column is-12-desktop mx-2 mb-4 is-12-mobile mx-0-mobile mb-0-mobile">
-        <div class="card-content">
-            <div class="media">
-                <div class="media-content">
-                    <p>ここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入る</p>
+    {% comment %} テキスト表示 {% endcomment %}
+    <div>
+        <div>ここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入るここにテキストが入る</div>
+    </div> -->
+
+
+
+
+
+
+    <div class="contents">
+        <div class="contents-header">
+            <div class="lesson-title">〇〇高校 日本史</div>
+            <div class="member">
+                <div class="member-logo">メンバー</div>
+                <div class="member-icons">
+                    <img class="member-img1" src="{% static 'teachhub/img/user-img1.jpg' %}" alt="">
+                    <img class="member-img2" src="{% static 'teachhub/img/user-img2.jpg' %}" alt="">
+                    <img class="member-img3" src="{% static 'teachhub/img/user-img3.jpg' %}" alt="">
                 </div>
+                <a class="menb-add-icon add-icon" href=""> <!-- + (追加）のアイコン -->
+                    <div class="horizon"></div>
+                    <div class="vertical"></div>
+                </a>
             </div>
         </div>
-    </div>  
+        <div class="contents-dir">
+            <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="開いたフォルダの画像">
+             <div>{{ document.textbook }}</div> <!--教科書名 -->
+        </div>
+        <div class="contents-dir-textbook contents-dir">
+            <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="フォルダの画像">
+            <div>{{ document.section }} {{ document.category }}</div> <!--節・章 -->
+        </div>
+        <div class="text-prev-title">
+            <div class="text-prev-title-text">{{ document.name }}</div>  <!-- タイトル -->
+            <div class="prev-ope">
+                <a class="icons prev-icon" href="{{ document.file.url }}">
+                    <img src="{% static 'teachhub/img/download.svg' %}" alt="ダウンロードアイコン">
+                    <div>保存</div>
+                </a>
+                <a class="icons prev-icon henshu"  href="{% url 'teachhub:document_update' document.id %}">
+                    <img src="{% static 'teachhub/img/pencile.svg' %}" alt="編集アイコン">
+                    <div>編集</div>
+                </diav>
+                <a class="icons prev-icon" href="">
+                    <img src="{% static 'teachhub/img/sunadokei.svg' %}" alt="変更履歴アイコン">
+                    <div>変更履歴</div>
+                </a>
+                <a class="icons prev-icon" href="{% url 'teachhub:document_delete' document.id %}">
+                    <img src="{% static 'teachhub/img/trashbox.svg' %}" alt="ゴミ箱アイコン">
+                    <div>ゴミ箱</div>
+                </a>
+            </div>
+            
+        </div>
+        <div class="prev-area">
+            <object data="" type="">ここにテキストがはいるここにテキストがはいる</object>
+        </div>
+    </div>
 
 {% endblock content %}

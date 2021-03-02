@@ -12,11 +12,15 @@
 } */
 .icons{
     display: flex;
-    height: 35px;
+    height: 40px;
     padding: 0 10px 0 10px;
     margin-top: 10px;
     font-size: 12px;
-    border-radius: 20px;
+<<<<<<< HEAD
+    border-radius: 10px;
+=======
+    border-radius: 5px;
+>>>>>>> 63e29ea83e525eba305bedd5947d398c16ba9ce7
 }
 .icons:hover{
     background: #efefef;
@@ -44,11 +48,15 @@
     /* pointer-events: none; */
 }
 
-div.paper >.hoge {
+div.paper >a.hoge {
     position: absolute;
     top: 0;
     left: 0;
-    width: calc(100% - 280px);
+<<<<<<< HEAD
+    width: calc(100% - 110px);
+=======
+    width: calc(100% - 220px);
+>>>>>>> 63e29ea83e525eba305bedd5947d398c16ba9ce7
     height: 100%;
     /* pointer-events: auto; */
 }
@@ -60,11 +68,15 @@ div.paper >.hoge {
 
 }
 .paper-title{
-    width: calc(100% - 300px);
+    width: calc(100% - 160px);
     text-align: left;
     overflow: hidden;
 }
 .paper-icons-space{
     display: flex;
-    width: 280px;
+<<<<<<< HEAD
+    width: 80px;
+=======
+    width: 210px;
+>>>>>>> 63e29ea83e525eba305bedd5947d398c16ba9ce7
 }
