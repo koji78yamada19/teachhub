@@ -11,15 +11,9 @@
 {% endblock extra_head %}
 
 {% block content %}
-
-<div class="lesson-title">≪科目名≫</div>
-{% for textbook in textbook_list %}
-<div><a href="{% url 'teachhub:chapter_list' textbook.id %} ">{{ textbook }}</a></div>
-{% endfor %}
-
 <div class="contents">
     <div class="contents-header">
-        <div class="lesson-title">〇〇高校 日本史</div>
+        <div class="lesson-title subtitle">≪科目名≫</div>
         <div class="member">
             <div class="member-logo">メンバー</div>
             <div class="member-icons">
@@ -28,7 +22,7 @@
                 <img class="member-img3" src="{% static 'teachhub/img/user-img3.jpg' %}" alt="">
             </div>
             <a class="menb-add-icon add-icon" href="">
-                <!-- + (追加）のアイコン -->b
+                <!-- + (追加）のアイコン -->
                 <div class="horizon"></div>
                 <div class="vertical"></div>
             </a>
@@ -38,7 +32,7 @@
         <a href="">教科書を追加</a>
     </div>
     {% for textbook in textbook_list %}
-    <a class="contents-dir" href="{% url 'teachhub:chapter_list' textbook.id %} ">
+    <a class="contents-dir subtitle" href="{% url 'teachhub:chapter_list' textbook.id %} ">
         <img src="{% static 'teachhub/img/folder-icon.svg' %}" alt="フォルダの画像">
         <div>{{ textbook }}</div>
     </a>
