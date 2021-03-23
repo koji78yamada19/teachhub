@@ -37,7 +37,7 @@
     </div>
 
     <div class="signup-page-main">
-        <form method="post" action="example.cgi"></form>
+        <form method="post" action="example.cgi">
             <div class="new-signup">アップロード</div>
             <div class="input-form">
                 <div>教科書名</div>
@@ -77,7 +77,10 @@
             </div>
             <div class="input-form">
                 <div>カテゴリー</div>
-                <input type="text">
+                <div class=" category-form">
+                    <input class="category-radio" type="radio" name="option1" value="授業資料">授業資料
+                    <input class="category-radio category-radio2" type="radio" name="option1" value="テスト">テスト
+                </div>
             </div>
             <div class="input-form">
                 <div>更新者</div>
@@ -87,9 +90,10 @@
                 <div>作成者</div>
                 <input type="text">
             </div>
-            <input class="submit-botton" type="submit"  value="新規登録">
+            <input class="submit-botton" type="submit"  value="アップロード">
 
         </form>
+        
     </div>
     <script src="../static/teachhub/js/doc-cre-document.js"></script>
     <!-- Django用のjsリンク -->
