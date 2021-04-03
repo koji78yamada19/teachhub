@@ -41,9 +41,6 @@ INSTALLED_APPS = [
     'teachhub.apps.TeachhubConfig',
     'accounts.apps.AccountsConfig',
     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount'
 ]
 
 
