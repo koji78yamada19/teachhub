@@ -14,6 +14,5 @@ urlpatterns = [
 
     # path('<int:chapter_id>/sections/', views.section_list, name='section_list'),
     path('<int:textbook_id>/chapters/', views.chapter_list, name='chapter_list'),
-    path('textbooks/', views.textbook_list, name='textbook_list'),
-    
+    path('textbooks/', views.textbook_list, name='textbook_list')
 ]
