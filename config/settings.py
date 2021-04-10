@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'teachhub.apps.TeachhubConfig',
+    'accounts.apps.AccountsConfig',
+    'django.contrib.sites',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,7 +59,8 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'),
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -125,7 +129,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 
-
 # プロジェクト直下の'static'を読み込みなさい
 STATICFILES_DIRS = [  # 変更
     os.path.join(BASE_DIR, 'static'),
@@ -134,3 +137,9 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# Authentication
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/textbooks/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
+AUTH_USER_MODEL = 'accounts.CustomUser'

@@ -17,13 +17,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views
 
 urlpatterns = [
-    # 管理画面のURL
-    path('admin/', admin.site.urls),
-
-    # Documents app のURLConfの読み込み
-    path('', include('teachhub.urls')),
+    path('admin/', admin.site.urls),  # 管理画面のURL
+    path('', include('teachhub.urls')),  # Documents app のURLConfの読み込み
+    path('accounts/', include('accounts.urls')),
+    path('accounts/', include('django.contrib.auth.urls'))
 ]
 # 開発中は読み込むようにする
 if settings.DEBUG:
