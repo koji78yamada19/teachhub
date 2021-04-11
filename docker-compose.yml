@@ -23,6 +23,6 @@ services:
     # ホストOSへの8000番ポートアクセスをコンテナの8000ポートに転送
     ports:
       - "8000:8000"
-    # 「depends_on」は起動順序を制御します。DjangoはMySQLに接続するので、Djangoよりも先にPostgreSQLを起動するよう順番を制御します。
+    # 「depends_on」は起動順序を制御します。DjangoはPostgreSQLに接続するので、Djangoよりも先にPostgreSQLを起動するよう順番を制御します。
     depends_on:
       - db
