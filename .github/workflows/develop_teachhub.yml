@@ -35,5 +35,5 @@ jobs:
       with:
         app-name: 'teachhub'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_6c37ad9c90554c4fbb1aee3eb54a6248 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_3b6c59acfb53452a946ac33addb5d128 }}
         package: '.\app.zip'
