@@ -11,10 +11,11 @@ urlpatterns = [
          views.document_note, name='document_note'),
     path('textbooks/chapters/sections/<int:section_id>/tests/',
          views.document_test, name='document_test'),
+    path('documents/convert/', views.convert_documents, name='convert'),
+    path('documents/compare/', views.compare_documents, name='compare'),
+    # path('', views.redirect, name='redirect'),
     path('documents/', views.document_list, name='document_list'),
-    path('documents/create/', views.document_create, name='document_create'),
     path('documents/<pk>/', views.document_detail, name='document_detail'),
     path('documents/<pk>/update/', views.document_update, name='document_update'),
     path('documents/<pk>/delete/', views.document_delete, name='document_delete'),
-
 ]

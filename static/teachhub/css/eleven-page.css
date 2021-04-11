@@ -16,11 +16,7 @@
     padding: 0 10px 0 10px;
     margin-top: 10px;
     font-size: 12px;
-<<<<<<< HEAD
     border-radius: 10px;
-=======
-    border-radius: 5px;
->>>>>>> 63e29ea83e525eba305bedd5947d398c16ba9ce7
 }
 .icons:hover{
     background: #efefef;
@@ -52,11 +48,7 @@ div.paper >a.hoge {
     position: absolute;
     top: 0;
     left: 0;
-<<<<<<< HEAD
     width: calc(100% - 110px);
-=======
-    width: calc(100% - 220px);
->>>>>>> 63e29ea83e525eba305bedd5947d398c16ba9ce7
     height: 100%;
     /* pointer-events: auto; */
 }
@@ -74,9 +66,8 @@ div.paper >a.hoge {
 }
 .paper-icons-space{
     display: flex;
-<<<<<<< HEAD
     width: 80px;
-=======
-    width: 210px;
->>>>>>> 63e29ea83e525eba305bedd5947d398c16ba9ce7
+}
+.upload {
+    display: none;
 }
