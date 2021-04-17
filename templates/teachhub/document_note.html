@@ -29,7 +29,7 @@
 
   <div class="contents">
     <div class="contents-header">
-        <div class="lesson-title">チーム名</div>
+        <div class="lesson-title subtitle">チーム名</div>
         <div class="member">
             <div class="member-logo">メンバー</div>
             <div class="member-icons">
@@ -45,11 +45,11 @@
     </div>
     <div class="contents-dir">
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="開いたフォルダの画像">
-        <div>教科書名など</div>
+        <div>{{ text_name }}</div>
     </div>
     <div class="contents-dir-textbook contents-dir">
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="フォルダの画像">
-        <div>{{ section_name }} 板書案</div>
+        <div class="section-name">{{ section_name }} 板書案</div>
         <div class="icons-space">
             <a class="upload-space icons" href="{% url 'teachhub:document_create' %} ">
                 <img src="{% static 'teachhub/img/upload.svg' %}" alt="アップロードフォルダの画像">
@@ -66,7 +66,8 @@
       {% comment %} document_detail.htmlへ画面遷移 {% endcomment %}
         <li>
             <div class="paper-dir">
-                <div class="contents-dir paper">                    
+                <div class="contents-dir paper">     
+                    <a class="hoge" href=""></a>               
                     <img src="{% static 'teachhub/img/paper.svg' %}" alt="開いたフォルダの画像">
                     <a class="paper-title" href="{{ document.get_absolute_url }}">{{ document.name }}</a>
                     <div class="paper-icons-space">

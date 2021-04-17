@@ -77,16 +77,36 @@ body {
     margin-left: 50px;
     float: left;
 }
-.header-user{
-    width: 130px;
+.header-handle{
+    display: flex;
+    margin-left: calc(100% - 280px);
+
+}
+.header-logout{
+    display: inline-block;
+    color: #c8c7c7;
+    font-size: 16px;
+    width: 140px;
     height: 60px;
-    margin-right: 30px;
+    line-height: 60px;
+}
+.header-logout:hover{
+    background: #707070;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.header-user{
+    width: 140px;
+    height: 60px;
+    margin-right: 20px;
+    padding-right: 10px;
     display: flex;
     float: right;
 }
 .header-user:hover{
     background: #707070;
     transition: 0.3s;
+    cursor: pointer;
 }
 .header-user > img{
     height: 36px;
@@ -94,6 +114,7 @@ body {
     border-radius: 30px;
     margin-top:auto;
     margin-bottom: auto;
+    margin: 12px 10px 12px 10px;
 }
 .header-user > div{
     width: 150px;
@@ -102,7 +123,6 @@ body {
     font-weight: 100;
     margin-top:auto;
     margin-bottom: auto;
-    margin-left: 10px;
 }
 
 /* ---------------------------------------------------------------- */
@@ -207,6 +227,11 @@ body {
     justify-content: space-between;
 }
 .contents-header > .subtitle{
+    font-size: 20px;
+    line-height: 44px;
+    float: left;
+}
+.contents-header > .lesson-title{
     font-size: 20px;
     line-height: 44px;
     float: left;
