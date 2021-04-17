@@ -17,10 +17,10 @@ urlpatterns = [
     path('documents/compare/', views.compare_documents, name='compare'),
     path('documents/', views.document_list, name='document_list'),
     path('documents/<pk>/', views.document_detail, name='document_detail'),
-    path('documents/<pk>/update/', views.update_document, name='update_document'),
+    path('documents/<int:doc_id>/update/', views.update_document, name='update_document'),
 #     path('documents/<pk>/delete/', views.document_delete, name='document_delete'),
     path('documents/<int:doc_id>/delete/', views.delete_document, name='delete_document'),
-    # path('documents/<int:doc_id>/history/', views.render_history, name='render_history'),
+    path('documents/<int:doc_id>/history/', views.render_history, name='render_history'),
     # path('documents/history/<int:doc_id>/', views.show_history_detail, name='history_detail'),
     # path('documents/<int:doc_id>/diff/', views.show_diff, name='diff')
 ]

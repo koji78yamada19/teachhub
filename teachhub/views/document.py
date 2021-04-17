@@ -45,6 +45,30 @@ def document_detail(request, pk):
             context
         )
 
+# 履歴詳細表示
+# @login_required
+# def show_history_detail(request, doc_id):
+#     doc = get_object_or_404(Document, id=doc_id)
+#     pdf_url = doc.doc_pdf_url
+#     context = context_to_show_pdf(doc, pdf_url)
+#     # 履歴の情報をコンテクストに追加
+#     context_histories = get_history(request, doc_id)
+#     context.update(context_histories)    
+
+#     return render(request, 'teachhub/history.html', context)
+
+# @login_required
+# def context_to_show_pdf(doc, pdf_url):
+#     # pdfをブラウザで表示するためにpdf.jsを使用
+#     # pdfをひょじするためのviewerのpath
+#     viewer_path = "/static/teachhub/pdfjs-2.7.570-dist/web/viewer.html"
+#     pdf_path = "media/" + str(pdf_url)
+#     path = viewer_path + "?file=%2F" + pdf_path
+#     context = {
+#         'document': doc,
+#         "path": path
+#         }
+#     return context
 
 #############
 # Read 一覧 #
@@ -335,9 +359,9 @@ def document_note(request, section_id):
 ###############
 # Update 編集 #
 ###############
-def update_document(request, pk):
+def update_document(request, doc_id):
     # ↓ データベースから与えられたid番号を取得(if文の外に書く)
-    document = get_object_or_404(Document, pk=pk)  # /documents/4/update
+    document = get_object_or_404(Document, id=doc_id)  # /documents/4/update
     if request.method == 'GET':
         form = DocumentForm(instance=document)
         return render(
@@ -361,8 +385,8 @@ def update_document(request, pk):
 ###############
 # Delete 削除 #
 ###############
-def delete_document(request, pk):
-    document = get_object_or_404(Document, pk=pk)
+def delete_document(request, doc_id):
+    document = get_object_or_404(Document, id=doc_id)
     if request.method == 'GET':
         return render(
             request,
@@ -373,3 +397,26 @@ def delete_document(request, pk):
         document.delete()
         # return rediredt('/documents/')
         return redirect(reverse('teachhub:document_list'))
+
+
+@login_required
+def get_history(request, doc_id):
+    user = request.user
+    print(user)
+    doc = Document.objects.get(id=doc_id)
+    section = doc.section
+    docs = Document.objects.filter(custom_user=user, section=section).order_by('-id')
+    histories = docs.values('id', 'doc_pdf_url', 'diff_word_url', 'created_at', 'custom_user')
+    lst_histories = list(histories)
+    context = {'lst_histories': lst_histories}
+
+    return context
+
+# 取得した履歴情報をテンプレートにレンダリングする
+@login_required
+def render_history(request, doc_id):
+    context = get_history(request, doc_id)
+    print("context")
+    print(context)
+
+    return render(request, 'teachhub/history.html', context)
