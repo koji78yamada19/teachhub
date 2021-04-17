@@ -284,12 +284,7 @@ def document_note(request, section_id):
             context
         )
 
-# 開発のため
-# def redirect(request):
-#     return HttpResponseRedirect('/textbooks/')
 
-
-# category(板書案）とsection_idでフィルタリングした資料一覧ビュー
 
 
 # def document_note(request, section_id):
