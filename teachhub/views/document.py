@@ -77,7 +77,7 @@ def document_test(request, section_id):
 
 # wordファイルをpdfファイルに変換
 @login_required
-def convert_documents(request, doc, diff_pdf_url, lock):
+def convert_document(request, doc, diff_pdf_url, lock):
     with lock:
         # Wordを起動する前にこれを呼び出す
         pythoncom.CoInitialize()
@@ -340,7 +340,7 @@ def document_note(request, section_id):
 ###############
 # Update 編集 #
 ###############
-def document_update(request, pk):
+def update_document(request, pk):
     # ↓ データベースから与えられたid番号を取得(if文の外に書く)
     document = get_object_or_404(Document, pk=pk)  # /documents/4/update
     if request.method == 'GET':
@@ -366,7 +366,7 @@ def document_update(request, pk):
 ###############
 # Delete 削除 #
 ###############
-def document_delete(request, pk):
+def delete_document(request, pk):
     document = get_object_or_404(Document, pk=pk)
     if request.method == 'GET':
         return render(

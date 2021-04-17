@@ -3,13 +3,13 @@ from teachhub.views.document import (
     document_list,
     document_note,
     document_test,
-    # document_create,
-    document_update,
-    document_delete,
-    convert_documents,
+    update_document,
+    delete_document,
+    convert_document,
     compare_documents,
-    # redirect,
-    # upload_document
+    # render_history,
+    # show_history_detail,
+    # show_diff
 )
 
 # from teachhub.views.section import (
