@@ -51,7 +51,7 @@
                 </div>
                 <div class="history-switch">
                     <a href="{% url 'teachhub:history_detail' history.id %}">ファイル</a>
-                    <a href="">変更履歴</a>
+                    <a href="{% url 'teachhub:diff' history.id %}">変更履歴</a>
                     <!-- <div>ユーザー名</div> -->
                 </div>
             </div>

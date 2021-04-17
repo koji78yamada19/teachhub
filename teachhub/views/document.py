@@ -65,6 +65,54 @@ def show_history_detail(request, doc_id):
 
     return render(request, 'teachhub/history.html', context)
 
+# 差分詳細表示
+@login_required
+def show_diff(request, doc_id):
+    document = get_object_or_404(Document, id=doc_id)
+    diff_word_url = document.diff_word_url
+    diff_pdf_url = document.diff_pdf_url
+
+    if diff_pdf_url:
+        pdf_url = diff_pdf_url
+        viewer_path = "/static/teachhub/pdfjs-2.7.570-dist/web/viewer.html"
+        pdf_path = "media/" + str(pdf_url)
+        path = viewer_path + "?file=%2F" + pdf_path
+
+        context = {
+            'document': document,
+            "path": path
+        }   
+        context_histories = get_history(request, doc_id)
+        context.update(context_histories)    
+
+        return render(request, 'teachhub/history.html', context)
+
+
+    elif diff_word_url:
+        diff_pdf_url = diff_word_url.replace("word","pdf").replace(".docx", ".pdf")
+
+        convert_document(request, diff_word_url, diff_pdf_url)
+        document.diff_pdf_url = diff_pdf_url
+        document.save()
+        pdf_url = diff_pdf_url
+        viewer_path = "/static/teachhub/pdfjs-2.7.570-dist/web/viewer.html"
+        pdf_path = "media/" + str(pdf_url)
+        path = viewer_path + "?file=%2F" + pdf_path
+
+        context = {
+            'document': document,
+            "path": path
+        }   
+        context_histories = get_history(request, doc_id)
+        context.update(context_histories)
+        
+        return render(request, 'teachhub/history.html', context)
+
+    else:
+        context = get_history(request, doc_id)
+        return render(request, 'teachhub/history.html', context)
+
+
 # @login_required
 # def context_to_show_pdf(doc, pdf_url):
 #     # pdfをブラウザで表示するためにpdf.jsを使用
@@ -109,7 +157,8 @@ def document_test(request, section_id):
 
 # wordファイルをpdfファイルに変換
 @login_required
-def convert_document(request, doc, diff_pdf_url, lock):
+def convert_document(request, doc, diff_pdf_url):
+    lock = threading.Lock()
     with lock:
         # Wordを起動する前にこれを呼び出す
         pythoncom.CoInitialize()
@@ -145,33 +194,31 @@ def convert_document(request, doc, diff_pdf_url, lock):
 
 # wordファイルの差分を取る
 @login_required
-def compare_documents(request, original_doc, revised_doc, diff_word_url, lock):
+def compare_documents(request, original_doc, revised_doc, diff_word_url):
+    pythoncom.CoInitialize()
+    try:
+        Application = win32com.client.gencache.EnsureDispatch(
+            "Word.Application")
+    except AttributeError:
+        MODULE_LIST = [m.__name__ for m in sys.modules.values()]
+        for module in MODULE_LIST:
+            if re.match(r'win32com\.gen_py\..+', module):
+                del sys.modules[module]
+        shutil.rmtree(os.path.join(os.environ.get(
+            'LOCALAPPDATA'), 'Temp', 'gen_py'))
+        Application = win32com.client.gencache.EnsureDispatch(
+            "Word.Application")
 
-    with lock:
-        pythoncom.CoInitialize()
-        try:
-            Application = win32com.client.gencache.EnsureDispatch(
-                "Word.Application")
-        except AttributeError:
-            MODULE_LIST = [m.__name__ for m in sys.modules.values()]
-            for module in MODULE_LIST:
-                if re.match(r'win32com\.gen_py\..+', module):
-                    del sys.modules[module]
-            shutil.rmtree(os.path.join(os.environ.get(
-                'LOCALAPPDATA'), 'Temp', 'gen_py'))
-            Application = win32com.client.gencache.EnsureDispatch(
-                "Word.Application")
+    ori_doc_open = Application.Documents.Open(original_doc)
+    rev_doc_open = Application.Documents.Open(revised_doc)
+    print("差分計算開始")
+    Application.CompareDocuments(ori_doc_open, rev_doc_open)
+    Application.ActiveDocument.SaveAs2(FileName=diff_word_url)
+    print("差分計算終了")
 
-        ori_doc_open = Application.Documents.Open(original_doc)
-        rev_doc_open = Application.Documents.Open(revised_doc)
-        print("差分計算開始")
-        Application.CompareDocuments(ori_doc_open, rev_doc_open)
-        Application.ActiveDocument.SaveAs2(FileName=diff_word_url)
-        print("差分計算終了")
-
-        Application.ActiveDocument.Close()
-        Application.Quit()
-        pythoncom.CoUninitialize()
+    Application.ActiveDocument.Close()
+    Application.Quit()
+    pythoncom.CoUninitialize()
 
     return ""
 
@@ -245,7 +292,7 @@ def document_note(request, section_id):
             
             # ファイルのpdf化
             p1 = threading.Thread(target=convert_document, args=(
-            request, word_url, pdf_url, lock))
+            request, word_url, pdf_url))
 
             # 1つ前のファイルとの差分作成 / そのファイルの保存
             document_id = document.id
@@ -278,7 +325,7 @@ def document_note(request, section_id):
                 document.save()
 
                 p2 = threading.Thread(target=compare_documents, args=(
-                    request, pre_word_url, word_url, diff_word_url, lock))
+                    request, pre_word_url, word_url, diff_word_url))
 
             print("convert_document started")
             p1.start()

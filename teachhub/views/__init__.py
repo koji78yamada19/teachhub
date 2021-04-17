@@ -9,7 +9,7 @@ from teachhub.views.document import (
     compare_documents,
     render_history,
     show_history_detail,
-    # show_diff
+    show_diff
 )
 
 # from teachhub.views.section import (
