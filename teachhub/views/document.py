@@ -443,6 +443,8 @@ def update_document(request, doc_id):
 ###############
 def delete_document(request, doc_id):
     document = get_object_or_404(Document, id=doc_id)
+    section = document.section
+    section_id = section.id
     if request.method == 'GET':
         return render(
             request,
@@ -452,7 +454,7 @@ def delete_document(request, doc_id):
     elif request.method == 'POST':
         document.delete()
         # return rediredt('/documents/')
-        return redirect(reverse('teachhub:document_list'))
+        return redirect(reverse('teachhub:document_note', args=(section_id,)))
 
 
 @login_required
