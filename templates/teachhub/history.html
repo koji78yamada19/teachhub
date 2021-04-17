@@ -50,7 +50,7 @@
                     <div>{{ history.created_at|date:"Y/m/d H:i" }}</div>
                 </div>
                 <div class="history-switch">
-                    <a href="">ファイル</a>
+                    <a href="{% url 'teachhub:history_detail' history.id %}">ファイル</a>
                     <a href="">変更履歴</a>
                     <!-- <div>ユーザー名</div> -->
                 </div>

@@ -8,7 +8,7 @@ from teachhub.views.document import (
     convert_document,
     compare_documents,
     render_history,
-    # show_history_detail,
+    show_history_detail,
     # show_diff
 )
 

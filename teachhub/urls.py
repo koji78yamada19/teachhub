@@ -21,6 +21,6 @@ urlpatterns = [
 #     path('documents/<pk>/delete/', views.document_delete, name='document_delete'),
     path('documents/<int:doc_id>/delete/', views.delete_document, name='delete_document'),
     path('documents/<int:doc_id>/history/', views.render_history, name='render_history'),
-    # path('documents/history/<int:doc_id>/', views.show_history_detail, name='history_detail'),
+    path('documents/history/<int:doc_id>/', views.show_history_detail, name='history_detail'),
     # path('documents/<int:doc_id>/diff/', views.show_diff, name='diff')
 ]

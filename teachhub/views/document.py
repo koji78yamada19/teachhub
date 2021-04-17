@@ -46,16 +46,24 @@ def document_detail(request, pk):
         )
 
 # 履歴詳細表示
-# @login_required
-# def show_history_detail(request, doc_id):
-#     doc = get_object_or_404(Document, id=doc_id)
-#     pdf_url = doc.doc_pdf_url
-#     context = context_to_show_pdf(doc, pdf_url)
-#     # 履歴の情報をコンテクストに追加
-#     context_histories = get_history(request, doc_id)
-#     context.update(context_histories)    
+@login_required
+def show_history_detail(request, doc_id):
+    document = get_object_or_404(Document, id=doc_id)
+    pdf_url = document.doc_pdf_url
 
-#     return render(request, 'teachhub/history.html', context)
+    viewer_path = "/static/teachhub/pdfjs-2.7.570-dist/web/viewer.html"
+    pdf_path = "media/" + str(pdf_url)
+    path = viewer_path + "?file=%2F" + pdf_path
+
+    context = {
+        'document': document,
+        "path": path
+    }
+    # 履歴の情報をコンテクストに追加
+    context_histories = get_history(request, doc_id)
+    context.update(context_histories)    
+
+    return render(request, 'teachhub/history.html', context)
 
 # @login_required
 # def context_to_show_pdf(doc, pdf_url):
@@ -285,6 +293,7 @@ def document_note(request, section_id):
             print(pdf_url)
             document.doc_pdf_url = pdf_url
             document.save()
+            p1.join()
             print("終了")
 
             return redirect(reverse('teachhub:document_note', args=(section_id,)))
