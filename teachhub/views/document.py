@@ -236,7 +236,7 @@ def document_note(request, section_id):
             document.save()
             
             # ファイルのpdf化
-            p1 = threading.Thread(target=convert_documents, args=(
+            p1 = threading.Thread(target=convert_document, args=(
             request, word_url, pdf_url, lock))
 
             # 1つ前のファイルとの差分作成 / そのファイルの保存
@@ -272,7 +272,7 @@ def document_note(request, section_id):
                 p2 = threading.Thread(target=compare_documents, args=(
                     request, pre_word_url, word_url, diff_word_url, lock))
 
-            print("convert_documents started")
+            print("convert_document started")
             p1.start()
             print("started")
 
