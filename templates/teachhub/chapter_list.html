@@ -37,7 +37,7 @@
 <!-- ここから -->
   <div class="contents">
     <div class="contents-header">
-        <div class="lesson-title">〇〇高校 日本史</div>
+        <div class="lesson-title subtitle">〇〇高校 日本史</div>
         <div class="member">
             <div class="member-logo">メンバー</div>
             <div class="member-icons">
@@ -66,10 +66,14 @@
         {% for section in chapter.sections.all %} 
         <div class="contents-dir-textbook contents-dir">
             <img src="{% static 'teachhub/img/folder-icon.svg' %}" alt="フォルダの画像">
-            <div>{{ section.name }}</div>
+            <div class="section-name">{{ section.name }}</div>
             <div class="document-links">
-                <a href="{% url 'teachhub:document_note' section.id %} ">教科資料</a>
-                 <a href="{% url 'teachhub:document_test' section.id %}">テスト</a>
+              <button class="button" >
+                <a href="{% url 'teachhub:document_note' section.id %} ">板書案</a>
+              </button>
+              <button class="button" >
+                <a href="{% url 'teachhub:document_test' section.id %}">小テスト</a>
+              </button>
             </div>
         </div>
         {% endfor %}

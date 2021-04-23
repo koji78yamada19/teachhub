@@ -1,10 +1,12 @@
 .text-prev-title{
+    
     margin-left: 65px;
     /* display: flex; */
     line-height: 45px;
     position: relative;
 }
 .text-prev-title-text{
+    margin-top: 40px;
     font-size: 20px;
     text-align: left;
 }
@@ -124,5 +126,4 @@
     cursor: pointer;
   }
 
-  
   

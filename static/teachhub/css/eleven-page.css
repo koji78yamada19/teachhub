@@ -1,10 +1,14 @@
 .contents-dir-textbook{
     margin-bottom: 10px;
+    position: relative;
 }
 
 .icons-space{
     display: flex;
-    margin-left: calc(100% - 420px);
+    /* margin-left: calc(100% - 420px); */
+    position: absolute;
+    top: 0px;
+    right: 10px;
 }
 
 /* .paper-dir{
@@ -16,11 +20,7 @@
     padding: 0 10px 0 10px;
     margin-top: 10px;
     font-size: 12px;
-<<<<<<< HEAD
     border-radius: 10px;
-=======
-    border-radius: 5px;
->>>>>>> 63e29ea83e525eba305bedd5947d398c16ba9ce7
 }
 .icons:hover{
     background: #efefef;
@@ -52,11 +52,7 @@ div.paper >a.hoge {
     position: absolute;
     top: 0;
     left: 0;
-<<<<<<< HEAD
     width: calc(100% - 110px);
-=======
-    width: calc(100% - 220px);
->>>>>>> 63e29ea83e525eba305bedd5947d398c16ba9ce7
     height: 100%;
     /* pointer-events: auto; */
 }
@@ -71,12 +67,9 @@ div.paper >a.hoge {
     width: calc(100% - 160px);
     text-align: left;
     overflow: hidden;
+    line-height: 50px;
 }
 .paper-icons-space{
     display: flex;
-<<<<<<< HEAD
     width: 80px;
-=======
-    width: 210px;
->>>>>>> 63e29ea83e525eba305bedd5947d398c16ba9ce7
 }
