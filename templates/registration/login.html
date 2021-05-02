@@ -1,10 +1,49 @@
-{% block content %}
-<h2>ログイン</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">ログイン</button>
-</form>
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
 
-<p><a href="{% url 'accounts:signup' %}">サインアップ画面へ</a></p>
-{% endblock %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Djangoで起動した時のcssとjsリンク -->
+  <link rel="stylesheet" href="{% static 'teachhub/css/nine-page.css' %}">
+  <link rel="stylesheet" href="{% static 'teachhub/css/ten-page.css' %}">
+  <link rel="stylesheet" href="{% static 'teachhub/css/eleven-page.css' %}">
+  <link rel="stylesheet" href="{% static 'teachhub/css/twelve-page.css' %}">
+  <link rel="stylesheet" href="{% static 'teachhub/css/signup.css' %}">
+  <script type="text/javascript" src="{% static 'teachhub/js/jquery-3.5.1.min.js' %"></script>
+
+  <title>TeachHub</title>
+</head>
+
+<body>
+  <div class="header">
+    <div class="header-logo">TeachHub</div>
+    <a class="log-in" href="{% url 'accounts:signup' %}">新規登録</a>
+  </div>
+  <div class="signup-page-main">
+    <div class="new-signup">ログイン</div>
+    <form method="post">
+      <div class=" input-form">
+        {% csrf_token %}
+        <div>ユーザー名</div>
+        <!-- <input type="text"> -->
+        {{ form.username }}
+        {{ form.username.errors }}
+      </div>
+      <div class="input-form">
+        <div>パスワード</div>
+        {{ form.password }}
+        {{ form.password.errors }}
+        <!-- <input type="text"> -->
+      </div>
+      <input class="submit-botton" type="submit" value="ログイン">
+    </form>
+  </div>
+  <script src="../static/teachhub/js/doc-cre-document.js"></script>
+  <!-- Django用のjsリンク -->
+  <script src="{% static 'teachhub/js/doc-cre-docsument.js' %}"></script>
+</body>
+
+</html>
