@@ -1,10 +1,14 @@
 .contents-dir-textbook{
     margin-bottom: 10px;
+    position: relative;
 }
 
 .icons-space{
     display: flex;
-    margin-left: calc(100% - 420px);
+    /* margin-left: calc(100% - 420px); */
+    position: absolute;
+    top: 0px;
+    right: 10px;
 }
 
 /* .paper-dir{
@@ -63,11 +67,9 @@ div.paper >a.hoge {
     width: calc(100% - 160px);
     text-align: left;
     overflow: hidden;
+    line-height: 50px;
 }
 .paper-icons-space{
     display: flex;
     width: 80px;
-}
-.upload {
-    display: none;
 }

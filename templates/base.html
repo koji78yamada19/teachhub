@@ -23,12 +23,15 @@
 <body>
     <div class="header">
         <div class="header-logo">TeachHub</div>
-        <div class="header-user">
-            <!-- <img src="../static/teachhub/img/user-example.svg" alt="ユーザーアイコン"> -->
-            <img src="{% static 'teachhub/img/user-example.svg' %}" alt="ユーザーアイコン">
-            <div class="user-name">ユーザー名</div>
+        <div class="header-handle">
+            <a class="header-logout" href="{% url 'logout' %}">ログアウト</a>
+            <a class="header-user">
+                <img src="{% static 'teachhub/img/user-example.svg' %}" alt="ユーザーアイコン">
+                <div class="user-name">ユーザー名</div>
+            </a>
         </div>
-        <p><a href="{% url 'logout' %}">ログアウト</a></p>
+        
+        <!-- <a href="{% url 'logout' %}">ログアウト</a> -->
     </div>
     <div class=" main">
         <div class="menu-tags">
@@ -51,24 +54,20 @@
                     <div>グループや個人名など</div>
                 </div>
             </div>
-            <div class="sha-cre-mem left-bookmark">
-                <!-- 資料作成・共有-->
+            <!-- <div class="sha-cre-mem left-bookmark">
                 <div class="sha-cre-mem-dirs">
-                    <!-- <img src="../static/teachhub/img/black-stare.svg" alt="資料作成・共有のアイキャッチ"> -->
                     <img src="{% static 'teachhub/img/black-stare.svg' %}" alt="資料作成・共有のアイキャッチ">
                     <div>ブックマーク</div>
                     <a class="dir-add-icon add-icon" href="">
-                        <!-- + (追加）のアイコン -->
                         <div class="horizon"></div>
                         <div class="vertical"></div>
                     </a>
                 </div>
                 <div class="sha-cre-mem-dir">
-                    <!-- <img src="../static/teachhub/img/folder-icon.svg" alt="このディレクトリのアイキャッチ"> -->
                     <img src="{% static 'teachhub/img/folder-icon.svg' %}" alt="このディレクトリのアイキャッチ">
                     <div>ディレクトリの名前など</div>
                 </div>
-            </div>
+            </div> -->
         </div>
         {% block content %}
         {% endblock %}
