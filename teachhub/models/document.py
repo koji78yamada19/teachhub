@@ -81,6 +81,8 @@ class Document(models.Model):
 
     custom_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name='user',
                                 related_name="document_user", blank=True, null=True)
+    latest = models.BooleanField(
+        verbose_name='最新のドキュメント', null=True, blank=True, default=False)
 
     def __str__(self):
         return self.name

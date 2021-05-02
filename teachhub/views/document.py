@@ -264,7 +264,7 @@ def document_note(request, section_id):
             document.created_at = date
             document.name = name_by_writer
             document.category = category
-            print(date)
+            document.latest = True
             document.save()
             
             # ファイルのpdf化
@@ -281,6 +281,11 @@ def document_note(request, section_id):
                 # id < doc_id
                 pre_document = Document.objects.filter(
                     id__lt=document_id).order_by('-id').first()
+                
+                # データベースの更新
+                pre_document.latest = False
+                pre_document.save()
+
                 str_document = str(pre_document.file)
                 lst_document_info = str_document.split("/")
 
@@ -324,10 +329,9 @@ def document_note(request, section_id):
 
             return redirect(reverse('teachhub:document_note', args=(section_id,)))
     else:
-        # TODO
-        # user_idとnameでフィルタリングして、その中で最新のもの
         documents = Document.objects.filter(
-            category=category, section_id=section_id).order_by('id')
+            category=category, section_id=section_id, latest=True).order_by('id')
+        
         form = DocumentForm()
         context = {
             "documents": documents,
