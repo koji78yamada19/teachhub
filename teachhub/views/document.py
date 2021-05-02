@@ -270,6 +270,8 @@ def document_note(request, section_id):
             path = 'documents/notes/{0}_{1}/word/{2}.docx'.format(
                 user_id, original_doc_name, current_time)
 
+            # TODO
+            # パスの変更
             base_word_url = r"C:\Users\kojiy\teachhub\media\documents\{}\{}\word\{}.docx"
             # base_diff_word = r"C:\Users\kojiy\teachhub\media\documents\differences\{}\{}\{}.docx"
 
@@ -318,6 +320,8 @@ def document_note(request, section_id):
                 time = tmp_time.split(".")[0]
                 pre_word_url = base_word_url.format(
                     category, doc_name, time)
+                # TODO
+                # パスの変更
                 base_diff_word_url = r"C:\Users\kojiy\teachhub\media\documents\{}\{}\differences\word\{}.docx"
                 diff_word_url = base_diff_word_url.format(
                     category, doc_name, current_time)
