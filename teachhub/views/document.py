@@ -132,7 +132,7 @@ def document_test(request, section_id):
 
 # wordファイルをpdfファイルに変換
 @login_required
-def convert_document(request, doc, diff_pdf_url):
+def convert_document(request, doc, pdf_url):   
     lock = threading.Lock()
     with lock:
         # Wordを起動する前にこれを呼び出す
@@ -156,7 +156,7 @@ def convert_document(request, doc, diff_pdf_url):
         wdFormatPDF = 17
         print("pdf化開始")
         Application.ActiveDocument.SaveAs2(
-            FileName=diff_pdf_url, FileFormat=wdFormatPDF)
+            FileName=pdf_url, FileFormat=wdFormatPDF)
         print("pdf化終了")
 
         Application.ActiveDocument.Close()
@@ -244,13 +244,16 @@ def document_note(request, section_id):
             # TODO
             # パスの変更
             base_word_url = r"C:\Users\kojiy\teachhub\media\documents\{}\{}\word\{}.docx"
-            # base_diff_word = r"C:\Users\kojiy\teachhub\media\documents\differences\{}\{}\{}.docx"
+            base_pdf_dir = r"C:\Users\kojiy\teachhub\media\documents\{}\{}\pdf"
 
             doc_name = "{0}_{1}".format(user_id, original_doc_name)
             word_url = base_word_url.format(
                 category, doc_name, current_time)
             pdf_url = word_url.replace(
                 "word", "pdf").replace(".docx", ".pdf")
+            pdf_dir = base_pdf_dir.format(category, doc_name)
+            # pdfを保存するディレクトリの作成
+            os.makedirs(pdf_dir, exist_ok=True)
 
             # データベースの更新
             print("DBの更新")
@@ -265,7 +268,7 @@ def document_note(request, section_id):
             
             # ファイルのpdf化
             p1 = threading.Thread(target=convert_document, args=(
-            request, word_url, pdf_url))
+                                  request, word_url, pdf_url))
 
             # 1つ前のファイルとの差分作成 / そのファイルの保存
             document_id = document.id
@@ -300,13 +303,18 @@ def document_note(request, section_id):
                 # TODO
                 # パスの変更
                 base_diff_word_url = r"C:\Users\kojiy\teachhub\media\documents\{}\{}\differences\word\{}.docx"
+                base_diff_word_dir = r"C:\Users\kojiy\teachhub\media\documents\{}\{}\differences\word"
                 diff_word_url = base_diff_word_url.format(
                     category, doc_name, current_time)
+                diff_word_dir = base_diff_word_dir.format(category, doc_name)
+                # 差分のwordファイルを保存するディレクトリの作成
+                os.makedirs(diff_word_dir, exist_ok=True)
+
                 document.diff_word_url = diff_word_url
                 document.save()
 
                 p2 = threading.Thread(target=compare_documents, args=(
-                    request, pre_word_url, word_url, diff_word_url))
+                                      request, pre_word_url, word_url, diff_word_url))
 
             print("convert_document started")
             p1.start()
