@@ -17,7 +17,7 @@ import re
 import sys
 import shutil
 # 開発のため
-from django.http import HttpResponseRedirect
+
 
 #############
 # Read 詳細 #
@@ -28,8 +28,8 @@ def document_detail(request, pk):
     if request.method == 'GET':
         # document = Document.objects.get(id=pk)
         document = get_object_or_404(Document, pk=pk)
-        pdf_url = document.doc_pdf_url
 
+        pdf_url = document.doc_pdf_url
         context = context_to_show_pdf(document, pdf_url)
         # render(request, 'テンプレート名' {'key':'value'})
         return render(
@@ -43,7 +43,6 @@ def document_detail(request, pk):
 def show_history_detail(request, doc_id):
     document = get_object_or_404(Document, id=doc_id)
     pdf_url = document.doc_pdf_url
-
     context = context_to_show_pdf(document, pdf_url)
     # 履歴の情報をコンテクストに追加
     context_histories = get_history(request, doc_id)
@@ -58,6 +57,7 @@ def show_diff(request, doc_id):
     diff_word_url = document.diff_word_url
     diff_pdf_url = document.diff_pdf_url
 
+    # pdfがある場合
     if diff_pdf_url:
         pdf_url = diff_pdf_url
 
@@ -67,10 +67,11 @@ def show_diff(request, doc_id):
 
         return render(request, 'teachhub/history.html', context)
 
-
+    # pdfがない場合
     elif diff_word_url:
         diff_pdf_url = diff_word_url.replace("word","pdf").replace(".docx", ".pdf")
-
+        
+        # pdf画像の生成
         convert_document(request, diff_word_url, diff_pdf_url)
         document.diff_pdf_url = diff_pdf_url
         document.save()
@@ -130,14 +131,18 @@ def document_test(request, section_id):
             context
         )
 
+#############
+# その他 #
+#############
 # wordファイルをpdfファイルに変換
 @login_required
 def convert_document(request, doc, diff_pdf_url):
+    # 非同期処理のためのスレッドに関する処理
     lock = threading.Lock()
     with lock:
         # Wordを起動する前にこれを呼び出す
         pythoncom.CoInitialize()
-        # #Wordを起動する : Applicationオブジェクトを生成する
+        # #Wordを起動する:Applicationオブジェクトを生成する
         try:
             Application = win32com.client.gencache.EnsureDispatch(
                 "Word.Application")
@@ -200,7 +205,9 @@ def compare_documents(request, original_doc, revised_doc, diff_word_url):
 
 @login_required
 def document_note(request, section_id):
+    # 非同期処理のためのスレッドのためのLock
     lock = threading.Lock()
+
     category = "notes"
     section = Section.objects.get(id=section_id)
     section_name = section.name
@@ -244,7 +251,6 @@ def document_note(request, section_id):
             # TODO
             # パスの変更
             base_word_url = r"C:\Users\kojiy\teachhub\media\documents\{}\{}\word\{}.docx"
-            # base_diff_word = r"C:\Users\kojiy\teachhub\media\documents\differences\{}\{}\{}.docx"
 
             doc_name = "{0}_{1}".format(user_id, original_doc_name)
             word_url = base_word_url.format(
@@ -253,7 +259,6 @@ def document_note(request, section_id):
                 "word", "pdf").replace(".docx", ".pdf")
 
             # データベースの更新
-            print("DBの更新")
             document = Document.objects.get(file=path)
             custom_user = CustomUser.objects.get(id=user_id)
             document.custom_user = custom_user
@@ -263,11 +268,11 @@ def document_note(request, section_id):
             document.latest = True
             document.save()
             
-            # ファイルのpdf化
+            # ファイルのpdf化 / スレッドを使用
             p1 = threading.Thread(target=convert_document, args=(
             request, word_url, pdf_url))
 
-            # 1つ前のファイルとの差分作成 / そのファイルの保存
+            # 1つ前のファイルとの差分作成
             document_id = document.id
             print("id")
             print(document_id)
@@ -275,7 +280,7 @@ def document_note(request, section_id):
             document_num = documents.count()
             if document_num > 1:
                 # id < doc_id
-                # nameとuser_idでフィルター
+                # nameとuserでフィルター
                 pre_document = Document.objects.filter(custom_user=custom_user, 
                   name=name_by_writer, id__lt=document_id).order_by('-id').first()
                 
@@ -305,23 +310,27 @@ def document_note(request, section_id):
                 document.diff_word_url = diff_word_url
                 document.save()
 
+                # 差分の生成 / スレッドを使用
                 p2 = threading.Thread(target=compare_documents, args=(
                     request, pre_word_url, word_url, diff_word_url))
-
+            
+            # p1の開始（スレッドの開始）
             print("convert_document started")
             p1.start()
             print("started")
 
             if p2:
+                # p2の開始（スレッドの開始)
                 print("compare_documents started")
                 p2.start()
 
-            # 2. そのファイルのurlをDBに格納 update
+            # ファイルのurlをDBに格納 update
             print("doc_pdf_url")
             print(pdf_url)
             document.doc_pdf_url = pdf_url
             document.save()
             p1.join()
+            p2.join()
             print("終了")
 
             return redirect(reverse('teachhub:document_note', args=(section_id,)))
@@ -344,6 +353,28 @@ def document_note(request, section_id):
             context
         )
 
+# 履歴情報の取得
+@login_required
+def get_history(request, doc_id):
+    user = request.user
+    print(user)
+    document = Document.objects.get(id=doc_id)
+    section = document.section
+    documents = Document.objects.filter(custom_user=user, section=section).order_by('-id')
+    histories = documents.values('id', 'doc_pdf_url', 'diff_word_url', 'created_at', 'custom_user')
+    lst_histories = list(histories)
+    context = {'lst_histories': lst_histories}
+
+    return context
+
+# 取得した履歴情報をテンプレートにレンダリングする
+@login_required
+def render_history(request, doc_id):
+    context = get_history(request, doc_id)
+    print("context")
+    print(context)
+
+    return render(request, 'teachhub/history.html', context)
 
 
 
@@ -437,26 +468,3 @@ def delete_document(request, doc_id):
         document.delete()
         # return rediredt('/documents/')
         return redirect(reverse('teachhub:document_note', args=(section_id,)))
-
-# 履歴情報の取得
-@login_required
-def get_history(request, doc_id):
-    user = request.user
-    print(user)
-    doc = Document.objects.get(id=doc_id)
-    section = doc.section
-    docs = Document.objects.filter(custom_user=user, section=section).order_by('-id')
-    histories = docs.values('id', 'doc_pdf_url', 'diff_word_url', 'created_at', 'custom_user')
-    lst_histories = list(histories)
-    context = {'lst_histories': lst_histories}
-
-    return context
-
-# 取得した履歴情報をテンプレートにレンダリングする
-@login_required
-def render_history(request, doc_id):
-    context = get_history(request, doc_id)
-    print("context")
-    print(context)
-
-    return render(request, 'teachhub/history.html', context)
