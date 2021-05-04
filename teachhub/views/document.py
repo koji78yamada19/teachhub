@@ -132,7 +132,7 @@ def document_test(request, section_id):
 
 # wordファイルをpdfファイルに変換
 @login_required
-def convert_document(request, doc, pdf_url):   
+def convert_document(request, doc, pdf_url):
     lock = threading.Lock()
     with lock:
         # Wordを起動する前にこれを呼び出す
@@ -310,8 +310,10 @@ def document_note(request, section_id):
                 diff_word_url = base_diff_word_url.format(
                     category, doc_name, current_time)
                 diff_word_dir = base_diff_word_dir.format(category, doc_name)
+                diff_pdf_dir = diff_word_dir.replace('word', 'pdf')
                 # 差分のwordファイルを保存するディレクトリの作成
                 os.makedirs(diff_word_dir, exist_ok=True)
+                os.makedirs(diff_pdf_dir, exist_ok=True)
 
                 document.diff_word_url = diff_word_url
                 document.save()
@@ -333,7 +335,6 @@ def document_note(request, section_id):
             document.doc_pdf_url = pdf_url
             document.save()
             p1.join()
-            p2.join()
             print("終了")
 
             return redirect(reverse('teachhub:document_note', args=(section_id,)))
