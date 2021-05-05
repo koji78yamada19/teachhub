@@ -240,7 +240,7 @@ def document_note(request, section_id):
         print(lst_doc_info)
 
         p2 = ""
-        if form.is_valid()
+        if form.is_valid():
             form.save()
             
             user_id = lst_doc_info[0]
