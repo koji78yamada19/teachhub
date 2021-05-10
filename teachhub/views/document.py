@@ -22,6 +22,8 @@ from django.http import HttpResponseRedirect
 #############
 # Read 詳細 #
 #############
+
+
 @login_required
 def document_detail(request, pk):
     # 教材の詳細を表示(pdfとして表示)
@@ -39,6 +41,8 @@ def document_detail(request, pk):
         )
 
 # 履歴詳細表示
+
+
 @login_required
 def show_history_detail(request, doc_id):
     document = get_object_or_404(Document, id=doc_id)
@@ -47,11 +51,13 @@ def show_history_detail(request, doc_id):
     context = context_to_show_pdf(document, pdf_url)
     # 履歴の情報をコンテクストに追加
     context_histories = get_history(request, doc_id)
-    context.update(context_histories)    
+    context.update(context_histories)
 
     return render(request, 'teachhub/history.html', context)
 
 # 差分詳細表示
+
+
 @login_required
 def show_diff(request, doc_id):
     document = get_object_or_404(Document, id=doc_id)
@@ -64,23 +70,24 @@ def show_diff(request, doc_id):
 
         context = context_to_show_pdf(document, pdf_url)
         context_histories = get_history(request, doc_id)
-        context.update(context_histories)    
+        context.update(context_histories)
 
         return render(request, 'teachhub/history.html', context)
 
     # 差分のwordファイルがある場合
-    elif diff_word_url:        
+    elif diff_word_url:
         if os.path.isfile(diff_word_url):
-            diff_pdf_url = diff_word_url.replace("word","pdf").replace(".docx", ".pdf")
+            diff_pdf_url = diff_word_url.replace(
+                "word", "pdf").replace(".docx", ".pdf")
             convert_document(request, diff_word_url, diff_pdf_url)
             document.diff_pdf_url = diff_pdf_url
             document.save()
             pdf_url = diff_pdf_url
-    
+
             context = context_to_show_pdf(document, pdf_url)
             context_histories = get_history(request, doc_id)
             context.update(context_histories)
-            
+
             return render(request, 'teachhub/history.html', context)
         else:
             text = '現在、処理中です。しばらくしてから再度、お試しください。'
@@ -110,6 +117,8 @@ def context_to_show_pdf(document, pdf_url):
 # Read 一覧 #
 #############
 # 資料一覧ビュー
+
+
 def document_list(request):
     if request.method == 'GET':
         document_list = Document.objects.all()
@@ -118,6 +127,7 @@ def document_list(request):
             'teachhub/document_list.html',
             dict(document_list=document_list)
         )
+
 
 def document_test(request, section_id):
     category = "tests"
@@ -140,6 +150,8 @@ def document_test(request, section_id):
 #############
 
 # wordファイルをpdfファイルに変換
+
+
 @login_required
 def convert_document(request, doc, pdf_url):
     # 非同期処理のスレッドに関する処理
@@ -223,14 +235,14 @@ def document_note(request, section_id):
         JST = timezone(timedelta(hours=+9), 'JST')
         date = datetime.now(JST)
         current_time = date.strftime('%Y-%m-%d-%H-%M-%S')
-        
+
         # リクエストのnameの情報を変更
         # wordファイルのアップロード先を変更するため
         tmp_name_by_writer = request.FILES['file'].name
         name_by_writer = tmp_name_by_writer.split(".")[0]
         request.FILES['file'].name = str(request.user.id) + "." \
-                                    + "{}_{}_{}".format(textbook_name, chapter_name, section_name) \
-                                    + "." + current_time
+            + "{}_{}_{}".format(textbook_name, chapter_name, section_name) \
+            + "." + current_time
 
         form = DocumentForm(request.POST, request.FILES)
 
@@ -242,7 +254,7 @@ def document_note(request, section_id):
         p2 = ""
         if form.is_valid():
             form.save()
-            
+
             user_id = lst_doc_info[0]
             # "{}_{}_{}".format(textbook_name, chapter_name, section_name)の箇所
             section_info = lst_doc_info[1]
@@ -274,26 +286,27 @@ def document_note(request, section_id):
             document.category = category
             document.latest = True
             document.save()
-            
+
             # ファイルのpdf化
             p1 = threading.Thread(target=convert_document, args=(
-              request, word_url, pdf_url))
+                request, word_url, pdf_url))
             print("convert_document started")
             p1.start()
             print("started")
-            
+
             # 1つ前のファイルとの差分作成 / そのファイルの保存
             document_id = document.id
             print("id")
             print(document_id)
-            documents = Document.objects.filter(custom_user=custom_user)
+            documents = Document.objects.filter(
+                custom_user=custom_user, name=name_by_writer)
             document_num = documents.count()
             if document_num > 1:
                 # id < doc_id
                 # nameとuser_idでフィルター
-                pre_document = Document.objects.filter(custom_user=custom_user, 
-                  name=name_by_writer, id__lt=document_id).order_by('-id').first()
-                
+                pre_document = Document.objects.filter(custom_user=custom_user,
+                                                       name=name_by_writer, id__lt=document_id).order_by('-id').first()
+
                 # データベースの更新
                 pre_document.latest = False
                 pre_document.save()
@@ -330,8 +343,7 @@ def document_note(request, section_id):
 
                 p2 = threading.Thread(target=compare_documents, args=(
                                       request, pre_word_url, word_url, diff_word_url))
-
-
+            # p1.join()
             if p2:
                 print("compare_documents started")
                 p2.start()
@@ -348,7 +360,7 @@ def document_note(request, section_id):
     else:
         documents = Document.objects.filter(
             category=category, section_id=section_id, latest=True).order_by('id')
-        
+
         form = DocumentForm()
         context = {
             "documents": documents,
@@ -356,8 +368,8 @@ def document_note(request, section_id):
             "chapter_name": chapter_name,
             "section_name": section_name,
             'form': form
-            }
-        
+        }
+
         return render(
             request,
             'teachhub/document_note.html',
@@ -365,26 +377,31 @@ def document_note(request, section_id):
         )
 
 # 履歴情報の取得
+
+
 @login_required
 def get_history(request, doc_id):
     user = request.user
     print(user)
     document = Document.objects.get(id=doc_id)
     section = document.section
-    documents = Document.objects.filter(custom_user=user, section=section).order_by('-id')
-    histories = documents.values('id', 'doc_pdf_url', 'diff_word_url', 'created_at', 'custom_user')
+    documents = Document.objects.filter(
+        custom_user=user, section=section).order_by('-id')
+    histories = documents.values(
+        'id', 'doc_pdf_url', 'diff_word_url', 'created_at', 'custom_user')
     lst_histories = list(histories)
     context = {'lst_histories': lst_histories}
 
     return context
 
 # 取得した履歴情報をテンプレートにレンダリングする
+
+
 @login_required
 def render_history(request, doc_id):
     context = get_history(request, doc_id)
 
     return render(request, 'teachhub/history.html', context)
-
 
 
 # def document_note(request, section_id):
