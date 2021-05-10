@@ -77,9 +77,10 @@ def show_diff(request, doc_id):
     # 差分のwordファイルがある場合
     elif diff_word_url:
         if os.path.isfile(diff_word_url):
+            lock = threading.Lock()
             diff_pdf_url = diff_word_url.replace(
                 "word", "pdf").replace(".docx", ".pdf")
-            convert_document(request, diff_word_url, diff_pdf_url)
+            convert_document(request, diff_word_url, diff_pdf_url, lock)
             document.diff_pdf_url = diff_pdf_url
             document.save()
             pdf_url = diff_pdf_url
@@ -153,9 +154,7 @@ def document_test(request, section_id):
 
 
 @login_required
-def convert_document(request, doc, pdf_url):
-    # 非同期処理のスレッドに関する処理
-    lock = threading.Lock()
+def convert_document(request, word_url, pdf_url, lock):
     with lock:
         # Wordを起動する前にこれを呼び出す
         pythoncom.CoInitialize()
@@ -174,7 +173,7 @@ def convert_document(request, doc, pdf_url):
             Application = win32com.client.gencache.EnsureDispatch(
                 "Word.Application")
 
-        Application.Documents.Open(doc)
+        Application.Documents.Open(word_url)
         wdFormatPDF = 17
         print("pdf化開始")
         Application.ActiveDocument.SaveAs2(
@@ -191,7 +190,7 @@ def convert_document(request, doc, pdf_url):
 
 # wordファイルの差分を取る
 @login_required
-def compare_documents(request, original_doc, revised_doc, diff_word_url):
+def compare_documents(request, original_doc, revised_doc, diff_word_url, lock):
     pythoncom.CoInitialize()
     try:
         Application = win32com.client.gencache.EnsureDispatch(
@@ -289,7 +288,7 @@ def document_note(request, section_id):
 
             # ファイルのpdf化
             p1 = threading.Thread(target=convert_document, args=(
-                request, word_url, pdf_url))
+                request, word_url, pdf_url, lock))
             print("convert_document started")
             p1.start()
             print("started")
@@ -342,8 +341,8 @@ def document_note(request, section_id):
                 document.save()
 
                 p2 = threading.Thread(target=compare_documents, args=(
-                                      request, pre_word_url, word_url, diff_word_url))
-            # p1.join()
+                                      request, pre_word_url, word_url, diff_word_url, lock))
+
             if p2:
                 print("compare_documents started")
                 p2.start()
