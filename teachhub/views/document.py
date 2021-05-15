@@ -191,30 +191,31 @@ def convert_document(request, word_url, pdf_url, lock):
 # wordファイルの差分を取る
 @login_required
 def compare_documents(request, original_doc, revised_doc, diff_word_url, lock):
-    pythoncom.CoInitialize()
-    try:
-        Application = win32com.client.gencache.EnsureDispatch(
-            "Word.Application")
-    except AttributeError:
-        MODULE_LIST = [m.__name__ for m in sys.modules.values()]
-        for module in MODULE_LIST:
-            if re.match(r'win32com\.gen_py\..+', module):
-                del sys.modules[module]
-        shutil.rmtree(os.path.join(os.environ.get(
-            'LOCALAPPDATA'), 'Temp', 'gen_py'))
-        Application = win32com.client.gencache.EnsureDispatch(
-            "Word.Application")
+    with lock:
+        pythoncom.CoInitialize()
+        try:
+            Application = win32com.client.gencache.EnsureDispatch(
+                "Word.Application")
+        except AttributeError:
+            MODULE_LIST = [m.__name__ for m in sys.modules.values()]
+            for module in MODULE_LIST:
+                if re.match(r'win32com\.gen_py\..+', module):
+                    del sys.modules[module]
+            shutil.rmtree(os.path.join(os.environ.get(
+                'LOCALAPPDATA'), 'Temp', 'gen_py'))
+            Application = win32com.client.gencache.EnsureDispatch(
+                "Word.Application")
 
-    ori_doc_open = Application.Documents.Open(original_doc)
-    rev_doc_open = Application.Documents.Open(revised_doc)
-    print("差分計算開始")
-    Application.CompareDocuments(ori_doc_open, rev_doc_open)
-    Application.ActiveDocument.SaveAs2(FileName=diff_word_url)
-    print("差分計算終了")
+        ori_doc_open = Application.Documents.Open(original_doc)
+        rev_doc_open = Application.Documents.Open(revised_doc)
+        print("差分計算開始")
+        Application.CompareDocuments(ori_doc_open, rev_doc_open)
+        Application.ActiveDocument.SaveAs2(FileName=diff_word_url)
+        print("差分計算終了")
 
-    Application.ActiveDocument.Close()
-    Application.Quit()
-    pythoncom.CoUninitialize()
+        Application.ActiveDocument.Close()
+        Application.Quit()
+        pythoncom.CoUninitialize()
 
     return ""
 
