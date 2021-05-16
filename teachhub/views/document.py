@@ -284,6 +284,7 @@ def document_note(request, section_id):
             document.created_at = date
             document.name = name_by_writer
             document.category = category
+            document.section_id = section_id
             document.latest = True
             document.save()
 
@@ -299,13 +300,13 @@ def document_note(request, section_id):
             print("id")
             print(document_id)
             documents = Document.objects.filter(
-                custom_user=custom_user, name=name_by_writer)
+                custom_user=custom_user, name=name_by_writer, section_id=section_id)
             document_num = documents.count()
             if document_num > 1:
                 # id < doc_id
                 # nameとuser_idでフィルター
                 pre_document = Document.objects.filter(custom_user=custom_user,
-                                                       name=name_by_writer, id__lt=document_id).order_by('-id').first()
+                                                       name=name_by_writer, section_id=section_id, id__lt=document_id).order_by('-id').first()
 
                 # データベースの更新
                 pre_document.latest = False
