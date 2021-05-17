@@ -400,7 +400,11 @@ def get_history(request, doc_id):
 
 @login_required
 def render_history(request, doc_id):
-    context = get_history(request, doc_id)
+    document = get_object_or_404(Document, id=doc_id)
+    pdf_url = document.doc_pdf_url
+    context = context_to_show_pdf(document, pdf_url)
+    context_histories = get_history(request, doc_id)
+    context.update(context_histories)
 
     return render(request, 'teachhub/history.html', context)
 
