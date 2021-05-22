@@ -27,7 +27,13 @@
             <a class="header-logout" href="{% url 'logout' %}">ログアウト</a>
             <a class="header-user">
                 <img src="{% static 'teachhub/img/user-example.svg' %}" alt="ユーザーアイコン">
-                <div class="user-name">ユーザー名</div>
+                {% comment %} ログイン名の表示 {% endcomment %}
+                {% if user.is_authenticated %}
+                    <div class="user-name">{{ user.get_username }}</div>
+                {% else %}
+                    <div class="user-name">ログインしていません</div>
+                {% endif %}
+                {% comment %} <div class="user-name">ユーザー名</div> {% endcomment %}
             </a>
         </div>
         
