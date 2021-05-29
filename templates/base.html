@@ -6,16 +6,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% comment %} cssテンプレート bulma {% endcomment %}
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css"> -->
-    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
-    <link rel="stylesheet">
     <link rel="stylesheet" href="{% static 'teachhub/css/nine-page.css' %}">
     <link rel="stylesheet" href="{% static 'teachhub/css/ten-page.css' %}">
     <link rel="stylesheet" href="{% static 'teachhub/css/eleven-page.css' %}">
     <link rel="stylesheet" href="{% static 'teachhub/css/twelve-page.css' %}">
     <link rel="stylesheet" href="{% static 'teachhub/css/signup.css' %}">
     <link rel="stylesheet" href="{% static 'teachhub/css/upload.css' %}">
-    <script type="text/javascript" src="{% static 'teachhub/js/jquery-3.5.1.min.js' %"></script>
+    <script type="text/javascript" src="{% static 'teachhub/js/jquery-3.5.1.min.js' %}"></script>
     {% block extra_head %}{% endblock %}
     <title>{% block head_title %}{% endblock %} | teachhub</title>
 </head>
@@ -26,7 +23,7 @@
         <div class="header-handle">
             <a class="header-logout" href="{% url 'logout' %}">ログアウト</a>
             <a class="header-user">
-                <img src="{% static 'teachhub/img/user-example.svg' %}" alt="ユーザーアイコン">
+                <img src="{% static 'teachhub/img/user-icon.jpeg' %}" alt="ユーザーアイコン">
                 <div class="user-name">ユーザー名</div>
             </a>
         </div>
@@ -35,9 +32,7 @@
     </div>
     <div class=" main">
         <div class="menu-tags">
-            <!-- 左のメニューバーの部分-->
             <div class="sha-cre-mem">
-                <!-- 資料作成・共有-->
                 <div class="sha-cre-mem-dirs">
                     <!-- <img src="../static/teachhub/img/sha-cre-men-icatch.svg" alt="資料作成・共有のアイキャッチ"> -->
                     <img src="{% static 'teachhub/img/sha-cre-men-icatch.svg' %}" alt="資料作成・共有のアイキャッチ">
@@ -68,6 +63,7 @@
                     <div>ディレクトリの名前など</div>
                 </div>
             </div> -->
+            <div class="comming-soon">Comming Soon...</div>
         </div>
         {% block content %}
         {% endblock %}

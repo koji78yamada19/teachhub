@@ -84,16 +84,21 @@ body {
 }
 .header-logout{
     display: inline-block;
-    color: #c8c7c7;
+    color: #fff;
     font-size: 16px;
-    width: 140px;
-    height: 60px;
-    line-height: 60px;
+    width: 120px;
+    height: 40px;
+    margin-top: 10px;
+    line-height: 45px;
+    border: 1px solid #fff;
+    border-radius: 3px;
 }
 .header-logout:hover{
-    background: #707070;
-    transition: 0.3s;
+    color: #cecece;
+    border: 1px solid #cecece;
+    /* transition: 0.3s; */
     cursor: pointer;
+    transform: 0.2s;
 }
 .header-user{
     width: 140px;
@@ -102,10 +107,11 @@ body {
     padding-right: 10px;
     display: flex;
     float: right;
+    color: #fff;
 }
 .header-user:hover{
-    background: #707070;
-    transition: 0.3s;
+    color: #cecece;
+    /* transition: 0.3s; */
     cursor: pointer;
 }
 .header-user > img{
@@ -119,7 +125,7 @@ body {
 .header-user > div{
     width: 150px;
     font-size: 16px;
-    color: #c8c7c7;
+    color: #ffffff;
     font-weight: 100;
     margin-top:auto;
     margin-bottom: auto;
@@ -133,15 +139,23 @@ body {
 .menu-tags{
     border-right: 1px solid #707070;
     width: 270px;
-    height:1000px;
+    height:800px;
+    background: rgb(0,0,0,0.6);
 }
+.comming-soon{
+    font-size: 24px;
+    color: #fff;
+    font-weight: bold;
+    margin-top: 100px;
+} 
+
 .sha-cre-mem{
     margin-top: 30px;
 }
 .sha-cre-mem-dirs{
     height: 40px;
     width: 270px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #707070;
     margin-top: 10px;
     display: flex;
 }
@@ -174,7 +188,7 @@ body {
 .sha-cre-mem-dir{
     height: 40px;
     width: 270px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #707070;
     /* margin-top: 10px; */
     display: flex;
 }
