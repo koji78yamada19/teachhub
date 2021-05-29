@@ -77,6 +77,9 @@ body {
     margin-left: 50px;
     float: left;
 }
+.header-logo:hover{
+    cursor: default;
+}
 .header-handle{
     display: flex;
     margin-left: calc(100% - 280px);
@@ -101,10 +104,10 @@ body {
     transform: 0.2s;
 }
 .header-user{
-    width: 140px;
+    /* width: 140px; */
     height: 60px;
-    margin-right: 20px;
-    padding-right: 10px;
+    margin-left: 20px;
+    margin-right: 10px;
     display: flex;
     float: right;
     color: #fff;
@@ -112,7 +115,7 @@ body {
 .header-user:hover{
     color: #cecece;
     /* transition: 0.3s; */
-    cursor: pointer;
+    cursor: default;
 }
 .header-user > img{
     height: 36px;
@@ -122,9 +125,9 @@ body {
     margin-bottom: auto;
     margin: 12px 10px 12px 10px;
 }
-.header-user > div{
-    width: 150px;
+.user-name{
     font-size: 16px;
+    font-size-adjust: 125%;
     color: #ffffff;
     font-weight: 100;
     margin-top:auto;
@@ -349,4 +352,14 @@ a.contents-dir:hover{
     width: 95%;
     height: 1px;
     background: #707070;
+}
+.last-contents-border{
+    margin-left: 30px;
+    width: 95%;
+    border-top: 1px solid #909090;
+}
+.document-note-border{
+    margin-top: 1px;
+    margin-left: 55px;
+    width: 92%;
 }

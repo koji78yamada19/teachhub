@@ -55,6 +55,7 @@
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="開いたフォルダの画像">
         <div>{{ text_name }}</div>
     </div>
+    <div class="last-contents-border"></div>
 
     {% comment %} 各章を表示↓ {% endcomment %}
     {% for chapter in chapter_list %} 
@@ -77,6 +78,7 @@
             </div>
         </div>
         {% endfor %}
+        <div class="last-contents-border"></div>
     </div>
     {% endfor %}
 </div>
