@@ -13,8 +13,8 @@
 {% block content %}
 <div class="contents">
     <div class="contents-header">
-        <div class="lesson-title subtitle">≪科目名≫</div>
-        <div class="member">
+        <div class="lesson-title subtitle">日本史</div>
+        <!-- <div class="member">
             <div class="member-logo">メンバー</div>
             <div class="member-icons">
                 <img class="member-img1" src="{% static 'teachhub/img/user-img1.jpg' %}" alt="">
@@ -22,14 +22,13 @@
                 <img class="member-img3" src="{% static 'teachhub/img/user-img3.jpg' %}" alt="">
             </div>
             <a class="menb-add-icon add-icon" href="">
-                <!-- + (追加）のアイコン -->
                 <div class="horizon"></div>
                 <div class="vertical"></div>
             </a>
-        </div>
+        </div> -->
     </div>
     <div class="add-textbook">
-        <a href="">教科書を追加</a>
+        <!-- <a href="">教科書を追加</a> -->
     </div>
     {% for textbook in textbook_list %}
     <a class="contents-dir subtitle" href="{% url 'teachhub:chapter_list' textbook.id %} ">

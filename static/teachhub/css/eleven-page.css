@@ -3,6 +3,41 @@
     position: relative;
 }
 
+.upload-button{
+    padding-top: 10px;
+}
+/* .upload-button > form > input{
+    width: 300px;
+    height: 60px;
+    background-color: #fff;
+    color: #484848;
+    border-radius: 5px;
+} */
+.paper-dir{
+    height: 60px;
+}
+.paper{
+    position: relative;
+}
+.hoge{
+    display: flex;
+    width: 90%;
+    /* position: relative; */
+}
+.paper-img{
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    width: 30px;
+    height: 30px;
+    /* margin-right: 20px;
+    margin-left: 20px; */
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.paper-title{
+    padding-left: 80px;
+}
 .icons-space{
     display: flex;
     /* margin-left: calc(100% - 420px); */
@@ -18,9 +53,15 @@
     display: flex;
     height: 40px;
     padding: 0 10px 0 10px;
-    margin-top: 10px;
+    margin-top: 5px;
     font-size: 12px;
     border-radius: 10px;
+    line-height: 40px;
+    /* border: 1px solid #070707; */
+}
+.document-note-save-icon{
+    position: absolute;
+    right: 20px;
 }
 .icons:hover{
     background: #efefef;
@@ -48,7 +89,7 @@
     /* pointer-events: none; */
 }
 
-div.paper >a.hoge {
+a.hoge {
     position: absolute;
     top: 0;
     left: 0;
@@ -68,6 +109,7 @@ div.paper >a.hoge {
     text-align: left;
     overflow: hidden;
     line-height: 50px;
+    z-index: 100;
 }
 .paper-icons-space{
     display: flex;
