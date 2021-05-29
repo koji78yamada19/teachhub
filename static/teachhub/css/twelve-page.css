@@ -74,26 +74,33 @@
     top: 50%;
     left: 50%;
     transform:translate(-50%,-50%);
-    width: 350px;
-    height: 220px;
+    width: 4000px;
+    height: 300px;
     max-width: 500px;
     border-radius: 5px;
     background-color: #fff;
     display: flex;
   }
+    .elase-confirm{
+        display: flex;
+        padding-top: 100px;
+        padding-left: 120px;
+    }
   .elase-confirm > img{
     width: 32px;
     height: 32px;
+    margin-right: 20px;
   }
   .elase-confirm>div >p{
       margin: auto ;
-      margin-top: 0px;
+      margin-top: 3px;
       color: #000;
-      font-size: 24px;
+      font-size: 20px;
+      text-align: left;
   }
   .modal-button{
       margin-top: 110px;
-      margin-left: 120px;
+      margin-left: 300px;
       display: flex;
   }
   .modal-button >div{
@@ -104,11 +111,12 @@
       border-radius: 5px;
       color: white;
       font-size: 16px;
+      border: 1px solid #707070;
   }
   .modal-button >div:hover{
       background-color: white;
       color: #707070;
-      border: 2px solid #707070;
+      border: 1px solid #707070;
       cursor: pointer;
   }
   .modal-button >input{
@@ -120,11 +128,12 @@
       border-radius: 5px;
       color: white;
       font-size: 16px;
+      border: 1px solid #707070;
   }
   .modal-button >input:hover{
     background-color: white;
     color: #707070;
-    border: 2px solid #707070;
+    border: 1px solid #707070;
     cursor: pointer;
 }
   .closeModal {
@@ -134,5 +143,3 @@
     font-size: 24px;
     cursor: pointer;
   }
-
-  

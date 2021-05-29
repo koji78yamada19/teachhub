@@ -2,8 +2,8 @@
     width: calc(100% - 360px);
     height: 800px;
     margin: 30px;
-    border-radius: 5px;
-    border: solid #707070 1px;
+    /* border-radius: 5px;
+    border: solid #707070 1px; */
 
 }
 .main{
