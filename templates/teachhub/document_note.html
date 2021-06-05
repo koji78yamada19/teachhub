@@ -58,7 +58,8 @@
     <!-- <div class="contents-dir-textbook contents-dir"></div> -->
     <!-- <div class="icons-space"> -->
     <div class="contents-dir-textbook contents-dir upload-button">
-        <form　class="upload-button-form" method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data">
+            <!-- <form class="upload-button-form" method="post" enctype="multipart/form-data"> -->
             <!-- <label>
                 <span class="upload-space icons" title="ファイルを選択">
                     <img src="{% static 'teachhub/img/upload.svg' %}" alt="アップロードフォルダの画像">
@@ -67,7 +68,8 @@
             {% csrf_token %}
             {{ form.file }}{{ form.file.errors }}
             <!-- <input class="upload" type="file" name="datafile"> -->
-            <button class="submit-button" type="submit">アップロード</button>
+            <!-- <button class="submit-button" type="submit">アップロード</button> -->
+            <button type="submit">アップロード</button>
             <!-- </label> -->
         </form>
         <!-- <div class="section-name">{{ section_name }} 板書案</div> -->
