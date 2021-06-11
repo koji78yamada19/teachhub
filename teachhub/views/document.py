@@ -240,11 +240,16 @@ def document_note(request, section_id):
         # wordファイルのアップロード先を変更するため
         tmp_name_by_writer = request.FILES['file'].name
         name_by_writer = tmp_name_by_writer.split(".")[0]
+        # request.FILES['file'].name = str(request.user.id) + "." \
+        #     + "{}_{}_{}".format(textbook_name, chapter_name, section_name) \
+        #     + "." + current_time
         request.FILES['file'].name = str(request.user.id) + "." \
-            + "{}_{}_{}".format(textbook_name, chapter_name, section_name) \
+            + "{}_{}_{}".format(textbook_name, chapter.id, section.id) \
             + "." + current_time
 
         form = DocumentForm(request.POST, request.FILES)
+        print("request.FILES")
+        print(request.FILES)
 
         doc_info = request.FILES['file'].name
         lst_doc_info = doc_info.split(".")
@@ -264,10 +269,10 @@ def document_note(request, section_id):
 
             # TODO
             # パスの変更
-            # base_word_url = r"C:\Users\kojiy\teachhub\media\documents\{}\{}\word\{}.docx"
-            # base_pdf_dir = r"C:\Users\kojiy\teachhub\media\documents\{}\{}\pdf"
-            base_word_url = r"C:\Users\tatsu\Documents\teachhub\teachhub\media\documents\{}\{}\word\{}.docx"
-            base_pdf_dir = r"C:\Users\tatsu\Documents\teachhub\teachhub\media\documents\{}\{}\pdf"
+            base_word_url = r"C:\Users\kojiy\teachhub\media\documents\{}\{}\word\{}.docx"
+            base_pdf_dir = r"C:\Users\kojiy\teachhub\media\documents\{}\{}\pdf"
+            # base_word_url = r"C:\Users\tatsu\Documents\teachhub\teachhub\media\documents\{}\{}\word\{}.docx"
+            # base_pdf_dir = r"C:\Users\tatsu\Documents\teachhub\teachhub\media\documents\{}\{}\pdf"
 
             sec_info_by_user = "{0}_{1}".format(user_id, section_info)
             word_url = base_word_url.format(
@@ -330,10 +335,10 @@ def document_note(request, section_id):
                     category, doc_name, time)
                 # TODO
                 # パスの変更
-                # base_diff_word_url = r"C:\Users\kojiy\teachhub\media\documents\{}\{}\differences\word\{}.docx"
-                # base_diff_word_dir = r"C:\Users\kojiy\teachhub\media\documents\{}\{}\differences\word"
-                base_diff_word_url = r"C:\Users\tatsu\Documents\teachhub\teachhub\media\documents\{}\{}\differences\word\{}.docx"
-                base_diff_word_dir = r"C:\Users\tatsu\Documents\teachhub\teachhub\media\documents\{}\{}\differences\word"
+                base_diff_word_url = r"C:\Users\kojiy\teachhub\media\documents\{}\{}\differences\word\{}.docx"
+                base_diff_word_dir = r"C:\Users\kojiy\teachhub\media\documents\{}\{}\differences\word"
+                # base_diff_word_url = r"C:\Users\tatsu\Documents\teachhub\teachhub\media\documents\{}\{}\differences\word\{}.docx"
+                # base_diff_word_dir = r"C:\Users\tatsu\Documents\teachhub\teachhub\media\documents\{}\{}\differences\word"
                 diff_word_url = base_diff_word_url.format(
                     category, doc_name, current_time)
                 diff_word_dir = base_diff_word_dir.format(category, doc_name)

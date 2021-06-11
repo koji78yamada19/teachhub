@@ -145,3 +145,4 @@ LOGIN_REDIRECT_URL = '/textbooks/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
