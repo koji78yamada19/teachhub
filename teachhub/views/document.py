@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse  # function の中で書くとき（評価タイミングの違い）
-# from django.views import generic
+from django.contrib.auth.decorators import login_required
 
 from teachhub.models import Textbook, Chapter, Section, Document
 from teachhub.forms import DocumentForm
@@ -516,4 +516,4 @@ def delete_document(request, doc_id):
 
 
 def root_to_login(request):
-    return redirect('accounts/login')
+    return redirect('textbooks/')
