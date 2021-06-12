@@ -513,3 +513,7 @@ def delete_document(request, doc_id):
         document.delete()
         # return rediredt('/documents/')
         return redirect(reverse('teachhub:document_note', args=(section_id,)))
+
+
+def root_to_login(request):
+    return redirect('accounts/login')
