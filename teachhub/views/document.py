@@ -399,8 +399,9 @@ def get_history(request, doc_id):
     print(user)
     document = Document.objects.get(id=doc_id)
     section = document.section
+    document_name = document.name
     documents = Document.objects.filter(
-        custom_user=user, section=section).order_by('-id')
+        custom_user=user, section=section, name=document_name).order_by('-id')
     histories = documents.values(
         'id', 'doc_pdf_url', 'diff_word_url', 'created_at', 'custom_user')
     lst_histories = list(histories)
@@ -512,3 +513,7 @@ def delete_document(request, doc_id):
         document.delete()
         # return rediredt('/documents/')
         return redirect(reverse('teachhub:document_note', args=(section_id,)))
+
+
+def root_to_login(request):
+    return redirect('accounts/login')
