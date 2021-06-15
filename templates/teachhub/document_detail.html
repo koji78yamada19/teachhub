@@ -15,6 +15,7 @@
 
 <div class="contents">
     <div class="contents-header">
+        <div>{{ document.category }}</div>
         <div class="lesson-title">日本史</div>
         <!-- <div class="member">
             <div class="member-logo">メンバー</div>
@@ -36,7 +37,7 @@
     </div>
     <div class="contents-dir-textbook contents-dir">
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="フォルダの画像">
-        <div>{{ document.section }} {{ document.category }}</div>
+        <div>{{ document.section }}</div>
         <!--節・章 -->
     </div>
     <div class="text-prev-title">
@@ -72,7 +73,7 @@
                         <p>本当に削除しますか？</p>
                     </div>
                 </div>
-                
+
                 <div class="modal-button">
                     <div id="back-button">戻る</div>
                     <input type="submit" value="削除">

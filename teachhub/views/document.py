@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse  # function の中で書くとき（評価タイミングの違い）
-# from django.views import generic
+from django.contrib.auth.decorators import login_required
 
 from teachhub.models import Textbook, Chapter, Section, Document
 from teachhub.forms import DocumentForm
@@ -223,7 +223,8 @@ def compare_documents(request, original_doc, revised_doc, diff_word_url, lock):
 @login_required
 def document_note(request, section_id):
     lock = threading.Lock()
-    category = "notes"
+    category = "板書案"
+    category_for_path = "notes"
     section = Section.objects.get(id=section_id)
     section_name = section.name
     chapter = section.chapter
@@ -276,10 +277,10 @@ def document_note(request, section_id):
 
             sec_info_by_user = "{0}_{1}".format(user_id, section_info)
             word_url = base_word_url.format(
-                category, sec_info_by_user, current_time)
+                category_for_path, sec_info_by_user, current_time)
             pdf_url = word_url.replace(
                 "word", "pdf").replace(".docx", ".pdf")
-            pdf_dir = base_pdf_dir.format(category, sec_info_by_user)
+            pdf_dir = base_pdf_dir.format(category_for_path, sec_info_by_user)
             # pdfを保存するディレクトリの作成
             os.makedirs(pdf_dir, exist_ok=True)
 
@@ -327,12 +328,14 @@ def document_note(request, section_id):
                 print("lst_document_info")
                 print(lst_document_info)
                 category = lst_document_info[1]
+                if category == "板書案":
+                    category_for_path = "notes"
                 doc_name = lst_document_info[2]
                 tmp_time = lst_document_info[-1]
 
                 time = tmp_time.split(".")[0]
                 pre_word_url = base_word_url.format(
-                    category, doc_name, time)
+                    category_for_path, doc_name, time)
                 # TODO
                 # パスの変更
                 base_diff_word_url = r"C:\Users\kojiy\teachhub\media\documents\{}\{}\differences\word\{}.docx"
@@ -340,8 +343,9 @@ def document_note(request, section_id):
                 # base_diff_word_url = r"C:\Users\tatsu\Documents\teachhub\teachhub\media\documents\{}\{}\differences\word\{}.docx"
                 # base_diff_word_dir = r"C:\Users\tatsu\Documents\teachhub\teachhub\media\documents\{}\{}\differences\word"
                 diff_word_url = base_diff_word_url.format(
-                    category, doc_name, current_time)
-                diff_word_dir = base_diff_word_dir.format(category, doc_name)
+                    category_for_path, doc_name, current_time)
+                diff_word_dir = base_diff_word_dir.format(
+                    category_for_path, doc_name)
                 diff_pdf_dir = diff_word_dir.replace('word', 'pdf')
                 # 差分のwordファイルを保存するディレクトリの作成
                 os.makedirs(diff_word_dir, exist_ok=True)
@@ -516,4 +520,4 @@ def delete_document(request, doc_id):
 
 
 def root_to_login(request):
-    return redirect('accounts/login')
+    return redirect('textbooks/')
