@@ -37,21 +37,22 @@
     </div>
     <div class="contents-dir-textbook contents-dir">
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="フォルダの画像">
-        <div>{{ document.section }}</div>
+        <div>{{document.chapter}} / {{ document.section }}</div>
         <!--節・章 -->
     </div>
     <div class="text-prev-title">
         <div class="text-prev-title-text">{{ document.name }}</div> <!-- タイトル -->
         <div class="prev-ope">
-            <a class="icons prev-icon" href="{{ document.file.url }}">
+            <!-- <a class="icons prev-icon" href="{{ document.file.url }}"> -->
+            <a class="icons prev-icon" href="{% url 'teachhub:download' document.id %}">
                 <img src="{% static 'teachhub/img/download.svg' %}" alt="ダウンロードアイコン">
                 <div>保存</div>
             </a>
-            <!-- <a class="icons prev-icon henshu" href="{% url 'teachhub:update_document' document.id %}">
+            <a class="icons prev-icon henshu" href="">
                 <img src="{% static 'teachhub/img/pencile.svg' %}" alt="編集アイコン">
                 <div>編集</div>
-            </a> -->
-            <a class="icons prev-icon" href="{% url 'teachhub:render_history' document.id %}">
+            </a>
+            <a class="icons prev-icon" href="">
                 <img src="{% static 'teachhub/img/sunadokei.svg' %}" alt="変更履歴アイコン">
                 <div>変更履歴</div>
             </a>
@@ -80,14 +81,12 @@
                 </div>
             </div>
             <div id="closeModal" class="closeModal">
-                ×
             </div>
         </div>
     </section>
     <!-- モーダルエリアここまで -->
     <div class="prev-area">
-        <!-- <object data="" type="">ここにテキストがはいるここにテキストがはいる</object> -->
-        <iframe src="{{path}}" width="850" height="1200"></iframe>
+        <iframe src="{{file_link}}" width="830" height="1170" frameborder="0" scrolling="no"></iframe>
     </div>
 </div>
 

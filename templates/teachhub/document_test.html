@@ -12,7 +12,7 @@
 
 {% block content %}
 
-  <!-- <div>≪科目名≫</div>
+<!-- <div>≪科目名≫</div>
   <div>≪教科書名≫</div>
   <div>{{ section_name }}　小テスト</div>
   <div>
@@ -27,7 +27,7 @@
     {% endfor %}
   </div> -->
 
-  <div class="contents">
+<div class="contents">
     <div class="contents-header">
         <div class="lesson-title">チーム名</div>
         <div class="member">
@@ -37,7 +37,8 @@
                 <img class="member-img2" src="{% static 'teachhub/img/user-img2.jpg' %}" alt="">
                 <img class="member-img3" src="{% static 'teachhub/img/user-img3.jpg' %}" alt="">
             </div>
-            <a class="menb-add-icon add-icon" href=""> <!-- + (追加）のアイコン -->
+            <a class="menb-add-icon add-icon" href="">
+                <!-- + (追加）のアイコン -->
                 <div class="horizon"></div>
                 <div class="vertical"></div>
             </a>
@@ -62,11 +63,11 @@
         </div>
     </div>
     <ul>
-      {% for document in document_test %}
-      {% comment %} document_detail.htmlへ画面遷移 {% endcomment %}
+        {% for document in document_test %}
+        {% comment %} document_detail.htmlへ画面遷移 {% endcomment %}
         <li>
             <div class="paper-dir">
-                <div class="contents-dir paper">                    
+                <div class="contents-dir paper">
                     <img src="{% static 'teachhub/img/paper.svg' %}" alt="開いたフォルダの画像">
                     <a class="paper-title" href="{{ document.get_absolute_url }}">{{ document.name }}</a>
                     <div class="paper-icons-space">
@@ -86,7 +87,6 @@
             </div>
         </li>
         {% endfor %}
-    </ul>             
+    </ul>
 </div>
-{% endblock content %} 
- 
+{% endblock content %}

@@ -9,14 +9,12 @@ from accounts.models import CustomUser
 
 
 class Document(models.Model):
-
     class Meta:
         # データ取得時の並び替え
         ordering = ['created_at']
         # テーブル名
         db_table = 'documents'
 
-    # ファイルのアップロード先
     # def upload_path(self, filename):
     #     # docx = ['ファイル名', 'docx'][-1]
     #     ext = filename.split('.')[-1]
@@ -26,63 +24,48 @@ class Document(models.Model):
     #     # upload path -> media/documents/uuid.docx
     #     return os.path.join('documents', name)
 
-    # ファイルのアップロード先
-    def upload_path(self, filename):
-        lst = filename.split(".")
-        print("lst")
-        print(lst)
-        user_id = lst[0]
-        filename = lst[1]
-        current_time = lst[2]
-        path = "documents/notes/"
-
-        return 'documents/notes/{0}_{1}/word/{2}.docx'.format(user_id, filename, current_time)
-
     # フィールドは chapter_id として生成される
     # 参照 document.chapter.name
     # 逆参照 chapter.document.all()     related_name 逆参照 -> 章から資料を参照
-    section = models.ForeignKey(Section, verbose_name='節',
-                                on_delete=models.PROTECT, related_name='documents', default=1)
+    textbook = models.ForeignKey(Textbook, verbose_name='教科書',
+                                 on_delete=models.PROTECT, related_name='documents')
 
     chapter = models.ForeignKey(Chapter, verbose_name='章',
-                                on_delete=models.PROTECT, related_name='documents', default=1)
+                                on_delete=models.PROTECT, related_name='documents')
 
-    textbook = models.ForeignKey(Textbook, verbose_name='教科書',
-                                 on_delete=models.PROTECT, related_name='documents', default=1)
+    section = models.ForeignKey(Section, verbose_name='節',
+                                on_delete=models.PROTECT, related_name='documents')
 
     name = models.CharField(
-        verbose_name='資料名', max_length=128, null=True, blank=True)
+        verbose_name='資料名', max_length=128, null=False, blank=True, default='')
 
-    content = models.TextField(verbose_name='資料説明', null=True, blank=True)
+    content = models.TextField(
+        verbose_name='資料説明', null=False, blank=True, default='')
 
-    file = models.FileField(
-        verbose_name='ファイル', upload_to=upload_path, null=True, blank=True)
+    # file = models.FileField(
+    #     verbose_name='ファイル', upload_to=upload_path, null=True, blank=True)
+    path = models.TextField(
+        verbose_name='保存先', null=False, blank=True, default='')
 
     category = models.CharField(
-        verbose_name='カテゴリー', max_length=128, null=True, blank=True)
+        verbose_name='カテゴリー', max_length=128, null=False, blank=True, default='')
 
     updated_by = models.TextField(
-        verbose_name='更新者', null=True, blank=True, default=1)
+        verbose_name='更新者', null=False, blank=True, default='')
 
-    updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
+    updated_at = models.DateTimeField(
+        verbose_name='更新日時', null=False, auto_now=True)
 
     created_by = models.TextField(
-        verbose_name='作成者', null=True, blank=True, default=1)
+        verbose_name='作成者', null=False, blank=True, default='')
 
-    created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
-
-# 追加
-    doc_pdf_url = models.TextField(
-        verbose_name='pdfファイル', null=True, blank=True)
-    diff_word_url = models.TextField(
-        verbose_name='差分ファイル', null=True, blank=True)
-    diff_pdf_url = models.TextField(
-        verbose_name='差分pdfファイル', null=True, blank=True)
+    created_at = models.DateTimeField(
+        verbose_name='作成日時', null=False, auto_now_add=True)
 
     custom_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name='user',
-                                related_name="document_user", blank=True, null=True)
-    latest = models.BooleanField(
-        verbose_name='最新のドキュメント', null=True, blank=True, default=False)
+                                    related_name="document_user", null=True, blank=True, default='')
+    # latest = models.BooleanField(
+    #     verbose_name='最新のドキュメント', null=True, blank=True, default=False)
 
     def __str__(self):
         return self.name

@@ -26,14 +26,14 @@
                 <img src="{% static 'teachhub/img/user-icon.jpeg' %}" alt="ユーザーアイコン">
                 {% comment %} ログイン名の表示 {% endcomment %}
                 {% if user.is_authenticated %}
-                    <div class="user-name">{{ user.get_username }}</div>
+                <div class="user-name">{{ user.get_username }}</div>
                 {% else %}
-                    <div class="user-name">ログインしていません</div>
+                <div class="user-name">ログインしていません</div>
                 {% endif %}
                 {% comment %} <div class="user-name">ユーザー名</div> {% endcomment %}
             </a>
         </div>
-        
+
         <!-- <a href="{% url 'logout' %}">ログアウト</a> -->
     </div>
     <div class=" main">
@@ -74,8 +74,7 @@
         {% block content %}
         {% endblock %}
     </div>
-    <script type="text/javascript"  src="{% static 'teachhub/js/eleven-page.js' %}"></script>
-    <script type="text/javascript"  src="{% static 'teachhub/js/twelve-page.js' %}"></script>
+    <script type="text/javascript" src="{% static 'teachhub/js/eleven-page.js' %}"></script>
 </body>
 
 </html>

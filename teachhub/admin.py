@@ -7,7 +7,7 @@ from .models import Document, Section, Chapter, Textbook
 class DocumentAdmin(admin.ModelAdmin):
     # 教材一覧で表示するフィールド
     list_display = ('name', 'category', 'section',
-                    'chapter', 'textbook', 'file')
+                    'chapter', 'textbook')
     # 教材一覧で「詳細」へ進むリンク
     list_display_links = ('name', )
     # 教材一覧で検索対象のフィールド
