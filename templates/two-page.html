@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ブラウザにドラッグ＆ドロップして確認するためのリンク（Djangoで起動できたら消す） -->
+    <link rel="stylesheet" href="../static/teachhub/css/nine-page.css">
+    <link rel="stylesheet" href="../static/teachhub/css/ten-page.css">
+    <link rel="stylesheet" href="../static/teachhub/css/eleven-page.css">
+    <link rel="stylesheet" href="../static/teachhub/css/twelve-page.css">
+    <script type="text/javascript" src="../static/teachhub/js/jquery-3.5.1.min.js"></script>
+    <!-- 消すのはここまで -->
+
+
+    <!-- Djangoで起動した時のcssとjsリンク -->
+    <link rel="stylesheet" href="{% static 'teachhub/css/nine-page.css' %}">
+    <link rel="stylesheet" href="{% static 'teachhub/css/ten-page.css' %}">
+    <link rel="stylesheet" href="{% static 'teachhub/css/eleven-page.css' %}">
+    <link rel="stylesheet" href="{% static 'teachhub/css/twelve-page.css' %}">
+    <script type="text/javascript" src="{% static 'teachhub/js/jquery-3.5.1.min.js' %"></script>
+
+    <title>TeachHub</title>
+</head>
+<body>
+    <div class="header">
+        <div class="header-logo">TeachHub</div>
+        <div class="header-user">
+            <img src="../static/teachhub/img/user-example.svg" alt="ユーザーアイコン">
+            <div class="user-name">ユーザー名</div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="menu-tags"> <!-- 左のメニューバーの部分-->
+            <div class="sha-cre-mem"> <!-- 資料作成・共有-->
+                <div class="sha-cre-mem-dirs">
+                    <img src="../static/teachhub/img/sha-cre-men-icatch.svg" alt="資料作成・共有のアイキャッチ">       
+                    <div>資料作成・共有</div>
+                    <a class="dir-add-icon add-icon" href=""><!-- + (追加）のアイコン -->
+                        <div class="horizon"></div>
+                        <div class="vertical"></div>
+                    </a>
+                </div>
+                <div class="sha-cre-mem-dir">
+                    <img src="../static/teachhub/img/sha-cre-men-icatch.svg" alt="このディレクトリのアイキャッチ">
+                    <div>グループや個人名など</div>
+                </div>
+            </div>
+            <div class="sha-cre-mem left-bookmark"> <!-- 資料作成・共有-->
+                <div class="sha-cre-mem-dirs">
+                    <img src="../static/teachhub/img/black-stare.svg" alt="資料作成・共有のアイキャッチ">
+                    <div>ブックマーク</div>
+                    <a class="dir-add-icon add-icon" href=""><!-- + (追加）のアイコン -->
+                        <div class="horizon"></div>
+                        <div class="vertical"></div>
+                    </a>
+                </div>
+                <div class="sha-cre-mem-dir">
+                    <img src="../static/teachhub/img/folder-icon.svg" alt="このディレクトリのアイキャッチ">
+                    <div>ディレクトリの名前など</div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- {% load static %}
+        {% block content %} -->
+        <div class="contents">
+            <div class="contents-header">
+                <div class="lesson-title subtitle">教科資料</div>
+                <!-- <div class="member">
+                    <div class="member-logo">メンバー</div>
+                    <div class="member-icons">
+                        <img class="member-img1" src="../static/teachhub/img/user-img1.jpg" alt="">
+                        <img class="member-img2" src="../static/teachhub/img/user-img2.jpg" alt="">
+                        <img class="member-img3" src="../static/teachhub/img/user-img3.jpg" alt="">
+                    </div>
+                    <a class="menb-add-icon add-icon" href="">
+                        <div class="horizon"></div>
+                        <div class="vertical"></div>
+                    </a>
+                </div> -->
+            </div>
+            <div class="contents-dir">
+                <img src="../static/teachhub/img/open-folder.svg" alt="開いたフォルダの画像">
+                <div class="subtitle">地歴公民</div>
+            </div>
+            <div class="contents-dir-unit">
+                <div>
+                    <div class="contents-dir-unit-title subtitle">中学校</div>
+                </div>
+                <div class="contents-dir-textbook contents-dir">
+                    <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
+                    <div class="subtitle">中学地理</div>
+                </div>
+                <div class="contents-dir-textbook contents-dir">
+                    <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
+                    <div class="subtitle">中学歴史</div>
+                </div>
+                <div class="contents-dir-textbook contents-dir">
+                    <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
+                    <div class="subtitle">中学公民</div>
+                </div>
+                <div class="last-contents-border"></div>
+            </div>
+            <div class="contents-dir-unit">
+                <div>
+                    <div class="contents-dir-unit-title subtitle">中学校</div>
+                </div>
+                <div class="contents-dir-textbook contents-dir">
+                    <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
+                    <div class="subtitle">大学入試</div>
+                </div>
+                <div class="contents-dir-textbook contents-dir">
+                    <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
+                    <div class="subtitle">高校地理</div>
+                </div>
+                <div class="contents-dir-textbook contents-dir">
+                    <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
+                    <div class="subtitle">高校日本史</div>
+                </div>
+                <div class="contents-dir-textbook contents-dir">
+                    <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
+                    <div class="subtitle">高校世界史</div>
+                </div>
+                <div class="contents-dir-textbook contents-dir">
+                    <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
+                    <div class="subtitle">高校政経</div>
+                </div>
+                <div class="contents-dir-textbook contents-dir">
+                    <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
+                    <div class="subtitle">高校倫理</div>
+                </div>
+                <div class="contents-dir-textbook contents-dir">
+                    <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
+                    <div class="subtitle">高校現社</div>
+                </div>
+                <div class="last-contents-border"></div>
+            </div>
+            <div style="margin-bottom: 200px;"></div>
+        </div>
+
+         <!-- {% endblock %} -->
+
+
+
+    </div>
+    <script src="../static/teachhub/js/doc-cre-document.js"></script>
+    <!-- Django用のjsリンク -->
+    <script src="{% static 'teachhub/js/doc-cre-docsument.js' %}"></script>
+</body>
+</html>
