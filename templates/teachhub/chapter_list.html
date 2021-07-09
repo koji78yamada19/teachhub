@@ -12,29 +12,7 @@
 
 {% block content %}
 
-  <!-- {% comment %} 科目名 {% endcomment %}
-  <div>≪科目名≫</div>
-  {% comment %} 教科書名 {% endcomment %}
-  <div>{{ text_name }}</div> 
-  
-  <div>
-    {% comment %} 各章を表示↓ {% endcomment %}
-    {% for chapter in chapter_list %} 
-    <div>{{ chapter }}</div>
-      <div>
-        {% comment %} 各章の節を表示↓ {% endcomment %}
-        {% for section in chapter.sections.all %} 
-          <div>{{ section.name }}
-            {% comment %} 各節のカテゴリーごとに画面遷移する {% endcomment %}
-            <a href="{% url 'teachhub:document_note' section.id %} ">板書案</a>
-            <a href="{% url 'teachhub:document_test' section.id %}">小テスト</a>   
-          </div>
-        {% endfor %}
-      </div>      
-    {% endfor %}
-  </div> -->
-
-<!-- ここから -->
+ 
   <div class="contents">
     <div class="contents-header">
         <div class="lesson-title subtitle">日本史</div>
@@ -42,8 +20,6 @@
             <div class="member-logo">メンバー</div>
             <div class="member-icons">
                 <img class="member-img1" src="{% static 'teachhub/img/user-img1.jpg' %}" alt="">
-                <img class="member-img2" src="{% static 'teachhub/img/user-img2.jpg' %}" alt="">
-                <img class="member-img3" src="{% static 'teachhub/img/user-img3.jpg' %}" alt="">
             </div>
             <a class="menb-add-icon add-icon" href=""> 
                 <div class="horizon"></div>

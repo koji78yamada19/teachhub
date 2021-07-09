@@ -33,17 +33,15 @@
     <div class="contents-dir">
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="開いたフォルダの画像">
         <div>{{ document.textbook }}</div>
-        <!--教科書名 -->
     </div>
     <div class="contents-dir-textbook contents-dir">
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="フォルダの画像">
         <div>{{document.chapter}} / {{ document.section }}</div>
-        <!--節・章 -->
     </div>
+    <div class="last-contents-border document-note-border"></div>
     <div class="text-prev-title">
-        <div class="text-prev-title-text">{{ document.name }}</div> <!-- タイトル -->
+        <div class="text-prev-title-text">{{ document.name }}</div> 
         <div class="prev-ope">
-            <!-- <a class="icons prev-icon" href="{{ document.file.url }}"> -->
             <a class="icons prev-icon" href="{% url 'teachhub:download' document.id %}">
                 <img src="{% static 'teachhub/img/download.svg' %}" alt="ダウンロードアイコン">
                 <div>保存</div>
@@ -63,28 +61,7 @@
         </div>
 
     </div>
-    <!-- モーダルエリアここから -->
-    <section id="modalArea" class="modalArea">
-        <div id="modalBg" class="modalBg"></div>
-        <div class="modalWrapper">
-            <div class="modalContents">
-                <div class="elase-confirm">
-                    <img src="../static/teachhub/img/trashbox.svg" alt="">
-                    <div>
-                        <p>本当に削除しますか？</p>
-                    </div>
-                </div>
-
-                <div class="modal-button">
-                    <div id="back-button">戻る</div>
-                    <input type="submit" value="削除">
-                </div>
-            </div>
-            <div id="closeModal" class="closeModal">
-            </div>
-        </div>
-    </section>
-    <!-- モーダルエリアここまで -->
+  
     <div class="prev-area">
         <iframe src="{{file_link}}" width="830" height="1170" frameborder="0" scrolling="no"></iframe>
     </div>

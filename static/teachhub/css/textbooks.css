@@ -1,3 +1,15 @@
+
+/* この"textbooks.css"ファイルはbase.htmlとtextbooks.cssのcssを記述しています。
+また、textbooks.cssで記述した内容の内、その他のテンプレート(例えばchapter_list.html)
+にて再利用できるcssの記述は再利用させてもらっています。
+例えば、chapter_list.htmlのデザインを整える場合に、textbooks.cssで書いた内容では足りない部分を
+chapter_list.cssに書き足しています。
+そのため、申し訳ないのですが、完全に各テンプレートと同じ名前のcssが一対一対応している訳ではありません。
+htmlファイルを触っていて変更したいcssセレクタ、プロパティがありましたら、VScodeの検索より検索して
+頂いて変更されるのが最も早いかと思います。
+*/
+
+
 @charset "UTF-8";
 html {
 	overflow-y: scroll; /* IEへの対応 http://www.htmq.com/style/overflow-y.shtml */
