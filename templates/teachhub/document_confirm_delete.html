@@ -14,14 +14,12 @@
 
 {% block content %}
     
-    <div>
+    <div class="delete-comfirm-page">
         <div>本当に削除しますか？</div>
         <form method="POST"> 
             {% csrf_token %}
             <div>
-                <div>
-                    <button>削除する</button>
-                </div>
+                <button class="delete-button">削除する</button>
             </div>
         </form>
     </div>

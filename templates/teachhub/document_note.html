@@ -12,20 +12,6 @@
 
 {% block content %}
 
-<!-- <div>≪科目名≫</div>
-  <div>≪教科書名≫</div>
-  <div>{{ section_name }}板書案</div>
-  <div>
-    {% for document in document_note %}
-      <div>
-        {% comment %} document_detail.htmlへ画面遷移 {% endcomment %}
-        <div><a href="{{ document.get_absolute_url }}">{{ document.name }}</a></div>
-        <div>≪共有≫</div>
-        <div><a href="{{ document.file.url }}">保存</a></div>
-        <div>≪お気に入り≫</div>   
-      </div>
-    {% endfor %}
-  </div> -->
 
 <div class="contents">
     <div class="contents-header">
@@ -47,24 +33,17 @@
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="開いたフォルダの画像">
         <div>{{ textbook_name }}</div>
     </div>
-    <!-- <div class="contents-dir-textbook contents-dir">
-        <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="フォルダの画像">
-        <div>{{ chapter_name }}</div>
-    </div> -->
+    
     <div class="contents-dir-textbook contents-dir">
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="フォルダの画像">
         <div>{{ chapter_name }} / {{ section_name }}</div>
     </div>
-    <!-- <div class="contents-dir-textbook contents-dir"></div> -->
-    <!-- <div class="icons-space"> -->
     <div class="contents-dir-textbook contents-dir upload-button">
         <form method="post" enctype="multipart/form-data">
-            <!-- <form class="upload-button-form" method="post" enctype="multipart/form-data"> -->
             {% csrf_token %}
             <input type="file" name="file">
             <button type="submit">アップロード</button>
         </form>
-        <!-- <div class="section-name">{{ section_name }} 板書案</div> -->
         <!-- <div class="icons-space">
             <a href="" class="mkdir-space icons">
                 <img src="{% static 'teachhub/img/folder-add.svg' %}" alt="フォルダを作成の画像">

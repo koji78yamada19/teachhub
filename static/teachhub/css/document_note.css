@@ -1,30 +1,10 @@
 .contents-dir-textbook{
-    /* margin-bottom: 10px; */
     position: relative;
 }
 .upload-button{
     padding-top: 20px;
 }
 
-/* .submit-button{
-    padding-top: 10px;
-    border-radius: 5px;
-    background: #707070;
-    color: #fff;
-    width: 100px;
-    height: 44px;
-    line-height: 44px;
-    border: none;
-    cursor: pointer;
-    padding: none;
-} */
-/* .upload-button > form > input{
-    width: 300px;
-    height: 60px;
-    background-color: #fff;
-    color: #484848;
-    border-radius: 5px;
-} */
 
 .paper-dir{
     height: 50px;
@@ -38,7 +18,6 @@
 .hoge{
     display: flex;
     width: 90%;
-    /* position: relative; */
 }
 .paper-img{
     position: absolute;
@@ -46,8 +25,6 @@
     left: 20px;
     width: 30px;
     height: 30px;
-    /* margin-right: 20px;
-    margin-left: 20px; */
     margin-top: auto;
     margin-bottom: auto;
 }
@@ -56,15 +33,12 @@
 }
 .icons-space{
     display: flex;
-    /* margin-left: calc(100% - 420px); */
     position: absolute;
     top: 0px;
     right: 10px;
 }
 
-/* .paper-dir{
-    margin-top: 10px;
-} */
+
 .icons{
     display: flex;
     height: 40px;
@@ -73,7 +47,6 @@
     font-size: 12px;
     border-radius: 10px;
     line-height: 40px;
-    /* border: 1px solid #070707; */
 }
 .document-note-save-icon{
     position: absolute;
@@ -102,7 +75,6 @@ a.hoge {
     left: 0;
     width: calc(100% - 110px);
     height: 100%;
-    /* pointer-events: auto; */
 }
 .paper-icons-space > a{
     cursor: pointer;

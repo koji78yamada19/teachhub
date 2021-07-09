@@ -12,20 +12,6 @@
 
 {% block content %}
 
-<!-- <div>≪科目名≫</div>
-  <div>≪教科書名≫</div>
-  <div>{{ section_name }}　小テスト</div>
-  <div>
-    {% for document in document_test %}
-      <div>
-        {% comment %} document_detail.htmlへ画面遷移 {% endcomment %}
-        <div><a href="{{ document.get_absolute_url }}">{{ document.name }}</a></div>
-        <div>≪共有≫</div>
-        <div><a href="{{ document.file.url }}">保存</a></div>
-        <div>≪お気に入り≫</div>   
-      </div>
-    {% endfor %}
-  </div> -->
 
 <div class="contents">
     <div class="contents-header">
@@ -38,7 +24,6 @@
                 <img class="member-img3" src="{% static 'teachhub/img/user-img3.jpg' %}" alt="">
             </div>
             <a class="menb-add-icon add-icon" href="">
-                <!-- + (追加）のアイコン -->
                 <div class="horizon"></div>
                 <div class="vertical"></div>
             </a>

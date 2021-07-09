@@ -6,22 +6,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- ブラウザにドラッグ＆ドロップして確認するためのリンク（Djangoで起動できたら消す） -->
-    <!-- <link rel="stylesheet" href="../static/teachhub/css/nine-page.css">
-    <link rel="stylesheet" href="../static/teachhub/css/ten-page.css">
-    <link rel="stylesheet" href="../static/teachhub/css/eleven-page.css">
-    <link rel="stylesheet" href="../static/teachhub/css/twelve-page.css">
-    <link rel="stylesheet" href="../static/teachhub/css/thirteen-page.css">
-    <script type="text/javascript" src="../static/teachhub/js/jquery-3.5.1.min.js"></script> -->
-    <!-- 消すのはここまで -->
-
-
-    <!-- Djangoで起動した時のcssとjsリンク -->
-    <link rel="stylesheet" href="{% static 'teachhub/css/nine-page.css' %}">
-    <link rel="stylesheet" href="{% static 'teachhub/css/ten-page.css' %}">
-    <link rel="stylesheet" href="{% static 'teachhub/css/eleven-page.css' %}">
-    <link rel="stylesheet" href="{% static 'teachhub/css/twelve-page.css' %}">
-    <link rel="stylesheet" href="{% static 'teachhub/css/thirteen-page.css' %}">
+   
+    
+    <link rel="stylesheet" href="{% static 'teachhub/css/textbooks.css' %}">
+    <link rel="stylesheet" href="{% static 'teachhub/css/chapter_list.css' %}">
+    <link rel="stylesheet" href="{% static 'teachhub/css/document_note.css' %}">
+    <link rel="stylesheet" href="{% static 'teachhub/css/document_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'teachhub/css/history.css' %}">
     <script type="text/javascript" src="{% static 'teachhub/js/jquery-3.5.1.min.js' %"></script>
 
     <title>TeachHub</title>
@@ -37,7 +28,6 @@
     </div>
     <div class="main">
         <div class="history-area">
-            <!-- <object data="" type=""></object> -->
             <iframe src="{{path}}" width="850" height="1200"></iframe>
         </div>
         <div class="history-contorls">
@@ -45,14 +35,11 @@
             {% for history in lst_histories %}
             <div class="history-contorl">
                 <div class="history-time">
-                    <!-- <div>2021年1月21日</div>
-                    <div>17:00</div> -->
                     <div>{{ history.created_at|date:"Y/m/d H:i" }}</div>
                 </div>
                 <div class="history-switch">
                     <a href="{% url 'teachhub:history_detail' history.id %}">ファイル</a>
                     <a href="{% url 'teachhub:diff' history.id %}">変更履歴</a>
-                    <!-- <div>ユーザー名</div> -->
                 </div>
             </div>
             {% endfor %}
