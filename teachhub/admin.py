@@ -46,5 +46,25 @@ class TextbookAdmin(admin.ModelAdmin):
     search_fields = ('name', )
 
 
+# @admin.register(Textbook)
+# class SubjectAreaAdmin(admin.ModelAdmin):
+
+#     list_display = ('name', )
+#     ordering = ['id', ]
+#     list_display_links = ('name', )
+
+#     search_fields = ('name', )
+
+
+# @admin.register(Textbook)
+# class SubjectAdmin(admin.ModelAdmin):
+
+#     list_display = ('name', )
+#     ordering = ['id', ]
+#     list_display_links = ('name', )
+
+#     search_fields = ('name', )
+
+
 # # TODO classにする
 # admin.site.register(CustomUser)
