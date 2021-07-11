@@ -6,14 +6,16 @@ from django.contrib.auth.decorators import login_required
 
 
 @login_required
-def chapter_list(request, textbook_id):
-    chapter = "chapters"
+def chapter_list(request, subject_id, textbook_id):
     if request.method == 'GET':
         chapter_list = Chapter.objects.filter(
             textbook_id=textbook_id).order_by('id')
-        text = Textbook.objects.get(id=textbook_id)
-        text_name = text.name
-        context = {"chapter_list": chapter_list, "text_name": text_name}
+        textbook = Textbook.objects.get(id=textbook_id)
+        context = {
+            "chapter_list": chapter_list,
+            "textbook": textbook,
+            "subject_id": subject_id
+        }
         return render(
             request,
             'teachhub/chapter_list.html',

@@ -15,8 +15,8 @@
 
 <div class="contents">
     <div class="contents-header">
-        <div class="lesson-title">チーム名</div>
-        <div class="member">
+        <div class="lesson-title subtitle">日本史</div>
+        <!-- <div class="member">
             <div class="member-logo">メンバー</div>
             <div class="member-icons">
                 <img class="member-img1" src="{% static 'teachhub/img/user-img1.jpg' %}" alt="">
@@ -27,40 +27,46 @@
                 <div class="horizon"></div>
                 <div class="vertical"></div>
             </a>
-        </div>
+        </div> -->
     </div>
     <div class="contents-dir">
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="開いたフォルダの画像">
-        <div>教科書名など</div>
+        <div>{{ textbook_name }}</div>
     </div>
+
     <div class="contents-dir-textbook contents-dir">
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="フォルダの画像">
-        <div>{{ section_name }} テスト</div>
-        <div class="icons-space">
-            <a class="upload-space icons" href="{% url 'teachhub:document_create' %} ">
-                <img src="{% static 'teachhub/img/upload.svg' %}" alt="アップロードフォルダの画像">
-                <div>アップロード</div>
-            </a>
+        <div>{{ chapter_name }} / {{ section_name }}</div>
+    </div>
+    <div class="contents-dir-textbook contents-dir upload-button">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="file">
+            <button type="submit">アップロード</button>
+        </form>
+        <!-- <div class="icons-space">
             <a href="" class="mkdir-space icons">
                 <img src="{% static 'teachhub/img/folder-add.svg' %}" alt="フォルダを作成の画像">
                 <div>フォルダを作成</div>
             </a>
-        </div>
+        </div> -->
     </div>
     <ul>
-        {% for document in document_test %}
+        {% for document in documents %}
         {% comment %} document_detail.htmlへ画面遷移 {% endcomment %}
         <li>
             <div class="paper-dir">
                 <div class="contents-dir paper">
-                    <img src="{% static 'teachhub/img/paper.svg' %}" alt="開いたフォルダの画像">
-                    <a class="paper-title" href="{{ document.get_absolute_url }}">{{ document.name }}</a>
+                    <div class="hoge">
+                        <img class="paper-img" src="{% static 'teachhub/img/paper.svg' %}" alt="開いたフォルダの画像">
+                        <a class="paper-title" href="{{ document.get_absolute_url }}">{{ document.name }}</a>
+                    </div>
                     <div class="paper-icons-space">
                         <!-- <a class="icons" href="">
                             <img src="../static/teachhub/img/share.svg" alt="共有のアイコン">
                             <div>共有</div>
                         </a> -->
-                        <a class="icons" href="{{ document.file.url }}">
+                        <a class="icons document-note-save-icon" href="{{ document.file.url }}">
                             <img src="{% static 'teachhub/img/download.svg' %}" alt="ダウンロードアイコン">
                             <div>保存</div>
                         </a>
@@ -72,6 +78,8 @@
             </div>
         </li>
         {% endfor %}
+        <div class="last-contents-border document-note-border"></div>
     </ul>
 </div>
+
 {% endblock content %}

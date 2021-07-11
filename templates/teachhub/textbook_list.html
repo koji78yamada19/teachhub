@@ -28,8 +28,8 @@
     <!-- <div class="add-textbook">
         <a href="">教科書を追加</a>
     </div> -->
-    {% for textbook in textbook_list %}
-    <a class="contents-dir subtitle" href="{% url 'teachhub:chapter_list' textbook.id %}">
+    {% for textbook in textbooks %}
+    <a class="contents-dir subtitle" href="{% url 'teachhub:chapter_list' subject_id textbook.id %}">
         <img src="{% static 'teachhub/img/folder-icon.svg' %}" alt="フォルダの画像">
         <div>{{ textbook }}</div>
     </a>

@@ -56,8 +56,8 @@ class Document(models.Model):
     custom_user = models.CharField(
         verbose_name='ユーザー', max_length=128, null=False, blank=True, default='')
 
-    school = models.ForeignKey(School, verbose_name='学校',
-                               on_delete=models.PROTECT, related_name='documents', default='A')
+    # school = models.ForeignKey(School, verbose_name='学校',
+    #                            on_delete=models.PROTECT, related_name='documents', default='')
     # latest = models.BooleanField(
     #     verbose_name='最新のドキュメント', null=True, blank=True, default=False)
 

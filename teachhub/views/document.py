@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse  # function の中で書くとき（評価タイミングの違い）
 from django.contrib.auth.decorators import login_required
 
-from teachhub.models import Textbook, Chapter, Section, Document
+from teachhub.models import Textbook, Chapter, Section, Document, Subject
 from accounts.models import CustomUser
 
 import requests
@@ -59,7 +59,7 @@ def document_detail(request, pk):
 
 @login_required
 # def document_note(request, section_id):
-def upload_and_get_document(request, section_id):
+def upload_and_get_document(request, subject_id, textbook_id, section_id):
     category_in_path = request.path.split('/')[-2]
     if category_in_path == 'notes':
         category = "板書案"
@@ -71,7 +71,8 @@ def upload_and_get_document(request, section_id):
     chapter_name = chapter.name
     textbook = chapter.textbook
     textbook_name = textbook.name
-    subject_name = '日本史'
+    subject = Subject.objects.get(id=subject_id)
+    subject_name = subject.name
 
     if request.method == 'GET':
         documents = Document.objects.filter(
@@ -118,13 +119,14 @@ def upload_and_get_document(request, section_id):
             document.updated_at = custom_user
         except:
             document = Document(
+                name=document_name.split('.')[0],
+                category=category,
+                path=f'{path}/{title}',
+                subject=subject,
                 textbook=textbook,
                 chapter=chapter,
                 section=section,
-                name=document_name.split('.')[0],
-                path=f'{path}/{title}',
                 content='',
-                category=category,
                 custom_user=custom_user,
                 updated_by=custom_user,
                 updated_at=date,
@@ -138,7 +140,7 @@ def upload_and_get_document(request, section_id):
         elif category == '小テスト':
             revers_url = 'teachhub:document_test'
 
-        return redirect(reverse(revers_url, args=(section_id,)))
+        return redirect(reverse(revers_url, args=(subject_id, textbook_id, section_id)))
 
 
 ###############
