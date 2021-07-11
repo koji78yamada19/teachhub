@@ -11,7 +11,6 @@ from teachhub.views.document import (
     # render_history,
     # show_history_detail,
     # show_diff,
-    root_to_login
 )
 
 from teachhub.views.chapter import (
@@ -20,4 +19,12 @@ from teachhub.views.chapter import (
 
 from teachhub.views.textbook import (
     textbook_list,
+)
+
+from teachhub.views.subject_area import (
+    get_subject_areas,
+)
+
+from teachhub.views.subject import (
+    get_subjects,
 )

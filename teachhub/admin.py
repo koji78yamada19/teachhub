@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Document, Section, Chapter, Textbook, SubjectArea, Subject
-# from accounts.models import CustomUser
+from .models import Document, Section, Chapter, Textbook, SubjectArea, Subject, SchoolClassification, School
 
 
 @admin.register(Document)
@@ -49,7 +48,7 @@ class TextbookAdmin(admin.ModelAdmin):
 @admin.register(SubjectArea)
 class SubjectAreaAdmin(admin.ModelAdmin):
 
-    list_display = ('name', )
+    list_display = ('name', 'school_classification')
     ordering = ['id', ]
     list_display_links = ('name', )
 
@@ -66,5 +65,21 @@ class SubjectAdmin(admin.ModelAdmin):
     search_fields = ('name', )
 
 
-# # TODO classにする
-# admin.site.register(CustomUser)
+@admin.register(SchoolClassification)
+class SchoolClassificationAdmin(admin.ModelAdmin):
+
+    list_display = ('name', )
+    ordering = ['id', ]
+    list_display_links = ('name', )
+
+    search_fields = ('name', )
+
+
+@admin.register(School)
+class School(admin.ModelAdmin):
+
+    list_display = ('name', )
+    ordering = ['id', ]
+    list_display_links = ('name', )
+
+    search_fields = ('name', )
