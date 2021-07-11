@@ -1,10 +1,11 @@
-<!-- {% load static %} -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- ブラウザにドラッグ＆ドロップして確認するためのリンク（Djangoで起動できたら消す） -->
     <link rel="stylesheet" href="../static/teachhub/css/textbooks.css">
     <link rel="stylesheet" href="../static/teachhub/css/chapter_list.css">
@@ -23,6 +24,7 @@
 
     <title>TeachHub</title>
 </head>
+
 <body>
     <div class="header">
         <div class="header-logo">TeachHub</div>
@@ -32,12 +34,15 @@
         </div>
     </div>
     <div class="main">
-        <div class="menu-tags"> <!-- 左のメニューバーの部分-->
-            <div class="sha-cre-mem"> <!-- 資料作成・共有-->
+        <div class="menu-tags">
+            <!-- 左のメニューバーの部分-->
+            <div class="sha-cre-mem">
+                <!-- 資料作成・共有-->
                 <div class="sha-cre-mem-dirs">
-                    <img src="../static/teachhub/img/sha-cre-men-icatch.svg" alt="資料作成・共有のアイキャッチ">
+                    <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="フォルダの画像">
                     <div>資料作成・共有</div>
-                    <a class="dir-add-icon add-icon" href=""><!-- + (追加）のアイコン -->
+                    <a class="dir-add-icon add-icon" href="">
+                        <!-- + (追加）のアイコン -->
                         <div class="horizon"></div>
                         <div class="vertical"></div>
                     </a>
@@ -47,11 +52,13 @@
                     <div>グループや個人名など</div>
                 </div>
             </div>
-            <div class="sha-cre-mem left-bookmark"> <!-- 資料作成・共有-->
+            <div class="sha-cre-mem left-bookmark">
+                <!-- 資料作成・共有-->
                 <div class="sha-cre-mem-dirs">
                     <img src="../static/teachhub/img/black-stare.svg" alt="資料作成・共有のアイキャッチ">
                     <div>ブックマーク</div>
-                    <a class="dir-add-icon add-icon" href=""><!-- + (追加）のアイコン -->
+                    <a class="dir-add-icon add-icon" href="">
+                        <!-- + (追加）のアイコン -->
                         <div class="horizon"></div>
                         <div class="vertical"></div>
                     </a>
@@ -85,62 +92,27 @@
             <!-- <div class="add-textbook">
                 <a href="">教科書を追加</a>
             </div> -->
-           
+
             <div class="contents-dir-unit">
+                {% for item in areas_with_classifications %}
                 <div>
-                    <div class="contents-dir-unit-title subtitle">中学校</div>
+                    <div class="contents-dir-unit-title subtitle">{{item.classification.name}}
+                    </div>
                 </div>
-                <a class="contents-dir-textbook contents-dir">
+                {% for area in item.areas %}
+                <a class="contents-dir-textbook contents-dir"
+                    href="{% url 'teachhub:subjects' item.classification.id area.id %}">
                     <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
-                    <div class="subtitle">国語</div>
+                    <div class="subtitle">
+                        {{area.name }}
+                    </div>
                 </a>
-                <a class="contents-dir-textbook contents-dir">
-                    <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
-                    <div class="subtitle">数学</div>
-                </a>
-                <a class="contents-dir-textbook contents-dir">
-                    <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
-                    <div class="subtitle">英語</div>
-                </a>
-                <a class="contents-dir-textbook contents-dir">
-                    <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
-                    <div class="subtitle">理科</div>
-                </a>
-                <a class="contents-dir-textbook contents-dir">
-                    <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
-                    <div class="subtitle">社会</div>
-                </a>
-                
+                {% endfor %}
                 <div class="last-contents-border"></div>
-            </div>
-            <div class="contents-dir-unit">
-                <div>
-                    <div class="contents-dir-unit-title subtitle">高校</div>
-                </div>
-                <a class="contents-dir-textbook contents-dir">
-                    <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
-                    <div class="subtitle">国語</div>
-                </a>
-                <a class="contents-dir-textbook contents-dir">
-                    <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
-                    <div class="subtitle">数学</div>
-                </a>
-                <a class="contents-dir-textbook contents-dir">
-                    <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
-                    <div class="subtitle">英語</div>
-                </a>
-                <a class="contents-dir-textbook contents-dir">
-                    <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
-                    <div class="subtitle">理科</div>
-                </a>
-                <a class="contents-dir-textbook contents-dir">
-                    <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
-                    <div class="subtitle">社会</div>
-                </a>
-                <div class="last-contents-border"></div>
+                {% endfor %}
             </div>
         </div>
-         <!-- {% endblock %} -->
+        {% endblock %}
 
 
     </div>
@@ -148,4 +120,5 @@
     <!-- Django用のjsリンク -->
     <script src="{% static 'teachhub/js/doc-cre-docsument.js' %}"></script>
 </body>
+
 </html>

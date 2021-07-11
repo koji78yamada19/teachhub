@@ -141,7 +141,7 @@ MEDIA_URL = '/media/'
 
 # Authentication
 SITE_ID = 1
-LOGIN_REDIRECT_URL = '/textbooks/'
+LOGIN_REDIRECT_URL = '/subject-areas/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 AUTH_USER_MODEL = 'accounts.CustomUser'
 

@@ -105,14 +105,11 @@ def upload_and_get_document(request, section_id):
         }
 
         res = requests.post(url, files=files, data=data)
-        print('res')
-        print(res.text)
         JST = timezone(timedelta(hours=+9), 'JST')
         date = datetime.now(JST)
         # current_time = date.strftime('%Y-%m-%d-%H-%M-%S')
 
         # データベースの更新
-        print("DBの更新")
         custom_user = CustomUser.objects.get(id=user_id)
         try:
             document = Document.objects.get(
@@ -169,12 +166,8 @@ def delete_document(request, doc_id):
 
 
 def download_document(request, doc_id):
-    print('doc')
-    print(doc_id)
     document = get_object_or_404(Document, id=doc_id)
     path = document.path
-    print("path")
-    print(path)
 
     url = 'https://prod-01.japanwest.logic.azure.com:443/workflows/471d46fc40cc4a64a3abe71adbec1fa9/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=z0FgPb_kOXJudulNY3fyAm1Qkzcnkwd8xN5B7ebAdBI'
     data = {'Path': path}
@@ -188,13 +181,6 @@ def download_document(request, doc_id):
     f.close
 
     return FileResponse(f)
-
-
-##################
-# ログイン後の画面 #
-##################
-def root_to_login(request):
-    return redirect('textbooks/')
 
 # 履歴詳細表示
 

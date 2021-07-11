@@ -13,9 +13,6 @@ def chapter_list(request, textbook_id):
             textbook_id=textbook_id).order_by('id')
         text = Textbook.objects.get(id=textbook_id)
         text_name = text.name
-        # 下記でもnameをとれる
-        # chapter = chapter_list.first()
-        # text_name = chapter.textbook.name
         context = {"chapter_list": chapter_list, "text_name": text_name}
         return render(
             request,
