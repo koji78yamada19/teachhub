@@ -3,6 +3,8 @@ __pycache__/
 
 migrations/
 
+local_settings.py
+
 .vscode/
 
 media/
