@@ -148,8 +148,9 @@ def upload_and_get_document(request, subject_id, textbook_id, section_id):
 ###############
 def delete_document(request, doc_id):
     document = get_object_or_404(Document, id=doc_id)
-    section = document.section
-    section_id = section.id
+    subject_id = document.subject.id
+    textbook_id = document.textbook.id
+    section_id = document.section.id
     context = {'document': document}
 
     if request.method == 'GET':
@@ -164,7 +165,7 @@ def delete_document(request, doc_id):
         data = {'Path': path}
         requests.post(url, data=data)
         document.delete()
-        return redirect(reverse('teachhub:document_note', args=(section_id,)))
+        return redirect(reverse('teachhub:document_note', args=(subject_id, textbook_id, section_id,)))
 
 
 def download_document(request, doc_id):
