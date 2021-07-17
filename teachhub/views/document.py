@@ -184,63 +184,7 @@ def download_document(request, doc_id):
 
     return FileResponse(f)
 
-# 履歴詳細表示
-
-# @login_required
-# def show_history_detail(request, doc_id):
-#     document = get_object_or_404(Document, id=doc_id)
-#     pdf_url = document.doc_pdf_url
-
-#     context = context_to_show_pdf(document, pdf_url)
-#     # 履歴の情報をコンテクストに追加
-#     context_histories = get_history(request, doc_id)
-#     context.update(context_histories)
-
-#     return render(request, 'teachhub/history.html', context)
-
-# # 差分詳細表示
-
-
-# @login_required
-# def show_diff(request, doc_id):
-#     document = get_object_or_404(Document, id=doc_id)
-#     diff_word_url = document.diff_word_url
-#     diff_pdf_url = document.diff_pdf_url
-
-#     # 既にpdfがある場合
-#     if diff_pdf_url:
-#         pdf_url = diff_pdf_url
-
-#         context = context_to_show_pdf(document, pdf_url)
-#         context_histories = get_history(request, doc_id)
-#         context.update(context_histories)
-
-#         return render(request, 'teachhub/history.html', context)
-
-#     # 差分のwordファイルがある場合
-#     elif diff_word_url:
-#         if os.path.isfile(diff_word_url):
-#             lock = threading.Lock()
-#             diff_pdf_url = diff_word_url.replace(
-#                 "word", "pdf").replace(".docx", ".pdf")
-#             convert_document(request, diff_word_url, diff_pdf_url, lock)
-#             document.diff_pdf_url = diff_pdf_url
-#             document.save()
-#             pdf_url = diff_pdf_url
-
-#             context = context_to_show_pdf(document, pdf_url)
-#             context_histories = get_history(request, doc_id)
-#             context.update(context_histories)
-
-#             return render(request, 'teachhub/history.html', context)
-#         else:
-#             text = '現在、処理中です。しばらくしてから再度、お試しください。'
-
-#             return text
-
-#     else:
-#         context = get_history(request, doc_id)
-#         return render(request, 'teachhub/history.html', context)
+# 以下、使っていない
 
 
 def context_to_show_pdf(document, pdf_url):
@@ -256,83 +200,6 @@ def context_to_show_pdf(document, pdf_url):
     }
 
     return context
-
-
-#############
-# その他    #
-#############
-
-# wordファイルをpdfファイルに変換
-
-
-# @login_required
-# def convert_document(request, word_url, pdf_url, lock):
-#     with lock:
-#         # Wordを起動する前にこれを呼び出す
-#         pythoncom.CoInitialize()
-#         # #Wordを起動する : Applicationオブジェクトを生成する
-#         try:
-#             Application = win32com.client.gencache.EnsureDispatch(
-#                 "Word.Application")
-#         except AttributeError:
-#             # Remove cache and try again.
-#             MODULE_LIST = [m.__name__ for m in sys.modules.values()]
-#             for module in MODULE_LIST:
-#                 if re.match(r'win32com\.gen_py\..+', module):
-#                     del sys.modules[module]
-#             shutil.rmtree(os.path.join(os.environ.get(
-#                 'LOCALAPPDATA'), 'Temp', 'gen_py'))
-#             Application = win32com.client.gencache.EnsureDispatch(
-#                 "Word.Application")
-
-#         Application.Documents.Open(word_url)
-#         wdFormatPDF = 17
-#         print("pdf化開始")
-#         Application.ActiveDocument.SaveAs2(
-#             FileName=pdf_url, FileFormat=wdFormatPDF)
-#         print("pdf化終了")
-
-#         Application.ActiveDocument.Close()
-#         #Wordを終了する : Quitメソッドを呼ぶ
-#         Application.Quit()
-#         pythoncom.CoUninitialize()
-
-#     return ""
-
-
-# # wordファイルの差分を取る
-# @login_required
-# def compare_documents(request, original_doc, revised_doc, diff_word_url, lock):
-#     with lock:
-#         pythoncom.CoInitialize()
-#         try:
-#             Application = win32com.client.gencache.EnsureDispatch(
-#                 "Word.Application")
-#         except AttributeError:
-#             MODULE_LIST = [m.__name__ for m in sys.modules.values()]
-#             for module in MODULE_LIST:
-#                 if re.match(r'win32com\.gen_py\..+', module):
-#                     del sys.modules[module]
-#             shutil.rmtree(os.path.join(os.environ.get(
-#                 'LOCALAPPDATA'), 'Temp', 'gen_py'))
-#             Application = win32com.client.gencache.EnsureDispatch(
-#                 "Word.Application")
-
-#         ori_doc_open = Application.Documents.Open(original_doc)
-#         rev_doc_open = Application.Documents.Open(revised_doc)
-#         print("差分計算開始")
-#         Application.CompareDocuments(ori_doc_open, rev_doc_open)
-#         Application.ActiveDocument.SaveAs2(FileName=diff_word_url)
-#         print("差分計算終了")
-
-#         Application.ActiveDocument.Close()
-#         Application.Quit()
-#         pythoncom.CoUninitialize()
-
-#     return ""
-
-
-# 履歴情報の取得
 
 
 @login_required
@@ -351,8 +218,6 @@ def get_history(request, doc_id):
 
     return context
 
-# # 取得した履歴情報をテンプレートにレンダリングする
-
 
 @login_required
 def render_history(request, doc_id):
@@ -363,30 +228,6 @@ def render_history(request, doc_id):
     context.update(context_histories)
 
     return render(request, 'teachhub/history.html', context)
-
-
-# def document_note(request, section_id):
-#     if request.method == 'GET':
-#         document_note = Document.objects.filter(
-#             category='板書案', section_id=section_id).order_by('id')
-#         section = Section.objects.get(id=section_id)
-#         section_name = section.name
-#         context = {"document_note": document_note,
-#                    "section_name": section_name}
-#         return render(
-#             request,
-#             'teachhub/document_note.html',
-#             context
-#         )
-#     else:
-#         return redirect(reverse('teachhub:upload'))
-
-
-# category(小テスト）とsection_idでフィルタリングした資料一覧ビュー
-
-###############
-# Create 作成 #
-###############
 
 
 # def document_create(request):
