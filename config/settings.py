@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['techhub-app.azurewebsites.net']
 
 
 # Application definition
@@ -88,7 +88,7 @@ DATABASES = {
         'PASSWORD': os.environ.get("DB_PASSWORD"),
         'HOST': os.environ.get("DB_HOST"),
         'PORT': os.environ.get("DB_PORT"),
-        'OPTIONS': {'charset': 'utf8mb4'},
+        # 'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
 
