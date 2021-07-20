@@ -81,6 +81,9 @@ body {
     height: 60px;
     background-color: #24292E;
     color: #fff;
+    position: fixed;
+    top: 0;
+    z-index: 5;
 }
 .header-logo{
     font-size: 36px;
@@ -150,12 +153,17 @@ body {
 /* 左のメニューバーの部分 */
 .main{
     display: flex;
+    margin-top: 60px;
 }
 .menu-tags{
     border-right: 1px solid #707070;
     width: 270px;
     height:800px;
     background: rgb(0,0,0,0.6);
+    position: fixed;
+    top: 60px;
+    left: 0;
+    z-index: 2;
 }
 .comming-soon{
     font-size: 24px;
@@ -245,6 +253,7 @@ body {
 /* 資料を置くメインコンテンツ部分 */
 .contents{
     width: calc(100% - 270px);
+    margin-left:270px ;
 }
 .contents-header{
     width: 95%;
