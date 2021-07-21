@@ -17,7 +17,7 @@
     transition: 0.2s;
 }
 .signup-page-main{
-    width: 350px;
+    width: 460px;
     margin: auto;
 }
 .new-signup{
@@ -35,18 +35,24 @@
     margin-bottom: 10px;
 }
 .input-form > input{
-    width: 350px;
+    width: 460px;
     height: 32px;
     font-size: 18px;
 }
 .submit-botton{
-    height: 46px;
-    width: 358px;
+    width: 454px;
+    height: 60px;
     border: none;
     border-radius: 5px;
     margin-top: 50px;
+    margin-bottom: 50px;
     background: #707070;
     color: white;
     font-size: 18px;
 
+}
+.submit-botton:hover{
+    background: #555555;
+    color: #ddd;
+    cursor: pointer;
 }

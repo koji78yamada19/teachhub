@@ -1,3 +1,7 @@
+.document_detail-contents{
+    z-index: 3;
+    background: #fff;
+}
 .text-prev-title{
     
     margin-left: 65px;
@@ -51,11 +55,14 @@
     border-radius: 5px;
     border: 1px solid #707070;
 }
-/* モーダルCSS */
+
+
+
+/* 削除確認モーダルここから *//* 削除確認モーダルここから *//* 削除確認モーダルここから */
 .modalArea {
     display: none;
     position: fixed;
-    z-index: 10; /*サイトによってここの数値は調整 */
+    z-index: 10; 
     top: 0;
     left: 0;
     width: 100%;
@@ -100,7 +107,7 @@
   }
   .modal-button{
       margin-top: 110px;
-      margin-left: 300px;
+      margin-left: 270px;
       display: flex;
   }
   .modal-button >div{
@@ -114,9 +121,9 @@
       border: 1px solid #707070;
   }
   .modal-button >div:hover{
-      background-color: white;
-      color: #707070;
-      border: 1px solid #707070;
+      background-color: #606060;
+      color: #dfdfdf;
+      border: 1px solid #606060;
       cursor: pointer;
   }
   .modal-button >input{
@@ -131,24 +138,52 @@
       border: 1px solid #707070;
   }
   .modal-button >input:hover{
-    background-color: white;
-    color: #707070;
+    background-color:#606060 ;
+    color: #dfdfdf;
     border: 1px solid #707070;
     cursor: pointer;
 }
-  .closeModal {
+  .modal-button > form >.delete-button{
+    width: 100px;
+    height: 40px;
+    padding: 7px 2px;
+    margin-left: 20px;
+    background-color: #d85555;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    border: 1px solid #d85555;
+}
+ 
+.modal-button > form >.delete-button:hover{
+    background-color: #af4545;
+    color: #dfdfdf;
+    border: 1px solid #af4545;
+    cursor: pointer;
+}
+.closeModal {
+    width: 33px;
+    height: 36px;
+    border-radius: 36px;
     position: absolute;
     top: 0.5rem;
     right: 1rem;
     font-size: 24px;
     cursor: pointer;
+}
+  .closeModal:hover{
+      background: #eee;
   }
+/* 削除確認モーダルここまで *//* 削除確認モーダルここから *//* 削除確認モーダルここから */
+
+
 
 /* 削除確認画面のデザイン */
 .delete-comfirm-page{
-    margin-left: 100px;
     margin-top: 100px;
     font-size: 20px;
+    margin-left: 370px;
 }
 .delete-comfirm-page > div{
     margin-bottom: 50px;

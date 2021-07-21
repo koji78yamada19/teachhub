@@ -1,6 +1,6 @@
 
 /* この"textbooks.css"ファイルはbase.htmlとtextbooks.cssのcssを記述しています。
-また、textbooks.cssで記述した内容の内、その他のテンプレート(例えばchapter_list.html)
+また、textbooks.cssで記述した内容のうち、その他のテンプレート(例えばchapter_list.html)
 にて再利用できるcssの記述は再利用させてもらっています。
 例えば、chapter_list.htmlのデザインを整える場合に、textbooks.cssで書いた内容では足りない部分を
 chapter_list.cssに書き足しています。
@@ -81,6 +81,9 @@ body {
     height: 60px;
     background-color: #24292E;
     color: #fff;
+    position: fixed;
+    top: 0;
+    z-index: 5;
 }
 .header-logo{
     font-size: 36px;
@@ -150,12 +153,17 @@ body {
 /* 左のメニューバーの部分 */
 .main{
     display: flex;
+    margin-top: 60px;
 }
 .menu-tags{
     border-right: 1px solid #707070;
     width: 270px;
     height:800px;
     background: rgb(0,0,0,0.6);
+    position: fixed;
+    top: 60px;
+    left: 0;
+    z-index: 2;
 }
 .comming-soon{
     font-size: 24px;
@@ -245,6 +253,7 @@ body {
 /* 資料を置くメインコンテンツ部分 */
 .contents{
     width: calc(100% - 270px);
+    margin-left:270px ;
 }
 .contents-header{
     width: 95%;
@@ -368,6 +377,11 @@ a.contents-dir:hover{
 .last-contents-border{
     margin-left: 30px;
     width: 95%;
+    border-top: 1px solid #909090;
+}
+.contents-dir-unit>div.last-contents-border-subject{
+    margin-left: 55px;
+    width: 92.2%;
     border-top: 1px solid #909090;
 }
 .document-note-border{
