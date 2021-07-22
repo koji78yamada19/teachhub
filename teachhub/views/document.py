@@ -114,7 +114,7 @@ def upload_and_get_document(request, subject_id, textbook_id, section_id):
         custom_user = CustomUser.objects.get(id=user_id)
         try:
             document = Document.objects.get(
-                category=category, section_id=section_id, custom_user=custom_user)
+                category=category, section_id=section_id, custom_user=custom_user, name=document_name)
             document.updated_by = date
             document.updated_at = custom_user
         except:
