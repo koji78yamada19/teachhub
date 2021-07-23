@@ -2,10 +2,72 @@
     position: relative;
 }
 .upload-button{
-    padding-top: 20px;
+    padding-top: 30px;
+    margin-bottom: 20px;
 }
-
-
+label > input{
+    display: none;
+}
+.upload-button > form {
+    display: flex;
+    
+}
+.upload-input-label{
+    width: 140px;
+    height: 40px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 16px;
+    background-color: #707070;
+    cursor: pointer;
+    line-height: 40px;
+}
+.upload-input-label:hover{
+    background-color: #808080;
+}
+#upload-input-label{
+    color: #a0a0a0;
+    background-color: #fafbfc;
+    border: 1px solid #ddd;
+    cursor: default;
+    width: 140px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 40px;
+}
+.upload-button > form > P{
+    line-height: 40px;
+    margin-left: 10px;
+}
+#upload-button-submit{
+   box-shadow: none;
+   border: none;
+   margin-left: 10px;
+   width: 130px;
+   height: 40px;
+   border-radius: 5px;
+   color: #a0a0a0;
+   font-size: 16px;
+   background-color: #fafbfc;
+   border: 1px solid #ddd;
+   cursor: default;
+}
+.upload-button-submit{
+   box-shadow: none;
+   border: none;
+   margin-left: 10px;
+   width: 130px;
+   height: 40px;
+   border-radius: 5px;
+   color: #fff;
+   font-size: 16px;
+   background-color: #707070;
+   cursor: pointer;
+}
+.upload-button-submit:hover{
+    background-color: #808080;
+}
 .paper-dir{
     height: 50px;
 }
