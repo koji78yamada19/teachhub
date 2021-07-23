@@ -33,7 +33,7 @@
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="開いたフォルダの画像">
         <div>{{ textbook_name }}</div>
     </div>
-    
+
     <div class="contents-dir-textbook contents-dir">
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="フォルダの画像">
         <div>{{ chapter_name }} / {{ section_name }} 板書案</div>
@@ -60,6 +60,7 @@
                     <div class="hoge">
                         <img class="paper-img" src="{% static 'teachhub/img/paper.svg' %}" alt="開いたフォルダの画像">
                         <a class="paper-title" href="{{ document.get_absolute_url }}">{{ document.name }}</a>
+                        <p>{{document.custom_user}}</p>
                     </div>
                     <div class="paper-icons-space">
                         <!-- <a class="icons" href="">

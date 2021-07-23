@@ -60,6 +60,7 @@
                     <div class="hoge">
                         <img class="paper-img" src="{% static 'teachhub/img/paper.svg' %}" alt="開いたフォルダの画像">
                         <a class="paper-title" href="{{ document.get_absolute_url }}">{{ document.name }}</a>
+                        <p>{{document.custom_user}}</p>
                     </div>
                     <div class="paper-icons-space">
                         <!-- <a class="icons" href="">
