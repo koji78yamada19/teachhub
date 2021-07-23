@@ -26,6 +26,5 @@ def get_subject_areas(request):
     context = {
         'areas_with_classifications': areas_with_classifications
     }
-    print('context')
-    print(context)
+
     return render(request, 'teachhub/subject_area_list.html', context)
