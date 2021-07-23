@@ -5,7 +5,10 @@
     padding-top: 20px;
 }
 
+.upload-button > form > button{
+   margin-left: 100px;
 
+}
 .paper-dir{
     height: 50px;
 }
