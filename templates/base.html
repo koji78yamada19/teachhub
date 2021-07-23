@@ -27,7 +27,8 @@
                 <img src="{% static 'teachhub/img/user-icon.jpeg' %}" alt="ユーザーアイコン">
                 {% comment %} ログイン名の表示 {% endcomment %}
                 {% if user.is_authenticated %}
-                <div class="user-name">{{ user.get_username }}</div>
+                <!-- <div class="user-name">{{ user.get_username }}</div> -->
+                <div class="user-name">{{ user.username }}</div>
                 {% else %}
                 <div class="user-name">ログインしていません</div>
                 {% endif %}
