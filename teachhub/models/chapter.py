@@ -8,9 +8,6 @@ class Chapter(models.Model):
     class Meta:
         db_table = 'chapters'
 
-    textbook = models.ForeignKey(Textbook, verbose_name='教科書',
-                                 on_delete=models.PROTECT, related_name='chapters', default='')
-
     name = models.CharField(
         verbose_name='章', max_length=128, null=False, blank=True)
 
