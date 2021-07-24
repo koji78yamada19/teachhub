@@ -7,8 +7,8 @@ from teachhub.models import School
 
 @admin.register(CustomUser)
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('username', 'school')
+    list_display = ('email', 'username', 'school')
     ordering = ['id', ]
-    list_display_links = ('username', 'school')
+    list_display_links = ('email', 'username', 'school')
     # 教材一覧で検索対象のフィールド
-    search_fields = ('username', 'school__name')
+    search_fields = ('email', 'username', 'school__name')

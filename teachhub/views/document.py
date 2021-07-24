@@ -76,9 +76,16 @@ def upload_and_get_document(request, subject_id, textbook_id, section_id):
 
     if request.method == 'GET':
         documents = Document.objects.filter(
-            category=category, section_id=section_id).order_by('id')
+            category=category, section=section).order_by('id')
+        docs_and_user_name = []
+        for document in documents:
+            email = document.email
+            user = CustomUser.objects.get(email=email)
+            doc_and_user_name = {'document': document,
+                                 'user_name': user.username}
+            docs_and_user_name.append(doc_and_user_name)
         context = {
-            "documents": documents,
+            "docs_and_user_name": docs_and_user_name,
             "textbook_name": textbook_name,
             "chapter_name": chapter_name,
             "section_name": section_name,
@@ -112,14 +119,20 @@ def upload_and_get_document(request, subject_id, textbook_id, section_id):
 
         # データベースの更新
         custom_user = CustomUser.objects.get(id=user_id)
+        email = custom_user.email
+
+        name = document_name.split('.')[0]
         try:
+            print('update')
             document = Document.objects.get(
-                category=category, section_id=section_id, custom_user=custom_user, name=document_name)
+                category=category, section=section, email=email, name=name)
+            print("成功")
             document.updated_by = date
-            document.updated_at = custom_user
+            document.updated_at = custom_user.username
         except:
+            print('insert')
             document = Document(
-                name=document_name.split('.')[0],
+                name=name,
                 category=category,
                 path=f'{path}/{title}',
                 subject=subject,
@@ -127,10 +140,10 @@ def upload_and_get_document(request, subject_id, textbook_id, section_id):
                 chapter=chapter,
                 section=section,
                 content='',
-                custom_user=custom_user,
-                updated_by=custom_user,
+                email=email,
+                updated_by=custom_user.username,
                 updated_at=date,
-                created_by=custom_user,
+                created_by=custom_user.username,
                 created_at=date
             )
         document.save()
