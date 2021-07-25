@@ -121,22 +121,14 @@ def upload_and_get_document(request, subject_id, textbook_id, section_id):
         date = datetime.now(JST)
         # current_time = date.strftime('%Y-%m-%d-%H-%M-%S')
 
-        # データベースの更新
         custom_user = CustomUser.objects.get(id=user_id)
-        print('custom_user')
-        print(custom_user)
-        email = custom_user.email
-
         name = document_name.split('.')[0]
         try:
-            print('update')
             document = Document.objects.get(
-                category=category, section=section, email=email, name=name)
-            print("成功")
+                category=category, section=section, user=custom_user, name=name)
             document.updated_by = date
             document.updated_at = custom_user.username
         except:
-            print('insert')
             document = Document(
                 name=name,
                 category=category,
@@ -146,7 +138,6 @@ def upload_and_get_document(request, subject_id, textbook_id, section_id):
                 chapter=chapter,
                 section=section,
                 content='',
-                email=email,
                 user=custom_user,
                 updated_by=custom_user.username,
                 updated_at=date,
