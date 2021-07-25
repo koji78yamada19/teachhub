@@ -55,8 +55,10 @@ class CustomUser(AbstractUser):
     email = models.EmailField(verbose_name='メールアドレス',
                               unique=True, null=False, blank=False)
 
-    school = models.ForeignKey(School, verbose_name='学校',
-                               on_delete=models.PROTECT, null=True, blank=True, related_name='custom_users')
+    # school = models.ForeignKey(School, verbose_name='学校',
+    #                            on_delete=models.PROTECT, null=True, blank=True, related_name='custom_users')
+    school = models.CharField(
+        verbose_name='学校名', max_length=128, null=True, blank=True, default='')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
