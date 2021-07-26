@@ -66,6 +66,8 @@ def upload_and_get_document(request, subject_id, textbook_id, section_id):
     elif category_in_path == 'tests':
         category = "小テスト"
     section = Section.objects.get(id=section_id)
+    print('section')
+    print(section)
     section_name = section.name
     chapter = section.chapter
     chapter_name = chapter.name
@@ -77,15 +79,17 @@ def upload_and_get_document(request, subject_id, textbook_id, section_id):
     if request.method == 'GET':
         documents = Document.objects.filter(
             category=category, section=section).order_by('id')
-        docs_and_user_name = []
+        name_and_docs = []
         for document in documents:
-            email = document.email
-            user = CustomUser.objects.get(email=email)
-            doc_and_user_name = {'document': document,
-                                 'user_name': user.username}
-            docs_and_user_name.append(doc_and_user_name)
+            user = document.user
+            custom_user = CustomUser.objects.get(email=user)
+            name_and_docs.append({
+                "name": custom_user.username,
+                "document": document
+            })
+
         context = {
-            "docs_and_user_name": docs_and_user_name,
+            "name_and_docs": name_and_docs,
             "textbook_name": textbook_name,
             "chapter_name": chapter_name,
             "section_name": section_name,
@@ -117,20 +121,14 @@ def upload_and_get_document(request, subject_id, textbook_id, section_id):
         date = datetime.now(JST)
         # current_time = date.strftime('%Y-%m-%d-%H-%M-%S')
 
-        # データベースの更新
         custom_user = CustomUser.objects.get(id=user_id)
-        email = custom_user.email
-
         name = document_name.split('.')[0]
         try:
-            print('update')
             document = Document.objects.get(
-                category=category, section=section, email=email, name=name)
-            print("成功")
+                category=category, section=section, user=custom_user, name=name)
             document.updated_by = date
             document.updated_at = custom_user.username
         except:
-            print('insert')
             document = Document(
                 name=name,
                 category=category,
@@ -140,7 +138,7 @@ def upload_and_get_document(request, subject_id, textbook_id, section_id):
                 chapter=chapter,
                 section=section,
                 content='',
-                email=email,
+                user=custom_user,
                 updated_by=custom_user.username,
                 updated_at=date,
                 created_by=custom_user.username,

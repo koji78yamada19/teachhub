@@ -53,11 +53,8 @@ class Document(models.Model):
     created_at = models.DateTimeField(
         verbose_name='作成日時', null=False, auto_now_add=True)
 
-    email = models.CharField(
-        verbose_name='メールアドレス', max_length=128, null=False, blank=False, default='')
-
-    # school = models.ForeignKey(School, verbose_name='学校',
-    #                            on_delete=models.PROTECT, related_name='documents', default='')
+    user = models.ForeignKey(CustomUser, verbose_name='ユーザー',
+                             on_delete=models.PROTECT, related_name='documents')
 
     def __str__(self):
         return self.name
