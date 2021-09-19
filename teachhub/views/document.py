@@ -38,10 +38,11 @@ def document_detail(request, pk):
     if request.method == 'GET':
         document = get_object_or_404(Document, pk=pk)
         path = document.path
-        url = 'https://prod-22.japanwest.logic.azure.com:443/workflows/e549f57770b24d1f8255ccb2ab1fc8fb/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=VTVnuk1nJXTihBEMQl25PRcjBrOaqbYu7u1h9kTBrqQ'
-        data = {'Path': path}
 
+        url = 'https://prod-22.japanwest.logic.azure.com:443/workflows/e549f57770b24d1f8255ccb2ab1fc8fb/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=VTVnuk1nJXTihBEMQl25PRcjBrOaqbYu7u1h9kTBrqQ'
+        data = {'path': path}
         res = requests.post(url, data=data)
+
         context = {
             'document': document,
             'file_link': res.text
@@ -66,8 +67,6 @@ def upload_and_get_document(request, subject_id, textbook_id, section_id):
     elif category_in_path == 'tests':
         category = "小テスト"
     section = Section.objects.get(id=section_id)
-    print('section')
-    print(section)
     section_name = section.name
     chapter = section.chapter
     chapter_name = chapter.name
@@ -106,20 +105,18 @@ def upload_and_get_document(request, subject_id, textbook_id, section_id):
         f = request.FILES.get('file')
         document_name = request.FILES['file'].name
         user_id = request.user.id
-        title = f'{document_name}'
         path = f'/documents/{subject_name}/{textbook_name}/{chapter_name}_{section_name}/{category_in_path}/user_{user_id}'
 
         url = 'https://prod-17.japanwest.logic.azure.com:443/workflows/aa397302f6694e959fca72dbab910124/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=g3Lk7aJOmOEkAWksX_5rcZjCTHIMNo0OShp8pLHYsnw'
-        files = {'file': (title, f, 'multipart/form-data')}
+        files = {'file': (document_name, f, 'multipart/form-data')}
         data = {
-            'Title': title,
-            'Path': path
+            'title': document_name,
+            'path': path
         }
+        requests.post(url, files=files, data=data)
 
-        res = requests.post(url, files=files, data=data)
         JST = timezone(timedelta(hours=+9), 'JST')
         date = datetime.now(JST)
-        # current_time = date.strftime('%Y-%m-%d-%H-%M-%S')
 
         custom_user = CustomUser.objects.get(id=user_id)
         name = document_name.split('.')[0]
@@ -132,7 +129,7 @@ def upload_and_get_document(request, subject_id, textbook_id, section_id):
             document = Document(
                 name=name,
                 category=category,
-                path=f'{path}/{title}',
+                path=f'{path}/{document_name}',
                 subject=subject,
                 textbook=textbook,
                 chapter=chapter,
@@ -172,9 +169,11 @@ def delete_document(request, doc_id):
         )
     elif request.method == 'POST':
         path = document.path
+
         url = 'https://prod-15.japanwest.logic.azure.com:443/workflows/3983ac8d86ed41eba9336be99a07ede6/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=zFFWcxkrq4td3xDZ6UT8LTVIo-dL4Z8i21hC2S6eTqw'
-        data = {'Path': path}
+        data = {'path': path}
         requests.post(url, data=data)
+
         document.delete()
         return redirect(reverse('teachhub:document_note', args=(subject_id, textbook_id, section_id,)))
 
@@ -184,9 +183,8 @@ def download_document(request, doc_id):
     path = document.path
 
     url = 'https://prod-01.japanwest.logic.azure.com:443/workflows/471d46fc40cc4a64a3abe71adbec1fa9/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=z0FgPb_kOXJudulNY3fyAm1Qkzcnkwd8xN5B7ebAdBI'
-    data = {'Path': path}
+    data = {'path': path}
     res = requests.post(url, data=data)
-    print(type(res.content))
 
     document_name = document.name
     f = open(f'{document_name}.docx', mode='wb+')
