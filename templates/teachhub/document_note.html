@@ -62,7 +62,7 @@
                 <div class="contents-dir paper">
                     <div class="hoge">
                         <img class="paper-img" src="{% static 'teachhub/img/paper.svg' %}" alt="開いたフォルダの画像">
-                        <a class="paper-title" href="{{ doc.document.get_absolute_url }}">{{item.document.name}}</a>
+                        <a class="paper-title" href="{{ item.document.get_absolute_url }}">{{item.document.name}}</a>
                         <p class="file-creater-name">{{item.name}}</p>
                     </div>
                     <div class="paper-icons-space">
@@ -70,7 +70,7 @@
                             <img src="../static/teachhub/img/share.svg" alt="共有のアイコン">
                             <div>共有</div>
                         </a> -->
-                        <a class="icons document-note-save-icon" href="{{ document.file.url }}">
+                        <a class="icons prev-icon" href="{% url 'teachhub:download' item.document.id %}">
                             <img src="{% static 'teachhub/img/download.svg' %}" alt="ダウンロードアイコン">
                             <div>保存</div>
                         </a>
