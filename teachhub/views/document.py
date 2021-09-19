@@ -1,3 +1,5 @@
+import os
+
 from django.db import reset_queries
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse  # function の中で書くとき（評価タイミングの違い）
@@ -191,6 +193,7 @@ def download_document(request, doc_id):
     f.write(res.content)
     f.seek(0)
     f.close
+    os.remove(f'./{document_name}.docx')
 
     return FileResponse(f)
 
