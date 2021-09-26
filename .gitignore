@@ -6,8 +6,3 @@ migrations/
 .vscode/
 
 media/
-pdfjs-2.7.570-dist
-# 後で削除
-venv
-node_modules
-myvenv
