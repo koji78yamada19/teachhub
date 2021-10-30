@@ -15,7 +15,8 @@ services:
     build: . # カレントディレクトリ（相対パス）
     # コンテナ内で実行するコマンドの指定をする
     # コンテナを立ち上げたら勝手に起動
-    command: python manage.py runserver 0.0.0.0:8000
+    # command: python manage.py runserver 0.0.0.0:8000 --settings=config.settings.local
+    command: python manage.py runserver 0.0.0.0:8000 --settings=config.settings.production
     # マウント
     volumes:
       #  - HOST:GUEST
