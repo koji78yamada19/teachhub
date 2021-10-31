@@ -100,7 +100,7 @@ DATABASES = {
         'USER': 'webappadmin@deploy-test-yama',
         'PASSWORD': 'webno07hin17jiko!',
         'HOST': 'deploy-test-yama.postgres.database.azure.com',
-        'PORT': '5432',
+        'PORT': '5431',
         # 'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
