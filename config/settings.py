@@ -27,7 +27,7 @@ SECRET_KEY = '1n%^5+e7@2@d74s0^j)$m*w)y%tcagh^+i&1*wn@m7(eqr0d=3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://deploy-test-yama.azurewebsites.net', 'localhost']
+ALLOWED_HOSTS = ['deploy-test-yama.azurewebsites.net', 'localhost']
 
 
 # Application definition
