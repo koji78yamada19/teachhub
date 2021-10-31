@@ -147,16 +147,18 @@ USE_TZ = True
 
 
 # 静的サーバーの設定（外部パッケージ利用する）
-# STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
-# DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
 # AZURE_ACCOUNT_NAME = os.environ.get("AZURE_ACCOUNT_NAME")
 # AZURE_ACCOUNT_KEY = os.environ.get("AZURE_ACCOUNT_KEY")
-# AZURE_CUSTOM_DOMAIN = 'teachhubstr.blob.core.windows.net'
-# AZURE_CONTAINER = 'app'
-# STATIC_ROOT = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/static/'
-# STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/static/'
-# MEDIA_ROOT = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/media/'
-# MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/media/'
+AZURE_ACCOUNT_NAME = 'deploytestyama'
+AZURE_ACCOUNT_KEY = 'N6Jpy38tEURSfcQmAVehczrnzY2XtbzdxJxuoW2gDpZg4/x++CCBzTKzvzsqYDvIEMF1qgWNFHkmCSyJox9aoQ=='
+AZURE_CUSTOM_DOMAIN = 'deploytestyama.blob.core.windows.net'
+AZURE_CONTAINER = 'app'
+STATIC_ROOT = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/static/'
+STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/static/'
+MEDIA_ROOT = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/media/'
+MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/media/'
 
 
 # local_settings.pyを読み込んでローカル情報で上書きする
