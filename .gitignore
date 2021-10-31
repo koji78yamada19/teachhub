@@ -7,5 +7,6 @@ migrations/
 
 media/
 
-# config/settings/production.py
-config/settings/local.py
+local_settings.py
+
+environ.py
