@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'deploy-test-yama'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3103A0A7241044208B8754D9B47581BB }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CCB67AA5DE614BD1BF8EA10F878DCC2E }}
