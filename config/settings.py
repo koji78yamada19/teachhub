@@ -145,6 +145,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+# プロジェクト直下の'static'を読み込みなさい
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # 静的サーバーの設定（外部パッケージ利用する）
 STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
@@ -179,13 +181,13 @@ MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/media/'
 #     exec(open(f, 'rb').read())
 
 # プロジェクト直下の'static'を読み込みなさい
-STATICFILES_DIRS = [  # 変更
-    os.path.join(BASE_DIR, 'static'),
-]
-STATIC_URL = '/static/'
+# STATICFILES_DIRS = [  # 変更
+#     os.path.join(BASE_DIR, 'static'),
+# ]
+# STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
 
 # Authentication
 SITE_ID = 1
