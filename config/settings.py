@@ -146,8 +146,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 # プロジェクト直下の'static'を読み込みなさい
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # 静的サーバーの設定（外部パッケージ利用する）
 STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
@@ -160,8 +159,8 @@ AZURE_CUSTOM_DOMAIN = 'deploytestyama.blob.core.windows.net'
 AZURE_CONTAINER = 'app'
 STATIC_ROOT = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/static/'
 STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/static/'
-MEDIA_ROOT = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/media/'
-MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/media/'
+# MEDIA_ROOT = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/media/'
+# MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/media/'
 
 
 # local_settings.pyを読み込んでローカル情報で上書きする
