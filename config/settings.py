@@ -156,9 +156,9 @@ DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
 AZURE_ACCOUNT_NAME = 'deploytestyama'
 AZURE_ACCOUNT_KEY = 'N6Jpy38tEURSfcQmAVehczrnzY2XtbzdxJxuoW2gDpZg4/x++CCBzTKzvzsqYDvIEMF1qgWNFHkmCSyJox9aoQ=='
 AZURE_CUSTOM_DOMAIN = 'deploytestyama.blob.core.windows.net'
-AZURE_CONTAINER = 'app/static'
-STATIC_ROOT = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/'
-STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/'
+AZURE_CONTAINER = 'app'
+STATIC_ROOT = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/static/'
+STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/static/'
 
 # local_settings.pyを読み込んでローカル情報で上書きする
 # PROJECT_APP_PATH = os.path.dirname(os.path.abspath(__file__))
