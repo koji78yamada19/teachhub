@@ -146,7 +146,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 # プロジェクト直下の'static'を読み込みなさい
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # 静的サーバーの設定（外部パッケージ利用する）
 STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
@@ -156,9 +156,9 @@ DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
 AZURE_ACCOUNT_NAME = 'deploytestyama'
 AZURE_ACCOUNT_KEY = 'N6Jpy38tEURSfcQmAVehczrnzY2XtbzdxJxuoW2gDpZg4/x++CCBzTKzvzsqYDvIEMF1qgWNFHkmCSyJox9aoQ=='
 AZURE_CUSTOM_DOMAIN = 'deploytestyama.blob.core.windows.net'
-AZURE_CONTAINER = 'app'
-STATIC_ROOT = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/static/'
-STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/static/'
+AZURE_CONTAINER = 'app/static'
+STATIC_ROOT = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/'
+STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/'
 
 # local_settings.pyを読み込んでローカル情報で上書きする
 # PROJECT_APP_PATH = os.path.dirname(os.path.abspath(__file__))
