@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['deploy-test-yama.azurewebsites.net', 'localhost']
 
@@ -146,21 +146,19 @@ STATIC_ROOT = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/'
 STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/'
 
 # local_settings.pyを読み込んでローカル情報で上書きする
-# PROJECT_APP_PATH = os.path.dirname(os.path.abspath(__file__))
-# PROJECT_APP = os.path.basename(PROJECT_APP_PATH)
-# f = os.path.join(PROJECT_APP_PATH, 'local_settings.py')
-# if os.path.exists(f):
-#     # from .local_settings import *
-#     print('local_settings.py存在する')
-#     import sys
-#     import imp
-#     module_name = '{}.local_settings'.format(PROJECT_APP)
-#     print('module_name')
-#     print(module_name)
-#     module = imp.new_module(module_name)
-#     module.__file__ = f
-#     sys.modules[module_name] = module
-#     exec(open(f, 'rb').read())
+PROJECT_APP_PATH = os.path.dirname(os.path.abspath(__file__))
+PROJECT_APP = os.path.basename(PROJECT_APP_PATH)
+f = os.path.join(PROJECT_APP_PATH, 'local_settings.py')
+if os.path.exists(f):
+    # from .local_settings import *
+    print('local_settings.py存在する')
+    import sys
+    import imp
+    module_name = '{}.local_settings'.format(PROJECT_APP)
+    module = imp.new_module(module_name)
+    module.__file__ = f
+    sys.modules[module_name] = module
+    exec(open(f, 'rb').read())
 
 # Authentication
 SITE_ID = 1
