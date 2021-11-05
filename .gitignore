@@ -8,5 +8,3 @@ migrations/
 media/
 
 local_settings.py
-
-environ.py
