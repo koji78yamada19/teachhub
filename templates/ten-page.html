@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="../static/teachhub/css/textbooks.css">
     <link rel="stylesheet" href="../static/teachhub/css/chapter_list.css">
     <link rel="stylesheet" href="../static/teachhub/css/document_note.css">
     <link rel="stylesheet" href="../static/teachhub/css/document_detail.css">
-    <link rel="stylesheet" href="../static/teachhub/css/history.css">
     <link rel="stylesheet" href="../static/teachhub/css/upload.css">
     <link rel="stylesheet" href="../static/teachhub/css/signup.css">
     <script type="text/javascript" src="../static/teachhub/js/jquery-3.5.1.min.js"></script>
-    
+
     <!-- Djangoで起動した時のcssとjsリンク -->
     <link rel="stylesheet" href="{% static 'teachhub/css/nine-page.css' %}">
     <link rel="stylesheet" href="{% static 'teachhub/css/ten-page.css' %}">
@@ -22,6 +22,7 @@
 
     <title>TeachHub</title>
 </head>
+
 <body>
     <div class="header">
         <div class="header-logo">TeachHub</div>
@@ -31,12 +32,15 @@
         </div>
     </div>
     <div class="main">
-        <div class="menu-tags"> <!-- 左のメニューバーの部分-->
-            <div class="sha-cre-mem"> <!-- 資料作成・共有-->
+        <div class="menu-tags">
+            <!-- 左のメニューバーの部分-->
+            <div class="sha-cre-mem">
+                <!-- 資料作成・共有-->
                 <div class="sha-cre-mem-dirs">
-                    <img src="../static/teachhub/img/sha-cre-men-icatch.svg" alt="資料作成・共有のアイキャッチ">       
+                    <img src="../static/teachhub/img/sha-cre-men-icatch.svg" alt="資料作成・共有のアイキャッチ">
                     <div>資料作成・共有</div>
-                    <a class="dir-add-icon add-icon" href=""><!-- + (追加）のアイコン -->
+                    <a class="dir-add-icon add-icon" href="">
+                        <!-- + (追加）のアイコン -->
                         <div class="horizon"></div>
                         <div class="vertical"></div>
                     </a>
@@ -46,11 +50,13 @@
                     <div>グループや個人名など</div>
                 </div>
             </div>
-            <div class="sha-cre-mem left-bookmark"> <!-- 資料作成・共有-->
+            <div class="sha-cre-mem left-bookmark">
+                <!-- 資料作成・共有-->
                 <div class="sha-cre-mem-dirs">
                     <img src="../static/teachhub/img/black-stare.svg" alt="資料作成・共有のアイキャッチ">
                     <div>ブックマーク</div>
-                    <a class="dir-add-icon add-icon" href=""><!-- + (追加）のアイコン -->
+                    <a class="dir-add-icon add-icon" href="">
+                        <!-- + (追加）のアイコン -->
                         <div class="horizon"></div>
                         <div class="vertical"></div>
                     </a>
@@ -89,15 +95,15 @@
                 <div>
                     <div class="contents-dir-unit-title subtitle">単元の大きなくくり</div>
                 </div>
-                
+
                 <div class="contents-dir-textbook contents-dir">
                     <img src="../static/teachhub/img/folder-icon.svg" alt="フォルダの画像">
                     <div class="subtitle">単元名など</div>
                     <div class="document-links">
-                        <button class="button" >
+                        <button class="button">
                             <a href="">教科資料</a>
                         </button>
-                        <button class="button" >
+                        <button class="button">
                             <a href="">テスト</a>
                         </button>
                     </div>
@@ -105,7 +111,7 @@
 
             </div>
         </div>
-         <!-- {% endblock %} -->
+        <!-- {% endblock %} -->
 
 
 
@@ -114,4 +120,5 @@
     <!-- Django用のjsリンク -->
     <script src="{% static 'teachhub/js/doc-cre-docsument.js' %}"></script>
 </body>
+
 </html>

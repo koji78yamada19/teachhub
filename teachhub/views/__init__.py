@@ -6,11 +6,6 @@ from teachhub.views.document import (
     # update_document,
     delete_document,
     download_document,
-    # convert_document,
-    # compare_documents,
-    # render_history,
-    # show_history_detail,
-    # show_diff,
 )
 
 from teachhub.views.chapter import (
