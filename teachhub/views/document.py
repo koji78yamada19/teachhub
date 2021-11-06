@@ -39,6 +39,7 @@ def document_detail(request, pk):
     # 教材の詳細を表示(pdfとして表示)
     if request.method == 'GET':
         document = get_object_or_404(Document, pk=pk)
+        subject_name = document.subject.name.split('-')[1]
         path = document.path
 
         url = 'https://prod-22.japanwest.logic.azure.com:443/workflows/e549f57770b24d1f8255ccb2ab1fc8fb/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=VTVnuk1nJXTihBEMQl25PRcjBrOaqbYu7u1h9kTBrqQ'
@@ -47,6 +48,7 @@ def document_detail(request, pk):
 
         context = {
             'document': document,
+            'subject_name': subject_name,
             'file_link': res.text
         }
         return render(
@@ -94,6 +96,7 @@ def upload_and_get_document(request, subject_id, textbook_id, section_id):
             "textbook_name": textbook_name,
             "chapter_name": chapter_name,
             "section_name": section_name,
+            "subject_name": subject_name.split('-')[1]
         }
 
         if category == '板書案':

@@ -11,7 +11,11 @@ def textbook_list(request, subject_id):
         subject = Subject.objects.get(id=subject_id)
         textbooks = Textbook.objects.filter(
             subject=subject).order_by('id')
-        context = {"textbooks": textbooks, "subject_id": subject_id}
+        context = {
+            "textbooks": textbooks,
+            "subject_id": subject_id,
+            "subject_name": subject.name.split('-')[1]
+        }
         return render(
             request,
             'teachhub/textbook_list.html',
