@@ -34,8 +34,8 @@ def document_list(request):
 
 
 @login_required
-def document_detail(request, pk):
-    # def get_document(request, pk):
+# def document_detail(request, pk):
+def get_document(request, pk):
     # 教材の詳細を表示(pdfとして表示)
     if request.method == 'GET':
         document = get_object_or_404(Document, pk=pk)
@@ -63,8 +63,7 @@ def document_detail(request, pk):
 
 
 @login_required
-# def document_note(request, section_id):
-def upload_and_get_document(request, subject_id, textbook_id, section_id):
+def upload_and_get_documents(request, subject_id, textbook_id, section_id):
     category_in_path = request.path.split('/')[-2]
     if category_in_path == 'notes':
         category = "板書案"
