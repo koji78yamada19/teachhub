@@ -41,8 +41,11 @@
     <div class="contents-dir-textbook contents-dir upload-button">
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="file" name="file">
-            <button type="submit">アップロード</button>
+            <label class="upload-input-label">
+                <input type="file" name="file">ファイルを選択
+            </label>
+            <p id="upload-file-name">ファイルが選択されていません</p>
+            <button id="upload-button-submit" class="upload-button-submit" type="submit">アップロード</button>
         </form>
         <!-- <div class="icons-space">
             <a href="" class="mkdir-space icons">
