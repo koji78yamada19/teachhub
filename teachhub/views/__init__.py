@@ -1,8 +1,8 @@
 from teachhub.views.document import (
-    # get_document,  # document_detail,
-    document_detail,
+    get_document,
+    # document_detail,
     document_list,
-    upload_and_get_document,
+    upload_and_get_documents,
     # update_document,
     delete_document,
     download_document,
