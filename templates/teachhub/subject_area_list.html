@@ -37,7 +37,7 @@
             <div class="contents-dir-unit-title subtitle">{{item.classification.name}}
             </div>
         </div>
-        {% for area in item.areas %}
+        {% for area in item.subject_areas %}
         <a class="contents-dir-textbook contents-dir"
             href="{% url 'teachhub:subjects' item.classification.id area.id %}">
             <img src="{% static 'teachhub/img/folder-icon.svg' %}" alt="フォルダの画像">
