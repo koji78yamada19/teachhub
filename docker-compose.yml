@@ -9,6 +9,8 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
   web: # サービスの名前
     # Dockerfileの内容が読み込まれて、Dockerfileの記載の内容でコンテナが作成され
     # Dockerfile内のFROM命令でイメージ指定できるため、間接的にイメージを指定
