@@ -1,5 +1,5 @@
 from django.db import models
-from teachhub.models.subject_area import SubjectArea
+from teachhub.models.subject_area import SubjectArea, SchoolClassification
 
 
 class Subject(models.Model):
@@ -12,6 +12,9 @@ class Subject(models.Model):
 
     subject_area = models.ForeignKey(SubjectArea, verbose_name='教科名',
                                      on_delete=models.PROTECT, related_name='subjects')
+
+    school_classification = models.ForeignKey(SchoolClassification, verbose_name='学校区分',
+                                              on_delete=models.PROTECT, related_name='subjects')
 
     def __str__(self):
         return self.name
