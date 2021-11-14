@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['deploy-test-yama.azurewebsites.net', 'localhost']
+ALLOWED_HOSTS = ['https://techhub-app.azurewebsites.net', 'localhost']
 
 # Application definition
 
@@ -143,7 +143,7 @@ STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
 DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
 AZURE_ACCOUNT_NAME = os.environ.get('AZURE_ACCOUNT_NAME')
 AZURE_ACCOUNT_KEY = os.environ.get('AZURE_ACCOUNT_KEY')
-AZURE_CUSTOM_DOMAIN = 'deploytestyama.blob.core.windows.net'
+AZURE_CUSTOM_DOMAIN = 'teachhubstr.blob.core.windows.net'
 AZURE_CONTAINER = 'app/static'
 STATIC_ROOT = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/'
 STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/'
