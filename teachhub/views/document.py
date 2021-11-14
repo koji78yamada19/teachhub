@@ -39,7 +39,6 @@ def get_document(request, pk):
     # 教材の詳細を表示(pdfとして表示)
     if request.method == 'GET':
         document = get_object_or_404(Document, pk=pk)
-        subject_name = document.subject.name.split('-')[1]
         path = document.path
 
         url = 'https://prod-22.japanwest.logic.azure.com:443/workflows/e549f57770b24d1f8255ccb2ab1fc8fb/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=VTVnuk1nJXTihBEMQl25PRcjBrOaqbYu7u1h9kTBrqQ'
@@ -48,7 +47,6 @@ def get_document(request, pk):
 
         context = {
             'document': document,
-            'subject_name': subject_name,
             'file_link': res.text
         }
         return render(
@@ -63,12 +61,14 @@ def get_document(request, pk):
 
 
 @login_required
+# def document_note(request, section_id):
 def upload_and_get_documents(request, subject_id, textbook_id, section_id):
     category_in_path = request.path.split('/')[-2]
     if category_in_path == 'notes':
         category = "板書案"
     elif category_in_path == 'tests':
         category = "小テスト"
+
     section = Section.objects.get(id=section_id)
     section_name = section.name
     chapter = section.chapter
@@ -95,7 +95,6 @@ def upload_and_get_documents(request, subject_id, textbook_id, section_id):
             "textbook_name": textbook_name,
             "chapter_name": chapter_name,
             "section_name": section_name,
-            "subject_name": subject_name.split('-')[1]
         }
 
         if category == '板書案':
@@ -198,3 +197,95 @@ def download_document(request, doc_id):
     os.remove(f'./{document_name}.docx')
 
     return FileResponse(f)
+
+# 以下、使っていない
+
+
+def context_to_show_pdf(document, pdf_url):
+    # pdfをブラウザで表示するためにpdf.jsを使用
+    # pdfを表示するためのviewerのpath
+    viewer_path = "/static/teachhub/pdfjs-2.7.570-dist/web/viewer.html"
+    pdf_path = "media/" + str(pdf_url)
+    path = viewer_path + "?file=%2F" + pdf_path
+
+    context = {
+        'document': document,
+        "path": path
+    }
+
+    return context
+
+
+@login_required
+def get_history(request, doc_id):
+    user = request.user
+    print(user)
+    document = Document.objects.get(id=doc_id)
+    section = document.section
+    document_name = document.name
+    documents = Document.objects.filter(
+        custom_user=user, section=section, name=document_name).order_by('-id')
+    histories = documents.values(
+        'id', 'doc_pdf_url', 'diff_word_url', 'created_at', 'custom_user')
+    lst_histories = list(histories)
+    context = {'lst_histories': lst_histories}
+
+    return context
+
+
+@login_required
+def render_history(request, doc_id):
+    document = get_object_or_404(Document, id=doc_id)
+    pdf_url = document.doc_pdf_url
+    context = context_to_show_pdf(document, pdf_url)
+    context_histories = get_history(request, doc_id)
+    context.update(context_histories)
+
+    return render(request, 'teachhub/history.html', context)
+
+
+# def document_create(request):
+#     if request.method == 'GET':
+#         form = DocumentForm()
+#         return render(
+#             request,
+#             'teachhub/document_form.html',
+#             dict(form=form)
+#         )
+#     elif request.method == 'POST':
+#         form = DocumentForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return redirect(form.instance.get_absolute_url())
+#         else:
+#             return render(
+#                 request,
+#                 'teachhub/document_form.html',
+#                 dict(form=form)
+#             )
+
+
+###############
+# Update 編集 #
+###############
+# def update_document(request, doc_id):
+#     # ↓ データベースから与えられたid番号を取得(if文の外に書く)
+#     document = get_object_or_404(Document, id=doc_id)  # /documents/4/update
+#     if request.method == 'GET':
+#         form = DocumentForm(instance=document)
+#         return render(
+#             request,
+#             'teachhub/document_form.html',
+#             dict(form=form)
+#         )
+#     elif request.method == 'POST':
+#         form = DocumentForm(request.POST, request.FILES, instance=document)
+#         if form.is_valid():
+#             form.save()
+#             return redirect(form.instance.get_absolute_url())
+#         else:
+#             return render(
+#                 request,
+#                 'teachhub/document_form.html',
+#                 dict(form=form)
+    # )
