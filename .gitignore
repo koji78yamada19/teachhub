@@ -6,3 +6,5 @@ migrations/
 .vscode/
 
 media/
+
+local_settings.py
