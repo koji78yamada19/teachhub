@@ -15,9 +15,6 @@ class Textbook(models.Model):
     subject = models.ForeignKey(Subject, verbose_name='科目',
                                 on_delete=models.PROTECT, related_name='textbooks')
 
-    school_classification = models.ForeignKey(SchoolClassification, verbose_name='学校区分',
-                                              on_delete=models.PROTECT, related_name='textbooks')
-
     school = models.ManyToManyField(School, verbose_name='学校')
 
     def __str__(self):
