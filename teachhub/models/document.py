@@ -61,4 +61,4 @@ class Document(models.Model):
 
     def get_absolute_url(self):
         # return 'documents/1/'
-        return reverse('teachhub:document_detail', kwargs={'pk': self.pk})
+        return reverse('teachhub:get_document', kwargs={'pk': self.pk})
