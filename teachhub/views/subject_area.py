@@ -12,16 +12,9 @@ def get_subject_areas(request):
     for classification in classifications:
         subject_areas = SubjectArea.objects.filter(
             school_classification=classification).order_by('id')
-        areas = []
-        for area in subject_areas:
-            area_name = area.name.split('-')[1]
-            areas.append({
-                'id': area.id,
-                'name': area_name
-            })
         areas_with_classifications.append({
             'classification': classification,
-            'areas': areas
+            'subject_areas': subject_areas
         })
     context = {
         'areas_with_classifications': areas_with_classifications

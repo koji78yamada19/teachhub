@@ -1,5 +1,7 @@
 from django.db import models
 from teachhub.models.subject import Subject
+from teachhub.models.school_classification import SchoolClassification
+from teachhub.models.school import School
 
 
 class Textbook(models.Model):
@@ -12,6 +14,8 @@ class Textbook(models.Model):
 
     subject = models.ForeignKey(Subject, verbose_name='科目',
                                 on_delete=models.PROTECT, related_name='textbooks')
+
+    school = models.ManyToManyField(School, verbose_name='学校')
 
     def __str__(self):
         return self.name
