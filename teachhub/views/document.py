@@ -39,7 +39,6 @@ def get_document(request, pk):
     # 教材の詳細を表示(pdfとして表示)
     if request.method == 'GET':
         document = get_object_or_404(Document, pk=pk)
-        subject_name = document.subject.name.split('-')[1]
         path = document.path
 
         url = 'https://prod-22.japanwest.logic.azure.com:443/workflows/e549f57770b24d1f8255ccb2ab1fc8fb/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=VTVnuk1nJXTihBEMQl25PRcjBrOaqbYu7u1h9kTBrqQ'
@@ -48,7 +47,6 @@ def get_document(request, pk):
 
         context = {
             'document': document,
-            'subject_name': subject_name,
             'file_link': res.text
         }
         return render(
@@ -63,12 +61,14 @@ def get_document(request, pk):
 
 
 @login_required
+# def document_note(request, section_id):
 def upload_and_get_documents(request, subject_id, textbook_id, section_id):
     category_in_path = request.path.split('/')[-2]
     if category_in_path == 'notes':
         category = "板書案"
     elif category_in_path == 'tests':
         category = "小テスト"
+
     section = Section.objects.get(id=section_id)
     section_name = section.name
     chapter = section.chapter
@@ -95,7 +95,6 @@ def upload_and_get_documents(request, subject_id, textbook_id, section_id):
             "textbook_name": textbook_name,
             "chapter_name": chapter_name,
             "section_name": section_name,
-            "subject_name": subject_name.split('-')[1]
         }
 
         if category == '板書案':

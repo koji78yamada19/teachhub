@@ -1,11 +1,12 @@
 <!-- {% load static %} -->
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
+
+
     <link rel="stylesheet" href="{% static 'teachhub/css/nine-page.css' %}">
     <link rel="stylesheet" href="{% static 'teachhub/css/ten-page.css' %}">
     <link rel="stylesheet" href="{% static 'teachhub/css/eleven-page.css' %}">
@@ -15,11 +16,12 @@
 
     <title>TeachHub</title>
 </head>
+
 <body>
     <div class="header">
         <div class="header-logo">TeachHub</div>
         <div class="header-user">
-            <img src="../static/teachhub/img/user-example.svg" alt="ユーザーアイコン">
+            <img src="{% static 'teachhub/img/user-example.svg %}" alt="ユーザーアイコン">
             <div class="user-name">ユーザー名</div>
         </div>
     </div>
@@ -36,7 +38,7 @@
             </div>
             <div class=" input-form">
                 <div>章</div>
-                <select  name="chapter" size="1">
+                <select name="chapter" size="1">
                     <option value="山川" label="山川">山川</option>
                     <option value="東書" label="東書">東書</option>
                 </select>
@@ -78,13 +80,14 @@
                 <div>作成者</div>
                 <input type="text">
             </div>
-            <input class="submit-botton" type="submit"  value="アップロード">
+            <input class="submit-botton" type="submit" value="アップロード">
 
         </form>
-        
+
     </div>
-    <script src="../static/teachhub/js/doc-cre-document.js"></script>
+    <script src="{% static 'teachhub/js/doc-cre-docsument.js' %}"></script>
     <!-- Django用のjsリンク -->
     <script src="{% static 'teachhub/js/doc-cre-docsument.js' %}"></script>
 </body>
+
 </html>
