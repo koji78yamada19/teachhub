@@ -1,5 +1,6 @@
 from django.db import models
-from teachhub.models.subject_area import SubjectArea, SchoolClassification
+from teachhub.models.subject_area import SubjectArea
+from teachhub.models.school_classification import SchoolClassification
 
 
 class Subject(models.Model):
