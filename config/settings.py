@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['https://teahhub.azurewebsites.net', 'localhost']
 
@@ -134,9 +134,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-# プロジェクト直下の'static'を読み込みなさい
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # 静的サーバーの設定（外部パッケージ利用する）
 STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
