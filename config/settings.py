@@ -145,6 +145,7 @@ AZURE_CONTAINER = 'static'
 STATIC_ROOT = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/'
 STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/'
 
+
 # 現在のブランチ名を取得する
 # _cmd = "git rev-parse --abbrev-ref HEAD"
 # branch = subprocess.check_output(_cmd.split()).strip().decode('utf-8')
