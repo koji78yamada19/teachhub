@@ -146,20 +146,20 @@ STATIC_ROOT = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/'
 STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/'
 
 # 現在のブランチ名を取得する
-_cmd = "git rev-parse --abbrev-ref HEAD"
-branch = subprocess.check_output(_cmd.split()).strip().decode('utf-8')
-branch = "-".join(branch.split("/"))
-if branch != 'main' or 'staging':
-    # local_settings.pyを読み込んでローカル情報で上書きする
-    PROJECT_APP_PATH = os.path.dirname(os.path.abspath(__file__))
-    PROJECT_APP = os.path.basename(PROJECT_APP_PATH)
-    f = os.path.join(PROJECT_APP_PATH, 'local_settings.py')
-    if os.path.exists(f):
-        module_name = '{}.local_settings'.format(PROJECT_APP)
-        module = imp.new_module(module_name)
-        module.__file__ = f
-        sys.modules[module_name] = module
-        exec(open(f, 'rb').read())
+# _cmd = "git rev-parse --abbrev-ref HEAD"
+# branch = subprocess.check_output(_cmd.split()).strip().decode('utf-8')
+# branch = "-".join(branch.split("/"))
+# if branch != 'main' or 'staging':
+# local_settings.pyを読み込んでローカル情報で上書きする
+PROJECT_APP_PATH = os.path.dirname(os.path.abspath(__file__))
+PROJECT_APP = os.path.basename(PROJECT_APP_PATH)
+f = os.path.join(PROJECT_APP_PATH, 'local_settings.py')
+if os.path.exists(f):
+    module_name = '{}.local_settings'.format(PROJECT_APP)
+    module = imp.new_module(module_name)
+    module.__file__ = f
+    sys.modules[module_name] = module
+    exec(open(f, 'rb').read())
 
 # Authentication
 SITE_ID = 1
