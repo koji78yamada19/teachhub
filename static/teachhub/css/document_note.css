@@ -39,6 +39,8 @@ label > input{
 .upload-button > form > P{
     line-height: 40px;
     margin-left: 10px;
+    width: calc(100%-542px);
+    overflow: hidden;
 }
 #upload-button-submit{
    box-shadow: none;

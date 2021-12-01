@@ -11,6 +11,7 @@ $('.hoge').hover(
 
 $('#upload-button-submit').prop('disabled', true);
 
+
 $('input').on('change', function () {
     var file = $(this).prop('files')[0];
     $('#upload-file-name').text(file.name);
