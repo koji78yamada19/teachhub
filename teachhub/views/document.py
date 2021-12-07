@@ -41,7 +41,7 @@ def get_document(request, pk):
         document = get_object_or_404(Document, pk=pk)
         path = document.path
 
-        url = 'https://prod-22.japanwest.logic.azure.com:443/workflows/e549f57770b24d1f8255ccb2ab1fc8fb/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=VTVnuk1nJXTihBEMQl25PRcjBrOaqbYu7u1h9kTBrqQ'
+        url = 'https://prod-24.japanwest.logic.azure.com:443/workflows/a2ac6b9aec134e4b99d4071d02859493/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=BwqnTKq9rWOcZjbRPVjfMnJXW-wTm01Wv95HECOt4Ow'
         data = {'path': path}
         res = requests.post(url, data=data)
 
@@ -110,7 +110,7 @@ def upload_and_get_documents(request, subject_id, textbook_id, section_id):
         user_id = request.user.id
         path = f'/documents/{subject_name}/{textbook_name}/{chapter_name}_{section_name}/{category_in_path}/user_{user_id}'
 
-        url = 'https://prod-17.japanwest.logic.azure.com:443/workflows/aa397302f6694e959fca72dbab910124/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=g3Lk7aJOmOEkAWksX_5rcZjCTHIMNo0OShp8pLHYsnw'
+        url = 'https://prod-28.japanwest.logic.azure.com:443/workflows/9f34d912159c4d7ba3c462afaa52ecf9/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=603MhfXHajXmggxonmy8B9aoHyzIopTHAlfus2E4Tzw'
         files = {'file': (document_name, f, 'multipart/form-data')}
         data = {
             'title': document_name,
@@ -173,7 +173,7 @@ def delete_document(request, doc_id):
     elif request.method == 'POST':
         path = document.path
 
-        url = 'https://prod-15.japanwest.logic.azure.com:443/workflows/3983ac8d86ed41eba9336be99a07ede6/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=zFFWcxkrq4td3xDZ6UT8LTVIo-dL4Z8i21hC2S6eTqw'
+        url = 'https://prod-28.japanwest.logic.azure.com:443/workflows/e0424ea9f4b14f9c9fd4d450f8fb4ddf/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=tarWtYTcdO9oU4vR20raM7bXd26S17e7pRJuBCjz5ZI'
         data = {'path': path}
         requests.post(url, data=data)
 
@@ -185,7 +185,7 @@ def download_document(request, doc_id):
     document = get_object_or_404(Document, id=doc_id)
     path = document.path
 
-    url = 'https://prod-01.japanwest.logic.azure.com:443/workflows/471d46fc40cc4a64a3abe71adbec1fa9/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=z0FgPb_kOXJudulNY3fyAm1Qkzcnkwd8xN5B7ebAdBI'
+    url = 'https://prod-18.japanwest.logic.azure.com:443/workflows/147e2b6620bf4047aa7a3cdc1013e225/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=YIzHfryDtIBc3yrneoKai_fAV4qPHbtWy2U82bCTr8s'
     data = {'path': path}
     res = requests.post(url, data=data)
 
