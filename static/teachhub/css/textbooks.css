@@ -319,6 +319,7 @@ body {
     margin-left: 30px;
     display: flex;
     border-top: 1px solid #909090;
+    border-bottom: 1px solid #909090;
 }
 
 a.contents-dir{
