@@ -1,0 +1,34 @@
+
+.first-contents-border{
+    margin-left: 30px;
+    width: 95%;
+    border-top: 1px solid #909090;
+}
+.contents-dir-subject-list{
+    display: inline-block;
+    width: 92.5%;
+    height: 50px;
+    margin-left: 60px;
+    display: flex;
+    border-bottom: 1px solid #909090;
+
+}
+
+a.contents-dir-subject-list{
+    cursor: pointer;
+}
+a.contents-dir-subject-list:hover{
+    background: #efefef;
+    cursor: pointer;
+}
+.contents-dir-subject-list > img{
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.subtitle-subject{
+    line-height: 60px;
+}
