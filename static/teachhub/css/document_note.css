@@ -54,6 +54,7 @@ label > input{
    background-color: #fff;
    border: 1px solid #707070;
    cursor: default;
+   font-family:"ヒラギノ角ゴ Pro W3" ;
 }
 .upload-button-submit{
    box-shadow: none;
