@@ -48,6 +48,7 @@
 .document-links > button > a{
     display: block;
     font-size: 16px;
+    font-family:"Noto Sans Japanese";
 }
 .document-links > button:hover{
     background: white;

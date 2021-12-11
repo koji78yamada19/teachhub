@@ -54,7 +54,6 @@ label > input{
    background-color: #fff;
    border: 1px solid #707070;
    cursor: default;
-   font-family:"ヒラギノ角ゴ Pro W3" ;
 }
 .upload-button-submit{
    box-shadow: none;
@@ -67,6 +66,7 @@ label > input{
    font-size: 16px;
    background-color: #707070;
    cursor: pointer;
+   font-family:"Noto Sans Japanese";
 }
 
 .upload-button-submit:hover{
