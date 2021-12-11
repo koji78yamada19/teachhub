@@ -4,8 +4,10 @@ from teachhub import views
 app_name = 'teachhub'  # URL逆引用
 
 urlpatterns = [
-    path('subject-areas/',
+    path('',
          views.get_subject_areas, name='subject_areas'),
+    #     path('subject-areas/',
+    #          views.get_subject_areas, name='subject_areas'),
     path('classifications/<int:classification_id>/subject-areas/<int:area_id>/subjects/',
          views.get_subjects, name='subjects'),
     path('subjects/<int:subject_id>/textbooks/',
@@ -16,7 +18,7 @@ urlpatterns = [
          views.upload_and_get_documents, name='document_note'),
     path('subjects/<int:subject_id>/textbooks/<int:textbook_id>/chapters/sections/<int:section_id>/tests/',
          views.upload_and_get_documents, name='document_test'),
-    path('documents/', views.document_list, name='document_list'),
+    #     path('documents/', views.document_list, name='document_list'),
     path('documents/<pk>/', views.get_document, name='get_document'),
     path('documents/<int:doc_id>/delete/',
          views.delete_document, name='delete_document'),
