@@ -21,6 +21,7 @@ label > input{
     background-color: #707070;
     cursor: pointer;
     line-height: 40px;
+    font-family:"ヒラギノ角ゴ Pro W3" ;
 }
 .upload-input-label:hover{
     background-color: #808080;
