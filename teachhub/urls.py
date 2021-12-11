@@ -18,7 +18,7 @@ urlpatterns = [
          views.upload_and_get_documents, name='document_note'),
     path('subjects/<int:subject_id>/textbooks/<int:textbook_id>/chapters/sections/<int:section_id>/tests/',
          views.upload_and_get_documents, name='document_test'),
-    path('documents/', views.document_list, name='document_list'),
+    #     path('documents/', views.document_list, name='document_list'),
     path('documents/<pk>/', views.get_document, name='get_document'),
     path('documents/<int:doc_id>/delete/',
          views.delete_document, name='delete_document'),
