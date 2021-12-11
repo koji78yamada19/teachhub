@@ -235,7 +235,7 @@ body {
     margin-bottom: 10px;
     justify-content: space-between;
 }
-.contents-header > .subtitle{
+.contents-header > .{
     font-size: 20px;
     line-height: 44px;
     float: left;
@@ -319,7 +319,6 @@ body {
     margin-left: 30px;
     display: flex;
     border-top: 1px solid #909090;
-    border-bottom: 1px solid #909090;
 }
 
 a.contents-dir{

@@ -31,23 +31,20 @@
                 <a href="">教科書を追加</a>
             </div> -->
 
-    <div class="contents-dir-unit">
-        {% for item in areas_with_classifications %}
-        <div>
-            <div class="contents-dir-unit-title subtitle">{{item.classification.name}}
-            </div>
+        <div class="contents-dir-unit">
+            {% for item in areas_with_classifications %}
+            <div class="contents-dir-unit-title subtitle ">{{item.classification.name}} </div>
+            {% for area in item.subject_areas %}
+            <a class="contents-dir-textbook contents-dir"
+                href="{% url 'teachhub:subjects' item.classification.id area.id %}">
+                <img src="{% static 'teachhub/img/folder-icon.svg' %}" alt="フォルダの画像">
+                <div class="subtitle">
+                    {{area.name }}
+                </div>
+            </a>
+            {% endfor %}
+            <div class="last-contents-border-subject"></div>
+            {% endfor %}
         </div>
-        {% for area in item.subject_areas %}
-        <a class="contents-dir-textbook contents-dir"
-            href="{% url 'teachhub:subjects' item.classification.id area.id %}">
-            <img src="{% static 'teachhub/img/folder-icon.svg' %}" alt="フォルダの画像">
-            <div class="subtitle">
-                {{area.name }}
-            </div>
-        </a>
-        {% endfor %}
-        <div class="last-contents-border-subject"></div>
-        {% endfor %}
-    </div>
 </div>
 {% endblock %}
