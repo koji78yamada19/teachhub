@@ -145,12 +145,6 @@ AZURE_CONTAINER = 'static'
 STATIC_ROOT = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/'
 STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{AZURE_CONTAINER}/'
 
-
-# 現在のブランチ名を取得する
-# _cmd = "git rev-parse --abbrev-ref HEAD"
-# branch = subprocess.check_output(_cmd.split()).strip().decode('utf-8')
-# branch = "-".join(branch.split("/"))
-# if branch != 'main' or 'staging':
 # local_settings.pyを読み込んでローカル情報で上書きする
 PROJECT_APP_PATH = os.path.dirname(os.path.abspath(__file__))
 PROJECT_APP = os.path.basename(PROJECT_APP_PATH)
