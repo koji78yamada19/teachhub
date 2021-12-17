@@ -96,14 +96,16 @@ def upload_and_get_documents(request, subject_id, textbook_id, section_id):
 
         # local_settings.pyが存在する場合は開発用のパスにファイルをアップロードする
         if os.path.exists(config.settings.f):
-            path = f'/documents/dev/{subject_name}/{textbook_name}/{chapter_name}_{section_name}/{category_in_path}/user_{user_id}'
+            path = f'/documents/dev/{subject_name}/{textbook_name}/{chapter_name}_{section_name}/{category_in_path}'
         else:
-            path = f'/documents/{subject_name}/{textbook_name}/{chapter_name}_{section_name}/{category_in_path}/user_{user_id}'
+            path = f'/documents/{subject_name}/{textbook_name}/{chapter_name}_{section_name}/{category_in_path}'
 
         url = 'https://prod-28.japanwest.logic.azure.com:443/workflows/9f34d912159c4d7ba3c462afaa52ecf9/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=603MhfXHajXmggxonmy8B9aoHyzIopTHAlfus2E4Tzw'
-        files = {'file': (document_name, f, 'multipart/form-data')}
+
+        files = {'file': (f'user_{user_id}-{document_name}',
+                          f, 'multipart/form-data')}
         data = {
-            'title': document_name,
+            'title': f'user_{user_id}-{document_name}',
             'path': path
         }
         requests.post(url, files=files, data=data)
@@ -122,7 +124,7 @@ def upload_and_get_documents(request, subject_id, textbook_id, section_id):
             document = Document(
                 name=name,
                 category=category,
-                path=f'{path}/{document_name}',
+                path=f'{path}/user_{user_id}-{document_name}',
                 subject=subject,
                 textbook=textbook,
                 chapter=chapter,
