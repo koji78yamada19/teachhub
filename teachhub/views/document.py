@@ -154,6 +154,7 @@ def delete_document(request, doc_id):
     subject_id = document.subject.id
     textbook_id = document.textbook.id
     section_id = document.section.id
+    category = document.category
     context = {'document': document}
 
     if request.method == 'GET':
@@ -170,7 +171,13 @@ def delete_document(request, doc_id):
         requests.post(url, data=data)
 
         document.delete()
-        return redirect(reverse('teachhub:document_note', args=(subject_id, textbook_id, section_id,)))
+
+        if category == '板書案':
+            revers_url = 'teachhub:document_note'
+        elif category == '小テスト':
+            revers_url = 'teachhub:document_test'
+
+        return redirect(reverse(revers_url, args=(subject_id, textbook_id, section_id,)))
 
 
 def download_document(request, doc_id):
