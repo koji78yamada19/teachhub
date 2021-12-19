@@ -13,7 +13,7 @@
 {% block content %}
 <div class="contents">
     <div class="contents-header">
-        <div class="lesson-title subtitle">教科資料</div>
+        <div class="lesson-title subtitle">教科一覧</div>
         <!-- <div class="member">
                     <div class="member-logo">メンバー</div>
                     <div class="member-icons">
@@ -31,20 +31,20 @@
                 <a href="">教科書を追加</a>
             </div> -->
 
-        <div class="contents-dir-unit">
-            {% for item in areas_with_classifications %}
-            <div class="contents-dir-unit-title subtitle ">{{item.classification.name}} </div>
-            {% for area in item.subject_areas %}
-            <a class="contents-dir-textbook contents-dir"
-                href="{% url 'teachhub:subjects' item.classification.id area.id %}">
-                <img src="{% static 'teachhub/img/folder-icon.svg' %}" alt="フォルダの画像">
-                <div class="subtitle">
-                    {{area.name }}
-                </div>
-            </a>
-            {% endfor %}
-            <div class="last-contents-border-subject"></div>
-            {% endfor %}
-        </div>
+    <div class="contents-dir-unit">
+        {% for item in areas_with_classifications %}
+        <div class="contents-dir-unit-title subtitle ">{{item.classification.name}} </div>
+        {% for area in item.subject_areas %}
+        <a class="contents-dir-textbook contents-dir"
+            href="{% url 'teachhub:subjects' item.classification.id area.id %}">
+            <img src="{% static 'teachhub/img/folder-icon.svg' %}" alt="フォルダの画像">
+            <div class="subtitle">
+                {{area.name }}
+            </div>
+        </a>
+        {% endfor %}
+        <div class="last-contents-border-subject"></div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
