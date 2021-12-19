@@ -16,7 +16,7 @@
 <div class="contents document_detail-contents">
     <div class="contents-header">
         {% comment %}{% endcomment %}
-        <div class="lesson-title">{{ subject_name }}</div>
+        <div class="lesson-title">{{ subject.name }}</div>
         <!-- <div class="member">
             <div class="member-logo">メンバー</div>
             <div class="member-icons">
@@ -30,14 +30,23 @@
             </a>
         </div> -->
     </div>
-    <a class="contents-dir" href="">
+    <a class="contents-dir document-note-textbook" href="{% url 'teachhub:textbook_list' subject.id %}">
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="開いたフォルダの画像">
-        <div>{{ document.textbook }}</div>
+        <div>{{ textbook }}</div>
     </a>
-    <a class="contents-dir-textbook contents-dir"  href="">
+    {% if document.category == '板書案' %}
+    <a class="contents-dir-textbook contents-dir"
+        href="{% url 'teachhub:document_note' subject.id textbook.id section.id %}">
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="フォルダの画像">
-        <div>{{document.chapter}} / {{ document.section }} {{ document.category }} </div>
+        <div>{{document.chapter}} / {{ section }} {{ document.category }} </div>
     </a>
+    {% elif document.category == '小テスト' %}
+    <a class="contents-dir-textbook contents-dir"
+        href="{% url 'teachhub:document_note' subject.id textbook.id section.id %}">
+        <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="フォルダの画像">
+        <div>{{document.chapter}} / {{ section }} {{ document.category }} </div>
+    </a>
+    {% endif %}
     <div class="last-contents-border document-note-border"></div>
     <div class="text-prev-title">
         <div class="text-prev-title-text">{{ document.name }} </div>

@@ -15,7 +15,7 @@
 
 <div class="contents">
     <div class="contents-header">
-        <div class="lesson-title subtitle">{{ subject_name }}</div>
+        <div class="lesson-title subtitle">{{ subject.name }}</div>
         <!-- <div class="member">
             <div class="member-logo">メンバー</div>
             <div class="member-icons">
@@ -29,7 +29,7 @@
             </a>
         </div> -->
     </div>
-    <a class="contents-dir document-note-textbook" href="">
+    <a class="contents-dir document-note-textbook" href="{% url 'teachhub:textbook_list' subject.id %}">
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="開いたフォルダの画像">
         <div>{{ textbook_name }}</div>
     </a>
