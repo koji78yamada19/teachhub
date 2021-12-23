@@ -11,14 +11,14 @@
     margin-left: 60px;
     display: flex;
     border-bottom: 1px solid #909090;
-
+    color: #4169e1;
 }
 
 a.contents-dir-subject-list{
     cursor: pointer;
 }
 a.contents-dir-subject-list:hover{
-    background: #efefef;
+    background: #f7f8f9;
     cursor: pointer;
 }
 .contents-dir-subject-list > img{

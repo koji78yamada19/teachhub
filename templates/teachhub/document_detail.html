@@ -31,24 +31,23 @@
             </a>
         </div> -->
     </div>
-    <a class="contents-dir document-note-textbook" href="{% url 'teachhub:textbook_list' subject.id %}">
+    <a class="contents-dir-detail-textbook contents-dir document-note-textbook" href="{% url 'teachhub:textbook_list' subject.id %}">
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="開いたフォルダの画像">
         <div>{{ textbook }}</div>
     </a>
     {% if document.category == '板書案' %}
-    <a class="contents-dir-textbook contents-dir"
+    <a class="contents-dir-detail-section"
         href="{% url 'teachhub:document_note' subject.id textbook.id section.id %}">
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="フォルダの画像">
         <div>{{document.chapter}} / {{ section }} {{ document.category }} </div>
     </a>
     {% elif document.category == '小テスト' %}
-    <a class="contents-dir-textbook contents-dir"
+    <a class="contents-dir-detail-section"
         href="{% url 'teachhub:document_note' subject.id textbook.id section.id %}">
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="フォルダの画像">
         <div>{{document.chapter}} / {{ section }} {{ document.category }} </div>
     </a>
     {% endif %}
-    <div class="last-contents-border document-note-border"></div>
     <div class="text-prev-title">
         <div class="text-prev-title-text">{{ document.name }} </div>
         <div class="prev-ope">

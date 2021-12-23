@@ -32,7 +32,7 @@
     {% for textbook in textbooks %}
     <a class="contents-dir subtitle" href="{% url 'teachhub:chapter_list' subject.id textbook.id %}">
         <img src="{% static 'teachhub/img/folder-icon.svg' %}" alt="フォルダの画像">
-        <div>{{ textbook }}</div>
+        <div class="textbook-name">{{ textbook }}</div>
     </a>
     {% endfor %}
     <div class="last-contents-border"></div>
