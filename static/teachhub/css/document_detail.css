@@ -2,6 +2,35 @@
     z-index: 3;
     background: #fff;
 }
+.contents-dir-detail-textbook{
+    border-bottom: 1px solid #909090;
+    color:#4169e1;
+}
+.contents-dir-detail-section {
+    color: #4169e1;
+    margin-left: 55px;
+    width: 92.2%;
+    position: relative;
+    display: inline-block;
+    height: 50px;
+    display: flex;
+    border-bottom: #707070 1px solid;
+}
+.contents-dir-detail-section > img{
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.contents-dir-detail-section > div{
+    line-height: 58px;
+}
+.contents-dir-detail-section:hover{
+    background: #f7f8f9;
+    
+}
 .text-prev-title{
     
     margin-left: 65px;

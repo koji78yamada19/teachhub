@@ -31,8 +31,17 @@ def get_document(request, pk):
         data = {'path': path}
         res = requests.post(url, data=data)
 
+        category = document.category
+        if category == '板書案':
+            revers_url = 'teachhub:document_note'
+        elif category == '小テスト':
+            revers_url = 'teachhub:document_test'
+
         context = {
+            'subject': document.subject,
             'document': document,
+            'textbook': document.textbook,
+            'section': document.section,
             'file_link': res.text
         }
         return render(
@@ -61,7 +70,6 @@ def upload_and_get_documents(request, subject_id, textbook_id, section_id):
     textbook = chapter.textbook
     textbook_name = textbook.name
     subject = Subject.objects.get(id=subject_id)
-    subject_name = subject.name
 
     if request.method == 'GET':
         documents = Document.objects.filter(
@@ -77,6 +85,7 @@ def upload_and_get_documents(request, subject_id, textbook_id, section_id):
 
         context = {
             "name_and_docs": name_and_docs,
+            "subject": subject,
             "textbook_name": textbook_name,
             "chapter_name": chapter_name,
             "section_name": section_name,
@@ -96,9 +105,9 @@ def upload_and_get_documents(request, subject_id, textbook_id, section_id):
 
         # local_settings.pyが存在する場合は開発用のパスにファイルをアップロードする
         if os.path.exists(config.settings.f):
-            path = f'/documents/dev/{subject_name}/{textbook_name}/{chapter_name}_{section_name}/{category_in_path}'
+            path = f'/documents/dev/{subject.name}/{textbook_name}/{chapter_name}_{section_name}/{category_in_path}'
         else:
-            path = f'/documents/{subject_name}/{textbook_name}/{chapter_name}_{section_name}/{category_in_path}'
+            path = f'/documents/{subject.name}/{textbook_name}/{chapter_name}_{section_name}/{category_in_path}'
 
         url = 'https://prod-28.japanwest.logic.azure.com:443/workflows/9f34d912159c4d7ba3c462afaa52ecf9/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=603MhfXHajXmggxonmy8B9aoHyzIopTHAlfus2E4Tzw'
 
@@ -154,6 +163,7 @@ def delete_document(request, doc_id):
     subject_id = document.subject.id
     textbook_id = document.textbook.id
     section_id = document.section.id
+    category = document.category
     context = {'document': document}
 
     if request.method == 'GET':
@@ -170,7 +180,13 @@ def delete_document(request, doc_id):
         requests.post(url, data=data)
 
         document.delete()
-        return redirect(reverse('teachhub:document_note', args=(subject_id, textbook_id, section_id,)))
+
+        if category == '板書案':
+            revers_url = 'teachhub:document_note'
+        elif category == '小テスト':
+            revers_url = 'teachhub:document_test'
+
+        return redirect(reverse(revers_url, args=(subject_id, textbook_id, section_id,)))
 
 
 def download_document(request, doc_id):

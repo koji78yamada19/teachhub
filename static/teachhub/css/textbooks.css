@@ -63,8 +63,10 @@ body {
     margin-left: 50px;
     float: left;
 }
-.header-logo:hover{
-    cursor: default;
+a.header-logo:hover{
+    cursor: pointer;
+    color: #cecece;
+    transition: 0.2s;
 }
 .header-handle{
     display: flex;
@@ -325,7 +327,7 @@ a.contents-dir{
     cursor: pointer;
 }
 a.contents-dir:hover{
-    background: #efefef;
+    background: #f7f8f9;
     cursor: pointer;
 }
 .contents-dir > img{
@@ -339,7 +341,12 @@ a.contents-dir:hover{
 .contents-dir > div{
     line-height: 58px;
 }
-
+.subject-area-name{
+    color: #4169e1;
+}
+.textbook-name{
+    color: #4169e1;
+}
 .bottom-border{
     margin-left: 30px;
     width: 95%;

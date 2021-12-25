@@ -15,7 +15,7 @@
 
 <div class="contents">
     <div class="contents-header">
-        <div class="lesson-title subtitle">{{ subject_name }}</div>
+        <div class="lesson-title subtitle">{{ subject.name }}</div>
         <!-- <div class="member">
             <div class="member-logo">メンバー</div>
             <div class="member-icons">
@@ -46,10 +46,10 @@
             <div class="section-name">{{ section.name }}</div>
             <div class="document-links">
                 <button class="button">
-                    <a href="{% url 'teachhub:document_note' subject_id textbook.id section.id %} ">板書案</a>
+                    <a href="{% url 'teachhub:document_note' subject.id textbook.id section.id %}">板書案</a>
                 </button>
                 <button class="button">
-                    <a href="{% url 'teachhub:document_test' subject_id textbook.id section.id %}">小テスト</a>
+                    <a href="{% url 'teachhub:document_test' subject.id textbook.id section.id %}">小テスト</a>
                 </button>
             </div>
         </div>

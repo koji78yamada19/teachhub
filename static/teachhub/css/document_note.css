@@ -1,6 +1,31 @@
 .contents-dir-textbook{
     position: relative;
+
 }
+.contents-dir-document{
+    margin-left: 55px;
+    width: 92.2%;
+    position: relative;
+    display: inline-block;
+    height: 50px;
+    display: flex;
+}
+.contents-dir-textbook > img{
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.contents-dir-textbook > div{
+    line-height: 58px;
+}
+.document-note-textbook{
+    width: 94.4%;
+    border-bottom: solid 1px #909090;
+}
+
 .upload-button{
     padding-top: 30px;
     margin-bottom: 20px;
@@ -120,7 +145,7 @@ label > input{
     right: 20px;
 }
 .icons:hover{
-    background: #efefef;
+    background: #f7f8f9;
 }
 .icons.white-stare:hover{
     background: white;
@@ -168,4 +193,7 @@ p.file-creater-name{
     line-height: 50px;
     text-align: left;
     overflow: hidden;
+}
+.document-note-name{
+    color: #4169e1;
 }

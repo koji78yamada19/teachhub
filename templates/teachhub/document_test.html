@@ -15,7 +15,7 @@
 
 <div class="contents">
     <div class="contents-header">
-        <div class="lesson-title subtitle">{{ subject_name }}</div>
+        <div class="lesson-title subtitle">{{ subject.name }}</div>
         <!-- <div class="member">
             <div class="member-logo">メンバー</div>
             <div class="member-icons">
@@ -29,12 +29,12 @@
             </a>
         </div> -->
     </div>
-    <div class="contents-dir">
+    <a class="contents-dir document-note-textbook" href="{% url 'teachhub:textbook_list' subject.id %}">
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="開いたフォルダの画像">
-        <div>{{ textbook_name }}</div>
-    </div>
+        <div class="document-note-name">{{ textbook_name }}</div>
+    </a>
 
-    <div class="contents-dir-textbook contents-dir">
+    <div class="contents-dir-textbook contents-dir-document">
         <img src="{% static 'teachhub/img/open-folder.svg' %}" alt="フォルダの画像">
         <div>{{ chapter_name }} / {{ section_name }} 小テスト</div>
 
@@ -54,7 +54,8 @@
                 <input type="file" name="file">ファイルを選択
             </label>
             <p id="upload-file-name">ファイルが選択されていません</p>
-            <button id="upload-button-submit" class="upload-button-submit upload-button-submit-cancel"  type="submit">アップロード</button>
+            <button id="upload-button-submit" class="upload-button-submit upload-button-submit-cancel"
+                type="submit">アップロード</button>
         </form>
     </div>
     <ul>
@@ -65,7 +66,7 @@
                 <div class="contents-dir paper">
                     <div class="hoge">
                         <img class="paper-img" src="{% static 'teachhub/img/paper.svg' %}" alt="開いたフォルダの画像">
-                        <a class="paper-title" href="{{ item.document.get_absolute_url }}">{{item.document.name}}</a>
+                        <a class="paper-title document-note-name" href="{{ item.document.get_absolute_url }}">{{item.document.name}}</a>
                         <p class="file-creater-name">{{item.name}}</p>
                     </div>
                     <div class="paper-icons-space">
