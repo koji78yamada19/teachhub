@@ -3,7 +3,6 @@ import os
 from django.db import reset_queries
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse  # function の中で書くとき（評価タイミングの違い）
-from django.contrib.auth.decorators import login_required
 
 from teachhub.models import Textbook, Chapter, Section, Document, Subject
 from accounts.models import CustomUser
@@ -22,11 +21,11 @@ import config
 
 @ login_required
 def get_document(request, pk):
-    # 教材の詳細を表示(pdfとして表示)
+    # 教材の詳細を表示(pdfでプレビューを表示)
     if request.method == 'GET':
         document = get_object_or_404(Document, pk=pk)
-        path = document.path
 
+        path = document.path
         url = 'https://prod-24.japanwest.logic.azure.com:443/workflows/a2ac6b9aec134e4b99d4071d02859493/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=BwqnTKq9rWOcZjbRPVjfMnJXW-wTm01Wv95HECOt4Ow'
         data = {'path': path}
         res = requests.post(url, data=data)
@@ -110,7 +109,6 @@ def upload_and_get_documents(request, subject_id, textbook_id, section_id):
             path = f'/documents/{subject.name}/{textbook_name}/{chapter_name}_{section_name}/{category_in_path}'
 
         url = 'https://prod-28.japanwest.logic.azure.com:443/workflows/9f34d912159c4d7ba3c462afaa52ecf9/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=603MhfXHajXmggxonmy8B9aoHyzIopTHAlfus2E4Tzw'
-
         files = {'file': (f'user_{user_id}-{document_name}',
                           f, 'multipart/form-data')}
         data = {
@@ -124,12 +122,16 @@ def upload_and_get_documents(request, subject_id, textbook_id, section_id):
 
         custom_user = CustomUser.objects.get(id=user_id)
         name = document_name.split('.')[0]
+
+        # category, section, user, nameで判別するupsert処理
         try:
             document = Document.objects.get(
                 category=category, section=section, user=custom_user, name=name)
+            # updateの処理
             document.updated_by = date
             document.updated_at = custom_user.username
         except:
+            # insertの処理
             document = Document(
                 name=name,
                 category=category,
@@ -174,7 +176,6 @@ def delete_document(request, doc_id):
         )
     elif request.method == 'POST':
         path = document.path
-
         url = 'https://prod-28.japanwest.logic.azure.com:443/workflows/e0424ea9f4b14f9c9fd4d450f8fb4ddf/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=tarWtYTcdO9oU4vR20raM7bXd26S17e7pRJuBCjz5ZI'
         data = {'path': path}
         requests.post(url, data=data)
@@ -191,8 +192,8 @@ def delete_document(request, doc_id):
 
 def download_document(request, doc_id):
     document = get_object_or_404(Document, id=doc_id)
-    path = document.path
 
+    path = document.path
     url = 'https://prod-18.japanwest.logic.azure.com:443/workflows/147e2b6620bf4047aa7a3cdc1013e225/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=YIzHfryDtIBc3yrneoKai_fAV4qPHbtWy2U82bCTr8s'
     data = {'path': path}
     res = requests.post(url, data=data)
